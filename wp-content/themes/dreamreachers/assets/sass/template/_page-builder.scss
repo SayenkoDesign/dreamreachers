@@ -1,0 +1,172 @@
+// Page Builder
+
+.template-page-builder {
+    
+    .section-hero {
+        
+        position: relative;
+        &:after {
+            content: '';
+            display: block;
+            height: 50%;
+            position: absolute;
+            right: 0;
+            width: 100%;
+            -webkit-backface-visibility: hidden; // for Chrome Windows
+        }
+                
+        &:after {
+            background: $blue;
+            bottom: 0;
+            transform: skewY(2deg);
+            transform-origin: 0 100%;
+        }
+        
+        .wrap {
+            margin-bottom: rem-calc(10);
+            
+            @include breakpoint(large) {
+                padding-top: rem-calc(140);     
+            }
+            
+            .row {
+                position: relative;   
+                z-index: 2;
+            }
+        }
+        
+        .shape {
+            display: none;
+        }
+    }
+    
+    
+    .site-content {
+        padding-bottom: 0;    
+    }
+    
+    .site-main {
+        
+        section {
+            position: relative; 
+            z-index: 2;
+            
+            @include breakpoint(large) {
+                &:first-child {
+                    &.photo-right {
+                     
+                        .element-photo {
+                            position: relative;
+                            margin-top: -45px;   
+                        }
+                        
+                    }
+                }
+            }
+                        
+            .column {
+                
+                &:first-child {
+                    padding-top: rem-calc(45);   
+                }
+                
+                &.large-center {
+                    @include breakpoint(large) {
+                        text-align: center;
+                    }
+                }
+                
+                img {
+                    margin-bottom: $global-margin;    
+                }
+                
+                h2 {
+                    margin-bottom: rem-calc(20);   
+                }
+                
+                a.link {
+                    
+                }
+                
+                a.button {
+                    @include button-green;
+                    
+                    @include breakpoint(medium down) {
+                        margin-left: 0;
+                    }
+                }
+            }
+            
+            .column-block { 
+                margin-bottom: $global-margin; 
+            }
+            
+            @include breakpoint(large) {
+        
+                .column-block {
+                    padding-top: rem-calc(55);
+                    margin-bottom: rem-calc(43);   
+                }
+                
+                .column.large-order-1 {
+                    padding-right: rem-calc(map-get($grid-column-gutter, large)*1.5);  
+                }
+                
+                .column.large-order-2 {
+                    padding-left: rem-calc(map-get($grid-column-gutter, large)*1.5);  
+                }
+                
+            }    
+        }
+        
+        .background-image {
+            display: none;
+            background-size: cover;  
+            background-position: center;
+            position: absolute;
+            height: 100%;
+            width: calc(50%);
+            left: 0;
+            
+            @include breakpoint(large) {
+                display: block;
+            }
+        }
+        
+        .photo-left { 
+        
+            @include breakpoint(large) {
+                .column.large-order-2 {
+                    padding-left: rem-calc(map-get($grid-column-gutter, large)*3);  
+                }
+            }
+        }
+        
+        
+        .photo-right { 
+        
+            @include breakpoint(large) {
+                .column.large-order-1 {
+                    padding-right: rem-calc(map-get($grid-column-gutter, large)*3);  
+                }
+            }
+            
+            .background-image {
+                left: auto;
+                right: 0;
+            }
+        }
+        
+        section:nth-child(even) {
+            
+            margin-top: 0;
+            
+            .wrap {
+                background-color: $light-gray;
+            }
+            
+        }
+       
+    }
+
+}

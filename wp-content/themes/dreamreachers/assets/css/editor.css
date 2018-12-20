@@ -1,0 +1,18 @@
+/* CSS Document */
+
+.wp-editor
+    .button {
+        display: block;
+        padding: .625rem;
+        text-align: center;
+        font-size: .875rem;
+        font-weight: 700;
+        line-height: 1.35;
+        text-transform: uppercase;   
+        width: 12.1875rem;
+        max-width: 12.1875rem;
+        text-decoration: none;
+        border: 1px solid #333;
+        color: #333;
+        border-radius: 12px;
+}

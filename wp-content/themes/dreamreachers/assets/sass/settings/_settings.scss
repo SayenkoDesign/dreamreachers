@@ -1,0 +1,148 @@
+//  Settings (includes overrides for sass/foundation/settings.scss)
+//  -----------------------------
+//
+//  Table of Contents:
+//
+//   1. Global
+//   2. Breakpoints
+//   3. The Grid
+//   4. Base Typography
+//   5. Off Canvas Menu
+
+
+@import '../../../node_modules/foundation-sites/scss/util/util';
+
+// 1. Global
+// ---------
+
+$global-font-size: 100%;
+$global-width: rem-calc(1180);
+$global-lineheight: 1.75;
+
+$black: #000;
+$white: #ffffff;
+
+$blue: #2B70AA;
+$light-blue: #00B5E1;
+$navy: #035481;
+
+$green: #59A441;
+
+$primary: $blue;
+$secondary: $navy;
+
+$light-gray: #EFF3F1;
+$gray: #4A4A4A;
+$dark-gray: #252B33;
+
+$orange: #d9901d;
+
+$border-color: #eceaeb;
+
+$nunito: 'Nunito', sans-serif;
+$open-sans: 'Open Sans', sans-serif; 
+
+$transition: none;
+
+$body-background: $blue;
+$body-font-color: #4A4A4A;
+$body-font-family: $open-sans;
+
+
+$global-margin: 22px;
+$global-padding: 10px;
+$global-weight-normal: normal;
+$global-weight-bold: 700;
+$global-radius: 0;
+$global-text-direction: ltr;
+
+
+// 2. Breakpoints
+// --------------
+
+$breakpoints: (
+  small: 0,
+  medium: 640px,
+  large: 980px,
+  xlarge: 1024px,
+  xxlarge: 1200px,
+  xxxlarge: 1440px
+);
+// must match $breakpoints
+$breakpoint-classes: (small medium large xlarge xxlarge xxxlarge);
+
+
+// 3. The Grid
+// -----------
+
+$grid-row-width: $global-width;
+$grid-column-count: 12; // usually 12
+$grid-column-gutter: (
+  small: 14px,
+  medium: 14px,
+  large: 14px
+);
+$grid-column-align-edge: true;
+$block-grid-max: 8;
+
+
+// 4. Base Typography
+// ---------
+
+$header-font-family: $nunito;
+$header-font-weight: 400;
+$header-font-style: normal;
+
+/// Styles for headings at various screen sizes. Each key is a breakpoint, and each value is a map of heading styles.
+/// @type Map
+$header-styles: (
+  small: (
+    'h1': ('font-size': 34, 'line-height': 1.34),
+    'h2': ('font-size': 28, 'line-height': 1.37),
+    'h3': ('font-size': 22, 'line-height': 1.46),
+    'h4': ('font-size': 18, 'line-height': 1.3),
+    'h5': ('font-size': 16, 'line-height': 1.2),
+    'h6': ('font-size': 15, 'line-height': 1.2),
+  ),
+  large: (
+    'h1': ('font-size': 38 ),
+    'h2': ('font-size': 30 ),
+    'h3': ('font-size': 22 ),
+    'h4': ('font-size': 18 ),
+    'h5': ('font-size': 16 ),
+    'h6': ('font-size': 15 ),
+  ),
+) !default;
+
+$header-color: $primary;
+$header-lineheight: 1.4;
+$header-margin-bottom: 30px;
+$small-font-size: 14px;
+$header-small-font-color: $dark-gray;
+
+$paragraph-font-family: $open-sans;
+$paragraph-font-style: normal;
+$paragraph-font-weight: normal;
+$paragraph-font-size: 16px;
+$paragraph-line-height: 1.75;
+$paragraph-font-color: #454C54;
+$paragraph-margin-bottom: 22px;
+
+$anchor-color: $primary;
+$anchor-color-hover: scale-color($primary, $lightness: -20%);
+
+
+$accordion-item-background-hover: #fff;
+$accordion-content-background: #eff3f2;
+$accordion-content-border: 1px solid #f1f1f1;
+
+$tab-background: #ffffff;
+$tab-content-background: transparent;
+$tab-background-active: #ffffff;
+$tab-item-font-size: 16px;
+$tab-item-padding: 20px;
+$tab-content-padding: 20px;
+
+$box-shadow: 0 11px 12px 0 rgba(0,0,0,0.1); 
+
+$hr-border: 1px solid $border-color;

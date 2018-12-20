@@ -1,0 +1,74 @@
+// Footer CTA
+
+.section-footer-cta {
+    
+    background-size: cover;
+    background-position: center;
+    
+    background-color: $navy;
+    background-image: url(assets/images/background-footer-cta.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+        
+    .wrap {    
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        padding: rem-calc(35px 0 20px);
+            
+        h2,
+        h3,
+        p,
+        a[href^=tel] {
+            color: #fff    
+        }
+        
+        h2 {
+            margin: rem-calc(0 auto 20);
+            color: #fff!important;
+        }
+        
+        .button {
+            @include button-green; 
+            min-width: rem-calc(250);  
+        }
+    }
+
+
+    .shape {
+        
+        width: 100%;
+        height: 0;
+        padding-top: 2%;
+        position: relative;
+        
+        svg {
+            display: block;  
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+         
+    }
+    
+    
+    // Hide shape
+    
+    .home &,
+    .page-builder & {
+        .shape {
+            display: none!important;   
+        }
+    }
+    
+    
+    // Hide Footer CTA
+    
+    .single-job & {
+       display: none!important;   
+    }
+    
+
+}

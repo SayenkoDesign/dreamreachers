@@ -1,0 +1,348 @@
+/*
+Header
+---------------------------------------------- */
+
+// Fix for sticky header
+.logged-in .site-header.fixed {
+    //top: 46px;
+
+    @include breakpoint(xlarge) {
+        top: 32px;
+    }      
+ }
+ 
+
+.site-header {
+        
+    @include breakpoint(xlarge) {
+                        
+        &.fixed {
+            transition: transform .1s ease 0s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 99;
+            transform: translateY(0); 
+            .wrap {
+                position: relative;                
+                @include breakpoint(large) {                
+                    .row:last-child {
+                        padding-top: 0;   
+                    }
+                } 
+                
+            }
+            
+            .nav-primary .menu .menu-item,
+            .nav-primary .menu .menu-item a {
+                transition: all .1s ease 0s; 
+            }
+                        
+            .site-title img {
+                max-height: none; 
+                //transition: all .1s ease .1s;
+            }
+            
+            
+            &.shrink {
+                
+                .site-title {
+                    img {
+                       transform-origin: center top;
+                       transform: scale(.7);
+                       width: auto;   
+                    }
+                }
+                
+                .nav-primary .menu > .menu-item {
+                    
+                    padding-left: 0;
+                    padding-right: 0;
+                    
+                    a {
+                        font-size: rem-calc(13);   
+                    }
+                }
+            }
+            
+            &.nav-up {
+                transform: translateY(-400%);   
+            }
+                
+        }
+        
+        
+    
+    }
+}
+
+
+.site-header {
+    
+    width: 100%;
+    z-index: 99;
+    position: relative;
+                
+    .wrap {
+        
+        background-color: #fff;
+        
+        @include breakpoint(xlarge) {
+            background-color: $blue;   
+        }
+        
+        .site-branding {
+            text-align: center;  
+            margin: 0 auto;
+            
+            @include breakpoint(xlarge) {
+                text-align: left; 
+                min-height: 10px;
+                width: 120px; 
+                margin: 0;
+            }
+        }
+     
+        .site-title {
+                        
+            padding: 0 0 5px;
+            display: inline-block;
+            
+            vertical-align: middle;
+            max-width: 56px;
+            
+            @include breakpoint(xlarge) {
+                max-width: none;
+                position: absolute;
+                top: 0;
+                padding: 0;
+                z-index: 12;
+            }
+                                    
+            a {
+                display: inline-block;
+                
+                img {
+                    box-shadow: 0 0 6px 0 #000;   
+                }
+            }
+            
+        }
+
+    }
+
+    
+    .menu-toggle {
+        position: absolute;
+        top: 25px;
+        right: rem-calc(map-get($grid-column-gutter, small) );  
+        z-index: 999;
+        
+        @include breakpoint(large) {
+            right: rem-calc(map-get($grid-column-gutter, large) );  
+        }
+    }
+    
+    .shrink {
+        flex: 0 0 auto!important;   
+    }
+    
+    .locations-menu {
+        
+        @include breakpoint(large down) {
+            position: absolute;
+            top: 15px;
+                    
+            left: rem-calc(map-get($grid-column-gutter, small) );  
+            z-index: 999;
+            
+            @include breakpoint(large) {
+                left: rem-calc(map-get($grid-column-gutter, large) );  
+            }
+        }
+    }
+                
+}
+
+
+.header-widgets {   
+    position: relative;
+    width: 163px;
+     
+    a {
+        @include button-green;
+        position: absolute;
+        top: 0;
+        right: rem-calc(15);
+        z-index: 100;
+    }
+}
+
+
+
+
+
+
+
+    
+.locations-menu {
+            
+    .menu .menu-item:focus {
+        position: static;
+    }    
+}
+
+.locations-menu .menu {
+    @include list-reset;
+        
+    .menu-item .sub-menu {
+        @include list-reset;
+        position: absolute;
+        top: calc(100% + 11px);
+        left: auto;
+        min-width: 190px;
+        padding: rem-calc(10 0 20 0);
+        background-color: $white;
+        box-shadow: 1px 1px 6px 0 #979797;
+        
+        @include breakpoint(xlarge) {
+            top: 100%;
+        }
+        
+        .menu-item {
+            border: none;
+            display: block;
+            padding: rem-calc(5 15);
+            margin: 0;
+
+            > a {
+                background: transparent;
+                position: relative;
+                padding: 0;
+                font-size: rem-calc(15);
+                display: inline-block;
+                
+                color: $dark-gray;
+                
+                &:after {
+                    content: '';
+                    display: block;
+                    width: rem-calc(18);
+                    height: rem-calc(2);
+                    background-color: $green;  
+                    transition: width .3s; 
+                }
+                
+                &:focus {
+                    &:after {
+                        width: 100%;   
+                    }
+                }
+            }
+            
+            &:hover,
+            &.is-active {
+                a {                        
+                    &:after {
+                        width: 100%;   
+                    }
+                }
+            }
+        }
+        
+        .menu-item-has-children {
+            
+            .sub-menu {
+                background-color: #ECECEC;
+                max-width: calc(100vw - 20px);
+                width: rem-calc(330);
+                top: calc(100% + 2px);
+                left: 0;
+                padding: rem-calc(3 0 10 0);
+                
+                
+                @include breakpoint(medium) {
+                    width: rem-calc(330);
+                    max-width: none;
+                    top: -10px;
+                    left: calc(100% + 2px);
+                }
+                
+                @include breakpoint(xlarge) {
+                    left: auto;
+                    right: calc(100% + 2px);
+                    
+                }
+                
+                .menu-item {
+                    padding: rem-calc(20 15);   
+                    
+                    h5 {
+                        margin-bottom: rem-calc(20); 
+                        text-transform: uppercase;
+                    }
+                }
+                
+                .locations {
+                    border-left: 2px solid $blue;  
+                    padding-left: rem-calc(10); 
+                    
+                    li {
+                        padding: rem-calc( 8 0 ); 
+                        line-height: 1; 
+                        
+                        &:first-child {
+                            padding-top: 0;   
+                        }
+                        
+                        &:last-child {
+                            padding-bottom: 0;
+                        }
+                    }
+                    
+                    a {
+                        color: $dark-gray;
+                        display: inline;
+                        padding: 0;   
+                    }
+                }
+            }
+        }
+        
+        .sub-menu {
+
+        }
+    }
+
+}
+   
+
+
+.locations-menu {    
+    
+    @include breakpoint(xlarge) {
+        margin-right: 20px!important;   
+    }   
+        
+    > ul {
+        
+        > li {
+        
+            > a {
+                padding: rem-calc(6 0); 
+            }
+            
+            > a svg {
+                position: relative;
+                margin-top: -3px; 
+            }
+            
+            > a:after {
+                background-color: transparent!important; 
+            }   
+        }
+        
+    }
+}

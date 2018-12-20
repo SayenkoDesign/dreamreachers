@@ -1,0 +1,146 @@
+// Typography
+
+/* Typography resets */
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
+  margin: 0;
+  padding: 0; 
+}
+
+body {
+	font-family: $paragraph-font-family;
+	font-style: $paragraph-font-style;
+	font-weight: $paragraph-font-weight;
+	font-size: $paragraph-font-size;  
+	color: $paragraph-font-color;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	text-decoration: none;
+}
+
+strong {
+	font-weight: 700;	
+}
+		
+/* Headings
+--------------------------------------------- */	
+		
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $header-font-family;	
+}
+
+
+h1 {
+    color: #4A4A4A    
+}
+
+h2,
+h3 {
+    color: $dark-gray;  
+}
+
+h4,
+h5,
+h6 {
+    color: $dark-gray;   
+}
+
+@mixin heading-lines( $border-color:$primary ) {
+    
+    display: inline-block;
+    position: relative;
+    padding: 0 60px;
+    
+    &::before,
+    &::after {
+        content: '';
+        width: 56px;
+        height: 3px;
+        background-color: $border-color;
+        position: absolute;
+        top: 50%;
+        margin-top: -6px;
+           
+    }
+    
+    &::before {
+        left: -5px;
+    }
+    
+    &::after {
+        right: -5px;
+    }
+    
+    span {
+                
+        &:before,
+        &:after {
+            content: '';
+            width: 40px;
+            height: 3px;
+            background-color: $border-color;
+            position: absolute;
+            top: 50%;
+            margin-top: 4px;
+        }
+        
+        &::before {
+            left: 10px;
+        }
+        
+        &::after {
+            right: 10px;
+        }   
+    }
+}
+
+
+
+
+p, li {
+    line-height: $paragraph-line-height;
+    
+}
+
+p, ul {
+    margin-bottom: $paragraph-margin-bottom;	
+}
+
+p:last-child {
+    //margin-bottom: 0;   
+}
+
+ul:not([class]),
+ol:not([class]) {
+    margin: rem-calc(0 0 $global-margin 22);
+    
+}
+
+ol:not([class]) {
+    list-style: decimal;
+}
+
+.page-builder section {
+    
+    h2 {
+        margin-bottom: 24px;   
+    }
+    
+    .element-photo {
+     
+        img {
+            box-shadow: 0 11px 12px 0 rgba(0,0,0,0.1); 
+        }
+        
+    }
+    
+    ul:not([class]) {
+        @include bullets;         
+    }
+}

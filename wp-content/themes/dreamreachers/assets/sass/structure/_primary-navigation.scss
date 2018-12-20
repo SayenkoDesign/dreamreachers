@@ -1,0 +1,431 @@
+// Primary Navigation
+
+.nav-primary {
+	display: none;
+    width: 100%;
+    background-color: $primary;
+    
+    @include breakpoint(large down) {
+        padding: 0;
+    }
+    
+    .menu > .menu-item > a {
+        text-transform: uppercase;   
+    }
+
+    .menu-item {  
+        border-top: 1px solid $white;
+        display: block;
+        list-style-type: none;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        
+        &:first-child {
+            border: none;   
+        }
+        
+        &:hover,
+        &.current-menu-item,
+        &.current_page_parent,
+        &.current-page-ancestor,
+        &.current-menu-ancestor,
+        &.current-menu-parent,
+        &.current-category-ancestor {
+    
+            > a {
+                color: $white;
+            }
+        } 
+
+    
+        a {
+            color: $white;
+            font-family: $nunito;
+            font-size: rem-calc(16);
+            font-weight: 400;
+            margin: 0;
+            padding: 20px 50px 20px 15px;
+            display: block;
+            
+                        
+        }
+
+    }
+    
+    .sub-menu {
+        background-color: scale-color($primary, $lightness: 20%);
+        
+        ul {
+            margin: 0!important;   
+        }
+        
+        li img {
+            display: none;   
+        }
+    }
+}
+
+@include breakpoint(xlarge) {
+    
+    .nav-primary {
+		display: block;
+		width: 100%;
+        background-color: transparent;
+        position: relative;
+        text-align: right;
+                
+        .menu .menu-item:focus {
+            position: static;
+        }
+                
+        .menu-toggle,
+        .sub-menu-toggle {
+            display: none;
+            visibility: hidden;
+        }
+         
+		.sub-menu {
+			width: auto;
+			display: block;            
+		}
+	}
+
+	.nav-primary .menu {
+		@include list-reset;
+		background: transparent;
+        display: flex;
+        justify-content: space-around;
+        
+        
+		.menu-item {
+			background: transparent;
+			border: none;
+			width: auto;
+			padding: rem-calc(0 10);
+            
+            @include breakpoint(xxlarge) {
+                padding: rem-calc(0 20);
+            }
+            
+ 			a {
+				color: #fff;
+				position: relative;
+				display: inline-block; 
+				font-size: rem-calc(15);
+                line-height: 1.266666667;
+                font-weight: 400;
+				text-decoration: none;
+  			}
+ 		}
+
+		// First level
+		> .menu-item {
+ 			
+ 			text-align: left;
+            padding: rem-calc(6 0 7)!important;
+            position: relative;
+            
+			> a {
+				color: $white;
+                text-transform: uppercase;
+                font-size: rem-calc(13);
+                letter-spacing: rem-calc(.49);
+				padding: rem-calc(2 15)!important;
+                
+                @include breakpoint(xxlarge) {
+                    font-size: rem-calc(14);
+                    padding: rem-calc(2 20)!important;
+                }
+                
+                &:after {
+                    content: '';
+                    display: block;
+                    width: 0;
+                    height: rem-calc(2);
+                    background-color: $light-blue;   
+                    transition: width .3s; 
+                }
+ 			}
+
+			
+            
+            &.current-menu-item,
+			&.current_page_parent,
+			&.current-page-ancestor,
+			&.current-menu-ancestor,
+			&.current-category-ancestor {
+
+				> a {
+					background: transparent;
+                    color: $white;
+                    
+                    &:after {
+                        width: 100%;  
+                    }
+ 				}
+                
+			}
+
+			&:hover,
+			&:focus,
+			&:active {
+                
+				> a {
+					background: transparent;
+                    color: $white; 
+                    
+                    
+                    &:after {
+                        width: 100%; 
+                    }
+				}
+
+			}
+            
+            a:focus {
+                color: $white; 
+            }
+			
+ 		}
+                
+        
+        .menu-item .sub-menu {
+            @include list-reset;
+            position: absolute;
+            top: 100%;
+            left: auto;
+            margin-left: 5px;
+            min-width: 190px;
+            transform: translateY(-400%);
+            padding: rem-calc(10 0);
+            opacity: 0;
+            z-index: -2;
+            background-color: $white;
+            //transition-delay: .25s; 
+            //transition: opacity .25s ease 0s; // , transform .75s ease 0s
+            box-shadow: 1px 1px 6px 0 #979797;
+            
+            .menu-item {
+				border: none;
+				display: block;
+				padding: rem-calc(5 15);
+                margin: 0;
+
+				> a {
+                    background: transparent;
+					position: relative;
+                    padding: 0;
+                    font-size: rem-calc(15);
+                    display: inline-block;
+                    
+                    color: $dark-gray;
+                    
+                    &:after {
+                        content: '';
+                        display: block;
+                        width: rem-calc(18);
+                        height: rem-calc(2);
+                        background-color: $green;  
+                        transition: width .3s; 
+                    }
+                    
+                    &:focus {
+                        &:after {
+                            width: 100%;   
+                        }
+                    }
+				}
+                
+                &:hover {
+                    a {                        
+                        &:after {
+                            width: 100%;   
+                        }
+					}
+                }
+			}
+            
+            .menu-item-has-children {
+                position: relative;
+                .sub-menu {
+                    background-color: #ECECEC;
+                    width: rem-calc(330);
+                    top: 0;
+                    right: 100%;
+                    
+                    .menu-item {
+                        padding: rem-calc(20 15);   
+                        
+                        h5 {
+                            margin-bottom: rem-calc(20); 
+                            text-transform: uppercase;
+                        }
+                    }
+                    
+                    .locations {
+                        border-left: 2px solid $blue;  
+                        padding-left: rem-calc(10); 
+                        
+                        li {
+                            padding: rem-calc( 8 0 ); 
+                            line-height: 1; 
+                            
+                            &:first-child {
+                                padding-top: 0;   
+                            }
+                            
+                            &:last-child {
+                                padding-bottom: 0;
+                            }
+                        }
+                        
+                        a {
+                            color: $dark-gray;
+                            display: inline;
+                            padding: 0;   
+                        }
+                    }
+                }
+            }
+            
+			.sub-menu {
+
+			}
+        }
+        
+        //.menu-item > a:focus ~ ul.sub-menu,
+        .menu-item.focus > ul.sub-menu,
+        .menu-item:hover > ul.sub-menu {
+            opacity: 1;
+            transform: translateY(0);
+            transition: none;
+        }
+
+	}
+   
+}
+
+
+@include breakpoint(xlarge) {
+    .nav-primary .menu {
+		@include list-reset;
+		background: transparent;
+        
+        
+        .menu-item.mega-menu {
+            position: static;   
+            
+            .sub-menu a:after {
+                display: none!important;   
+            }
+            
+            .sub-menu {
+                left: rem-calc(30);
+                width: 100%;   
+                display: flex;
+                flex-flow: row wrap;
+                border: none;
+                box-shadow: none;
+                
+                &:before {
+                    content: '';
+                    display: block;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    z-index: -3;
+                    background-color: $navy;
+                    padding: 0 1000em;
+                    margin: 0 -1000em;   
+                    border-bottom: 4px solid $light-blue;
+                }
+                
+                > li {
+                    margin: 0;
+                    flex: 0 0 50%;
+                    max-width: 50%; 
+                    margin: rem-calc(5 0);
+                    
+                    span {
+                        //display: inline-block;   
+                    }
+                    
+                    img {
+                            display: inline-block;
+                            height: rem-calc(60);
+                            margin-right: rem-calc(20);   
+                            height: 60px;
+                            width: auto;   
+                        }
+                    
+                    a {
+                        color: #FFF;   
+                        padding: rem-calc(10 10);
+                        display: flex;
+                        align-items: center;
+                        
+                        &:hover {
+                            color: #fff;
+                            background: rgba($light-blue, .2);   
+                        }
+                    }
+                    
+                    @include breakpoint(xlarge) {
+                        flex: 0 0 33.333333333%;
+                        max-width: 33.333333333%;  
+                    }
+                }
+            }
+        }
+                
+    }
+}
+
+
+.nav-primary .menu .menu-item-locations {
+    
+    display: none;
+    
+    @include breakpoint(xlarge) {
+        
+        display: inline-block;
+        
+        > a {
+            paddin-left: 0!important; 
+            padding-right: 0!important;   
+        }
+        
+        > a svg {
+            position: relative;
+            margin-top: -3px; 
+        }
+        
+        > a:after {
+            background-color: transparent!important; 
+        }   
+    }
+    
+    @include breakpoint(xxxlarge) {
+        margin-left: 20px!important;   
+    }
+}
+
+.nav-primary .menu .mobile-link {
+    
+	@include breakpoint(xlarge) {
+		display: none!important;
+	}
+}
+
+.nav-primary .menu .lets-build {
+    background-color: $green;
+}
+
+
+.menu .desktop-link {
+	@include breakpoint(large down) {
+		display: none!important;
+	}
+}

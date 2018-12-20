@@ -1,0 +1,211 @@
+@mixin button-defaults() {
+    background-color: transparent;
+    display: block;
+    margin: 0 auto;    
+    text-align: center;
+    transition: none;
+    text-transform: uppercase;
+    text-decoration: none!important;
+	font-family: $header-font-family;
+	font-size: 13px;
+	letter-spacing: 1.1px;
+	line-height: 20px;
+	text-align: center;
+    min-width: 150px;
+    max-width: 280px;
+    
+    &:hover {
+        background-color: transparent;   
+    }
+    
+    
+    @include breakpoint(medium) {
+        display: inline-block;
+        margin: 0;
+        max-width: none;
+    }
+            
+    &.disabled {
+        pointer-events: none;
+        cursor: default;
+    }
+    
+    svg {
+       position: absolute;
+       left: 10px;
+       top: 50%;
+       transform: translateY(-50%);
+    } 
+    
+}
+
+
+@mixin button-green {
+    @include button-defaults; 
+    background-color: $green;
+    border-radius: 4px;
+    padding: rem-calc(12 30);
+    box-shadow: 0 11px 12px 0 rgba(0,0,0,0.12);
+    
+    color: #FFF;
+    
+    &:visited {
+        color: #FFF;
+    }
+    
+    &:focus,
+    &:active,
+    &:hover{
+        background-color: scale-color($green, $lightness: 10%);
+        color: #FFF;
+    }  
+}
+
+
+@mixin button-green-alt {
+    @include button-defaults; 
+    border-radius: 4px;
+    padding: rem-calc(8 30);
+    min-width: 148px;
+    border: 2px solid $green;
+    
+    color: $green;
+    
+    &:visited {
+        color: $green;
+    }
+    
+    &:focus,
+    &:active,
+    &:hover{
+        background-color: $green;
+        color: #FFF;
+    }  
+}
+
+
+@mixin button-blue-alt {
+    @include button-defaults; 
+    border-radius: 4px;
+    padding: rem-calc(12 30);
+    border: 2px solid $blue;
+    
+    color: $blue;
+    
+    &:visited {
+        color: $blue;
+    }
+    
+    &:focus,
+    &:active,
+    &:hover{
+        background-color: $blue;
+        color: #FFF;
+    }  
+}
+
+
+a.button,
+input[type="submit"].button,
+button.button {
+    @include button-defaults;  
+    
+    &.green {
+        @include button-green;   
+    }
+}
+
+.site-main {
+ 
+    .button {
+        width: 190px;   
+    }
+    
+}
+
+
+@mixin link {
+        
+    color: $paragraph-font-color;
+    font-size: rem-calc(18);
+    line-height: 1.444444444;
+    letter-spacing: 0.7px; 
+    display: inline-block;  
+    
+    &:hover {
+        color: $paragraph-font-color;
+    }
+    
+    &:after {
+        content: '';
+        display: block;
+        width: rem-calc(32);
+        height: rem-calc(2);
+        background-color: transparent;  
+        transition: width .3s; 
+        margin-top: 5px;
+    }
+    
+    &.center {
+        &:after {
+            width: rem-calc(74);
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+        
+    &:hover:after {
+        width: 100%;   
+    }   
+    
+    &.green {
+        
+        &:after {
+            background-color: $green;   
+        }         
+    }
+    
+    &.orange {
+        
+        &:after {
+            background-color: $orange;   
+        }         
+    }
+    
+    &.white {
+        
+        color: $white;
+        
+        &:hover {
+            color: $white;   
+        }
+        
+        &:after {
+            background-color: $white;   
+        }         
+    }
+}
+
+
+.link {
+    @include link;   
+}
+
+
+.button-group {
+    
+    margin: 0 -10px;
+ 
+    a {
+        margin: 0 auto 20px;   
+    }
+    
+    @include breakpoint(medium) {
+        a {
+            margin: 0 10px $global-margin;   
+        }
+    }
+    
+}
+

@@ -1,0 +1,501 @@
+// Careers
+
+.post-type-archive-job {
+    
+    .section-footer-cta {
+        display: none;   
+    }
+        
+    .section-hero {
+        position: relative;
+        z-index: 1;
+        
+        @include wrap();
+        @include border-left( 40%, 140%, #ffffff);
+        
+        .inner {
+            min-height: 340px;
+            padding-bottom: 25%;   
+        }
+        
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            &:after {
+                content: '';
+                position: absolute;
+                display: block;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: transparent;
+                background: linear-gradient(269.33deg, rgba(2,204,186,0) 0%, #2B70AA 100%);
+            }
+        }
+                        
+        .shape {
+            z-index: 4!important;   
+        }
+        
+        .shape {
+            position: relative;
+            width: 100%;
+            z-index: 2;
+            line-height: 0;
+            height: 0;
+            padding-bottom: 5%;
+            
+            svg,
+            img {
+                display: block;
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: -2px;   
+            }
+        }
+                
+        .wrap {
+                        
+            .row {
+                height: 100%;   
+                padding: 0;   
+                position: relative;  
+                
+                .column {
+                     
+                }
+            }
+            
+            .hero-caption {                
+                @include breakpoint(large) {
+                    
+                    header {
+                        //position: absolute;
+                        //top: 50%;   
+                        z-index: 9;
+                        
+                        &:before {
+                            display: none;   
+                        }
+                    }
+                    
+                    .description {
+                        background-color: #006fc1;
+                        width: 560px;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        
+                        
+                        div {
+                            position: relative;
+                            padding: rem-calc(0 30 30 30);
+                            display: flex;
+                            align-items: center;
+                            height: 100%;
+                            
+                            &:after {
+                                content: '';
+                                display: block;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                bottom: 0;
+                                right: 0;
+                                background: linear-gradient(90deg, rgba(8,144,194,0.5) 0%, rgba(255,255,255,0) 75%);
+                            }   
+                        }
+                    }
+                }
+                                
+                p {
+                     font-family: $header-font-family;
+                     font-size: rem-calc(24); 
+                     line-height: 1.1;
+                     font-style: italic; 
+                     
+                     @include breakpoint(large) {
+                        font-size: rem-calc(38);
+                     }
+                }
+            }
+        }
+        
+    }
+    
+    .section-why {
+        z-index: 2;  
+        @include wrap();
+        @include border-left( -30%, 140%);
+        padding-bottom: rem-calc(100);
+        
+        .inner > .wrap {
+            
+        }
+        
+        .header {
+            position: relative;
+            padding-top: rem-calc(15);
+            
+            @include breakpoint(small) {
+                padding-bottom: rem-calc(25);
+            }
+            
+            @include breakpoint(large) {
+                padding-bottom: rem-calc(45);
+                
+                .column:first-child {
+                    flex: 0 0 375px!important;     
+                }
+                
+            }
+                        
+            header {
+                @include icon;
+                
+                .icon {
+                    img, svg {
+                        display: block;  
+                        position: relative;
+                        margin-top: -2px;
+                        margin-right: -2px; 
+                        
+                        @include breakpoint(large) {
+                            margin-top: -4px;
+                            margin-right: -4px; 
+                        }
+                    }   
+                }
+            }
+            
+            h2 {
+                text-align: left;   
+            }
+        }
+    }
+    
+    
+    
+    .section-search {
+        z-index: 2;  
+        @include wrap();
+        @include border-left( -40%, 120%);
+        
+        .wrap {
+            padding-top: rem-calc(45)!important;   
+            padding-bottom: rem-calc(45)!important;   
+        }
+        
+        
+        .quote-mark {
+            text-align: center;
+            margin-bottom: rem-calc(30);
+         
+            span {
+                display: inline-block;
+                background-color: #fff;
+                position: relative;  
+                
+                &:before,
+                &:after {
+                    content: '';
+                    background-color: $light-blue; 
+                    position: absolute;  
+                    width: 32px;
+                    height: 2px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+                
+                &:before {
+                    left: -50px;   
+                }
+                
+                &:after {
+                    right: -50px;   
+                }
+            }
+            
+        }
+        
+
+        .header {
+            position: relative;
+            padding-top: rem-calc(15);
+            
+            @include breakpoint(large) {
+                
+                .column:first-child {
+                    flex: 0 0 40%!important;     
+                }
+                
+            }
+                        
+            header {
+                 @include icon;   
+            }
+            
+            h2 {
+                text-align: left;   
+            }
+        }
+        
+        .slick-slide {
+            .quote {
+                text-align: center;
+                p {
+                    color: #454C54;   
+                }
+                
+                h5 {
+                    margin-top: -10px;   
+                }   
+            }
+        }
+        
+        .slick-nav {
+            
+            width: 130px;
+            margin: 0 auto;
+         
+            .slick-slide {
+                
+                padding: 20px 0;
+                border-radius: 50%;
+                
+                img {
+                    width: 40px!important;
+                    height: 40px;  
+                    border-radius: 50%;
+                    opacity: .3;
+                    
+                }
+                
+                &.slick-center {
+                  img {
+                    transform: scale(1.25);
+                    z-index: 30;
+                    opacity: 1;   
+                    border: 2px solid #fff;
+                    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12);
+                  }
+    
+                }
+                
+            }
+            
+        }
+        
+        
+    }
+    
+    
+    
+    .site-main {
+        position: relative;
+        z-index: 2;
+        padding-bottom: rem-calc(45);
+        
+        .facetwp-filters {
+            border-top: 3px solid $orange;
+            margin-bottom: rem-calc(40);   
+        }
+                
+        .grid {
+                     
+            article {
+                box-shadow: 0 11px 12px 0 rgba(0,0,0,0.1);
+                border-radius: 8px;
+                background-color: #2B70AA;
+                
+                padding: rem-calc(40 20 20);
+                
+                h3 {
+                    color: #fff;
+                }
+                
+                li, p {
+                    font-family: $header-font-family;   
+                }
+                
+                ul {
+                    margin-top: rem-calc(30);
+                 
+                    li {
+                        font-size: rem-calc(15);
+                        line-height: 1.2;
+                        color: #fff;
+                        @include clearfix;
+                        min-height: 18px;
+                        margin-bottom: rem-calc(15);
+                        
+                        &.address {
+                            padding-left: 1px;   
+                        }
+                        
+                        img {
+                            display: block;
+                            float: left;   
+                            margin-right: 5px;
+                            
+                            
+                        }
+                                                
+                        span {
+                            display: block;
+                            overflow: hidden;
+                            margin-left: 12px;   
+                        }
+                        
+                    }
+                    
+                }
+                
+                .entry-footer {
+                    padding-top: rem-calc(10);
+                    
+                    @include breakpoint(medium) {
+                        padding-top: rem-calc(40);
+                    }
+                    
+                    p {
+                        a {
+                            color: #fff;
+                            font-size: rem-calc(18);
+                            line-height: 1.444444444;
+                            letter-spacing: 0.7px; 
+                            display: inline-block;  
+                            
+                            &:after {
+                                content: '';
+                                display: block;
+                                width: rem-calc(32);
+                                height: rem-calc(2);
+                                background-color: $green;  
+                                transition: width .3s; 
+                            }
+                            
+                            &:hover:after {
+                                width: 100%;   
+                            }
+                        }
+                    }   
+                }
+                
+            }
+            
+            .column {
+                
+                @include breakpoint(small only) {
+                    &:nth-child(even) {
+                        article {
+                            background-color: #035481;  
+                        }
+                    }
+                }
+                
+                @include breakpoint(medium only) {
+                    &:nth-child(4n+3), // 3,4  7,8
+                    &:nth-child(4n+4) { 
+                        article {
+                            background-color: #035481;   
+                        }
+                    }
+                }
+                
+                
+                
+                @include breakpoint(large only) {
+                    &:nth-child(6n+4), // 4,5,6  10,11,12 16,17,18
+                    &:nth-child(6n+5), 
+                    &:nth-child(6n+6) { 
+                        article {
+                            background-color: #035481;   
+                        }
+                    }
+                }
+                
+                @include breakpoint(xlarge) {
+                    &:nth-child(8n+5),
+                    &:nth-child(8n+6), 
+                    &:nth-child(8n+7), 
+                    &:nth-child(8n+8) { 
+                        article {
+                            background-color: #035481;   
+                        }
+                    }   
+                }
+            }
+            
+        }
+    }
+    
+    
+    .section-scholarship {
+        @include wrap();
+        
+        .background-image {
+            background-size: cover;   
+        }
+     
+        .row {
+            min-height: 560px;   
+            position: relative; 
+            padding-top: 40%;
+            padding-bottom: rem-calc(45);
+        }
+        
+        .panel {
+            background: linear-gradient(90deg, #55A9D5 0%, #2B70AA 100%);
+            
+            padding: rem-calc(50 45);
+            
+            @include breakpoint(large) {
+                position: absolute;
+                top: 50%;
+                right: map-get($grid-column-gutter, large);
+                transform: translateY(-50%);
+                width: 500px;
+            }
+            
+            h3,
+            p {
+                color: #fff;   
+            }
+            
+            h3 {
+                margin-bottom: rem-calc(25);   
+            }
+            
+            a.link {
+                color: #fff;
+                font-size: rem-calc(18);
+                letter-spacing: 0.7px; 
+                display: inline-block;  
+                
+                &:after {
+                    content: '';
+                    display: block;
+                    width: rem-calc(32);
+                    height: rem-calc(2);
+                    background-color: $white;  
+                    transition: width .3s; 
+                }
+                
+                &:hover:after {
+                    width: 100%;   
+                }
+            }   
+               
+        }
+        
+    }
+    
+}

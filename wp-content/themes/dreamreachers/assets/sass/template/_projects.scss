@@ -1,0 +1,104 @@
+// Archive Projects
+
+
+.post-type-archive-project {
+    
+    .site-content {
+        background-color: #f9f9f9;  
+        padding-bottom: rem-calc(45); 
+    }
+    
+    .page-title {
+        text-align: center;
+        padding: rem-calc(45 0 45);   
+        margin: 0;
+    }
+
+    .section-footer-cta .shape svg path {
+        fill: #f9f9f9;   
+    }
+    
+}
+
+
+.post-type-archive-project,
+.section-projects {
+    
+    .grid .column-block {
+        margin-bottom: rem-calc(30);   
+    }
+    
+    article {
+        background-color: #fff;
+        box-shadow: 0 11px 12px 0 rgba(0,0,0,0.1);
+        
+        &:hover .thumbnail {
+            opacity: .9;   
+        }
+        
+        .thumbnail {
+            display: block;
+            background-size: cover;
+            padding-top: 50%;   
+            position: relative;
+            
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(269.33deg, rgba(2,204,186,0) 0%, #2B70AA 100%);    
+            }
+            
+            span {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                z-index: 2;
+                width: 62px;
+                height: 62px;
+                display: block;
+                padding: rem-calc(10px);
+                border-radius: 100%;
+                border: 2px solid #fff;
+                
+                img {
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                    max-height: 100%;   
+                }
+            }
+        }
+        
+        .panel {
+            border-radius: 0 0 8px 8px;  
+            padding: rem-calc(20 36); 
+        }
+        
+        footer {
+            padding: rem-calc(10 36 20); 
+            
+            a {
+                display: inline-block;
+                color: $dark-gray;
+                                
+                &:after {
+                    content: '';
+                    display: block;
+                    width: 44px;
+                    height: 2px;
+                    background-color: $green;   
+                    transition: width .3s; 
+                }
+                
+                &:hover:after {
+                    width: 100%;   
+                }
+            }
+        }
+    }
+}

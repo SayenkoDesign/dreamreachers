@@ -1,0 +1,290 @@
+/* CSS Document */
+
+.section-our-story {
+    overflow: hidden;
+ 
+    .timeline-cnt {
+		position: relative;
+		margin: 0 auto;
+		width: 100%;
+        
+        .year {
+            position: absolute;
+            top: rem-calc(40);
+            width: rem-calc(60);
+            
+            font-family: $header-font-family;
+            font-size: rem-calc(16);
+            letter-spacing: 0.3px;
+            line-height: 1.181818182;
+            
+            @include breakpoint(large) {
+                font-size: rem-calc(22);
+            }
+            
+            text-align: center;
+            
+            b{
+               position: relative; 
+               display: block;
+               width: 100%;
+               
+               &:before {
+                    content: '';
+                    width: 1px;
+                    height: 40px;
+                    background-color: #979797;
+                    position: absolute;
+                    top: -50px;                    
+               }
+            }
+        }
+        
+        .point {
+            margin-left: -30px;
+        }
+                
+        .start {
+            
+            left: 0;
+            text-align: left;
+            
+            @include breakpoint(xlarge) {
+                left: 37px; 
+                margin-left: rem-calc(-20); 
+                text-align: center;
+            }
+            
+            b:before {
+                left: 0; 
+                
+                @include breakpoint(xlarge) {
+                    left: 50%;
+                    transform: translateX(-50%);      
+                } 
+            }
+        }
+        
+        .end {
+            
+            right: 0;
+            text-align: right;
+            
+            @include breakpoint(xlarge) {
+                right: 37px; 
+                margin-right: rem-calc(-20);  
+                text-align: center;
+            }
+            
+            b:before {
+                right: 0;   
+                
+                @include breakpoint(xlarge) {
+                    right: 50%;
+                    transform: translateX(-50%);      
+                }
+            }
+            
+        }
+        
+        &:before {
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: #979797;
+            position: absolute;   
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .years {
+            display: none;
+            position: relative;
+            
+            @include breakpoint(xlarge) {
+                margin: rem-calc(0 37);
+                display: block;
+            }   
+        }
+        	
+		.dot-cnt {
+            @include list-reset;
+            height: 20px;
+            position: relative;
+            
+            
+            @include breakpoint(xlarge) {
+                margin: rem-calc(0 37);
+            }
+            
+                
+			li {
+				z-index: 1;
+                display: inline-block;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-left: -4px;
+                
+                @include breakpoint(large) {
+                    margin-left: -7px;
+                }
+                
+                div {
+                    width: rem-calc(8);   
+                    height: rem-calc(8); 
+                    background-color: #D7D5D5;
+                    border-radius: 100%;
+                    cursor: pointer;
+                    
+                    @include breakpoint(large) {
+                        width: rem-calc(14);   
+                        height: rem-calc(14); 
+                    }
+                }
+                
+                &.slick-active {
+                    margin-left: -6px;
+                
+                    @include breakpoint(large) {
+                        margin-left: -10px;
+                    }
+                    
+                    
+                    div {
+                        width: rem-calc(12);   
+                        height: rem-calc(12); 
+                        border: solid 2px $primary; 
+                        
+                        @include breakpoint(large) {
+                            width: rem-calc(20);   
+                            height: rem-calc(20); 
+                        } 
+                    }
+                }
+			}
+		}
+	}
+    
+    
+    .timeline-slider {
+        position: relative;   
+    }
+    
+    
+    // Slick Slider
+   
+    
+    @include breakpoint(xxlarge down) {
+        .slick-arrows {
+            display: flex;
+            .slick-arrow {
+                margin: rem-calc(0 10);
+            }
+            
+            @include breakpoint(xlarge) {
+                position: relative;
+            }
+        }
+    }
+    
+    .slick-prev,
+    .slick-next {
+        
+        @include breakpoint(xxxlarge) {
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+        
+    }
+    
+    .slick-prev {
+        @include breakpoint(xxxlarge) {
+            left: -60px;
+        }
+    }
+    
+    .slick-next {
+        @include breakpoint(xxxlarge) {
+            right: -60px;
+        }
+    } 
+    
+	
+    
+	.slick {
+        margin-top: rem-calc(60);
+        margin-bottom: 0;
+        
+        @include breakpoint(xxlarge) {
+            margin-top: rem-calc(80);
+            margin-bottom: 0;
+        }
+		
+        .slick-slide {
+            padding: rem-calc(0 7 7);
+        }
+        /* the parent */
+        .slick-list {
+            margin: rem-calc(0 -7);
+        }
+        
+
+		.event {
+			position: relative;
+			margin: 0 auto;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+			height: 230px;	
+            box-shadow: 1px 1px 6px 0 #979797;
+		}
+
+		.caption {
+			position: absolute;
+			bottom: 0;
+		    transition: all 0.5s ease;
+			background-color: $primary;
+			width: 100%;
+			color: $white;
+			max-height: 28px;
+			overflow: hidden;
+			text-align: center;
+
+			.caption-arrow {
+                display: block;
+                padding: rem-calc(5);
+                cursor: pointer;
+                
+                svg {
+                    width: 22px;
+                    hight: 13px;   
+                    transform: rotate(180deg);
+                    margin-bottom: 5px;
+                }
+            }
+
+			h5 {
+				margin-bottom: 10px;
+				color: $white;
+			}
+			p {
+				font-size: 12px;
+			}
+
+			.caption-lower {
+				padding: 0 40px 20px;
+			}
+
+			&:hover {
+				max-height: 200px;
+
+				svg {
+					transform: rotate(0deg);					
+				}
+			}
+		}
+	}
+    
+}

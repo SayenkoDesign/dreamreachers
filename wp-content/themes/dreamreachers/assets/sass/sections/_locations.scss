@@ -1,0 +1,201 @@
+.section-locations {
+    
+    .no-js & {
+        display: none;   
+    }
+	
+	background-color: #fff;
+    padding-top: 2%!important;
+	
+    .wrap {
+        position: relative;   
+        
+        .row {
+            @include breakpoint(large) {
+                position: relative; 
+            }
+        }
+    }
+    
+    .shape {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        line-height: 1;
+        top: 0;
+        padding-top: 5%;
+        width: 100%;
+        
+        svg {
+            position: absolute;
+            top: -2px;   
+        }
+        
+        @include breakpoint(large) {
+            display: block;
+        }
+    }
+	
+	.wrap {
+		padding: 0;	
+	}
+    
+    header {
+        text-align: center;
+        position: relative;
+        z-index: 4;
+        margin-bottom: rem-calc(25);
+        
+        @include breakpoint(large) {
+            transform: translateY(100%);   
+        }
+        
+        @include breakpoint(xxlarge) {
+            margin-bottom: 0;  
+        }
+    }	
+}
+
+
+.map-legend {
+    background: $light-blue;
+    display: inline-block;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 5;
+    min-width: rem-calc(236);
+    transition: opacity 500ms linear, visibility 0s linear 500ms;
+    box-shadow: 0 11px 12px 0 rgba(0,0,0,0.1);
+    margin-bottom: 0;
+    
+    width: 100%;
+    
+    @include breakpoint(large) {
+        position: absolute;
+        bottom: auto;
+        top: 10px;
+        left: map-get($grid-column-gutter, large);
+        width: auto;
+    }
+    
+    &.show {
+        visibility: visible;
+        opacity: 1;	
+    }
+    
+    li {
+        cursor: pointer;	
+        color: $white;
+        
+        font-size: rem-calc(18);
+        
+        a {
+            color: #fff;  
+            display: block; 
+            padding: rem-calc(5 20);
+        }
+        
+    }
+    
+    .is-accordion-submenu-parent { 
+        >a:after {
+            width: 9px;
+            height: 9px;
+            border-color: transparent #fff #fff transparent;
+            border-width: 2px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            margin-top: -2px;
+            right: rem-calc(10);
+        }
+        
+        &[aria-expanded="true"] {
+             >a:after {
+                 margin-top: 2px;
+                 transform: translateY(-50%) rotate(-135deg);
+             }
+        }
+    }
+    
+    .submenu {
+        background-color: $blue;
+        
+        span {
+            display: block;
+            font-size: rem-calc(16); 
+            padding: rem-calc(5 20);
+        }
+    }
+}
+
+.google-map {
+    width: 100%;
+    min-height: 400px;
+    
+    @include breakpoint(large) {
+        min-height: 600px;
+    }	
+    
+    .marker {
+        display: none;	
+    }
+}
+
+.infoBox {
+	background: $blue;	
+	padding: 10px 30px 10px 10px;
+	position: relative;
+	box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.4);
+	
+	> img {
+		width: 10px;
+		height: 10px;
+		position: absolute!important;
+		margin: 0!important;
+		top: 12px;
+		right: 10px;
+	}
+	
+	h5, span {
+		color: #fff;	
+	}
+	
+	h5 {
+        font-size: rem-calc(18);
+		margin-bottom: 10px;
+        padding-right: rem-calc(40);	
+	}
+	
+	span {
+        display: block;
+		font-size: rem-calc(14);
+		line-height: 1.375;
+		margin: 0 auto 10px;	
+	}
+    
+    a {
+        color: #fff;
+        
+        &[href^=tel] {
+            color: #fff!important;   
+        }
+    }
+	
+	&:after {
+		content: '';
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 0 26px 26px;
+		border-color: transparent transparent $blue $blue;
+		transform-origin: 0 0;
+        transform: rotate(-45deg);
+		margin-left: -17px;
+		bottom: -25px;
+		left: 50%;
+		position: absolute;
+		pointer-events: none;	
+		box-shadow: -1px 2px 5px 0 rgba(0,0,0,0.4);
+	}
+}
