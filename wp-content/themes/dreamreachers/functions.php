@@ -33,7 +33,7 @@ if ( ! function_exists( '_s_setup' ) ) :
 		define( 'THEME_NAME', sanitize_title( wp_get_theme() ) );
 		define( 'THEME_VERSION', '1.0' );	
 		
-    	define( 'GOOGLE_API_KEY', 'AIzaSyCOgyEBsCMFwsMuUj_oAFYUnNmV2eU-EzY' );	
+    	define( 'GOOGLE_API_KEY', '' );	
         
         define ( 'DISALLOW_FILE_EDIT', true );
         
@@ -116,10 +116,8 @@ function _s_widgets_init() {
 
 	// Define sidebars.
 	$sidebars = array(
-        'header'            => esc_html__( 'Header', '_s' ),
  		'footer-1'          => esc_html__( 'Footer 1', '_s' ),
         'footer-2'          => esc_html__( 'Footer 2', '_s' ),
-        'footer-3'          => esc_html__( 'Footer 3', '_s' ),
 	);  
 
 	// Loop through each sidebar and register.
@@ -147,7 +145,7 @@ add_action( 'login_enqueue_scripts', '_s_login_stylesheet' );
 
 // changing the login logo
 function _s_login_logo() {
-	$logo = sprintf('%slogo.svg', trailingslashit( THEME_IMG ) );
+	$logo = sprintf('%slogo@2x.png', trailingslashit( THEME_IMG ) );
 	printf( '<style type="text/css">h1 a { background-image:url(%s)!important; }</style>', $logo );
 }
 add_action('login_head', '_s_login_logo');

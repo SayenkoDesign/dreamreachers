@@ -61,11 +61,6 @@ if( ! class_exists( 'Hero_Section' ) ) {
          * @access public
          */
         public function after_render() {
-            
-            $shape = '<div class="shape"><svg viewBox="0 0 100 5" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#ffffff" d="M0 5, 70 0, 100 5z"/>
-                    <path fill="#00B5E1" d="M0 4, 70 0, 0 5z"/>
-                    </svg></div>';
                     
             $shape = sprintf( '<div class="shape"><img src="%shome/hero-bottom.png" /></div>', trailingslashit( THEME_IMG ) );
                 
@@ -80,22 +75,21 @@ if( ! class_exists( 'Hero_Section' ) ) {
             
             $heading = empty( $fields['heading'] ) ? '' : _s_format_string( $fields['heading'], 'h1' );
             
-            $description = empty( $fields['description'] ) ? '' : _s_format_string( $fields['description'], 'p' );
-                                                
+            $subheading = empty( $fields['subheading'] ) ? '' : _s_format_string( $fields['subheading'], 'h2' );
+             
+            $video = empty( $fields['video'] ) ? '' : $fields['video']; 
+                                               
             if( empty( $heading  ) ) {
                 return;     
             }
             
-            $button_args = $fields['button'];
-            $button = new Element_Button( [ 'fields' => $fields ]  ); // set fields from Constructor
-            $button->add_render_attribute( 'anchor', 'class', [ 'button', 'orange' ] ); 
-            if( ! empty( $button_args['type'] ) && 'modal' == strtolower( $button_args['type'] ) ) {
-                $button->add_render_attribute( 'anchor', 'data-open', 'lets-build' ); 
+            if( !empty( $video ) ) {
+                $video_url = youtube_embed( $video );
+                $video_description = 'How It Works';
+                $content = sprintf( '<div class="entry-content"><p><button class="play-video" data-open="modal-video" data-src="%s">%s</button><span>%s</span></p></div>', $video_url, get_svg( 'play-white' ), $video_description );
             }
             
-            $button = $button->get_element();
-            
-            $html = sprintf( '<div class="hero-caption"><header>%s</header>%s%s</div>', $heading, $description, $button );
+            $html = sprintf( '<div class="hero-caption"><header>%s</header>%s%s</div>', $heading, $subheading, $content );
                                                                         
             $row = new Element_Row(); 
             $row->add_render_attribute( 'wrapper', 'class', 'align-middle' );

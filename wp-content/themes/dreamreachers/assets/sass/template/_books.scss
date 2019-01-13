@@ -1,0 +1,123 @@
+// Archive Projects
+
+
+.post-type-archive-book {
+    
+    .site-content {
+        background-color: #f9f9f9;  
+        padding-bottom: rem-calc(45); 
+    }
+
+    .grid {
+        margin-top: rem-calc(40);   
+    }
+    
+}
+
+
+.post-type-archive-book {
+    
+    .grid .column-block {
+        margin-bottom: rem-calc(30);   
+    }
+    
+    article {
+        background-color: #fff;
+        box-shadow: 0 11px 12px 0 rgba(0,0,0,0.1);
+
+        .thumbnail {
+            display: block;
+            min-height: 290px;
+            display: flex;
+            align-items: center;
+            background-color: $light-gray;
+            
+            
+            img {
+                margin: 0 auto;
+            }
+        }
+        
+        .panel {
+            border-radius: 0 0 8px 8px;  
+            padding: rem-calc(20 36); 
+        }
+        
+        footer {
+            padding: rem-calc(10 36 20); 
+            
+            a {
+                display: inline-block;
+                color: $dark-gray;
+                                
+                &:after {
+                    content: '';
+                    display: block;
+                    width: 44px;
+                    height: 2px;
+                    background-color: $green;   
+                    transition: width .3s; 
+                }
+                
+                &:hover:after {
+                    width: 100%;   
+                }
+            }
+        }
+    }
+}
+
+
+.post-type-archive-book {
+    
+    .facetwp-custom-filters {
+        background-color: $orange;    
+    }
+    
+    .facetwp-facet {
+        margin: 0;   
+    }
+    
+    .facetwp-counter {
+        display: none;   
+    }
+    
+    .filters {
+        
+        > * {
+            display: inline-block;   
+        }
+        
+        button {
+            cursor: pointer; 
+            min-width: 100px!important;  
+        }
+    }
+        
+    .filters button,
+    .facetwp-radio, {
+        @include button-defaults();
+        border: 3px solid #FFFFFF;
+        border-radius: 23px;
+        box-shadow: $box-shadow;
+        color: #fff;
+        padding: rem-calc(6 15)!important;
+        margin: rem-calc(10);
+        
+        &:hover {
+            background-color: #fff;
+            color: $orange;   
+        }
+    }
+    
+    .facetwp-type-radio {        
+        .facetwp-radio {
+            background-image: none;
+            
+            &.checked {
+                background-color: #fff;
+                color: $orange;
+            }
+        }
+    }
+}

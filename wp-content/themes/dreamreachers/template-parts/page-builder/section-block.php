@@ -11,7 +11,6 @@ if( ! class_exists( 'Services_Block_Section' ) ) {
                                     
             $fields = get_sub_field( 'block' );
             $fields['photo_alignment'] = strtolower( $fields['photo_alignment'] ); 
-            $fields['photo_width'] = strtolower( $fields['photo_width'] );
             $this->set_fields( $fields );
             
             $settings = get_sub_field( 'settings' );
@@ -49,20 +48,9 @@ if( ! class_exists( 'Services_Block_Section' ) ) {
             $fields          = $this->get_fields();
             $photo           = $this->get_fields( 'photo' );
             $photo_alignment = $this->get_fields( 'photo_alignment' );
-            $photo_width     = $this->get_fields( 'photo_width' );
                         
-            if( ! empty( $photo ) ) {
-                
-                $photo = _s_get_acf_image( $photo, 'large', true );
-                                                  
-                $this->add_render_attribute( 'wrapper', 'class', sprintf( 'photo-%s', $photo_alignment ) );
-                
-                if( 'wide' == $photo_width ) {
-                    $this->add_render_attribute( 'wrapper', 'class', 'wide-image' );
-                    $this->add_render_attribute( 'background', 'class', 'background-image' );
-                    $this->add_render_attribute( 'background', 'style', sprintf( 'background-image: url(%s);', $photo ) );
-                }
-                
+            if( ! empty( $photo ) ) {                                                  
+                $this->add_render_attribute( 'wrapper', 'class', sprintf( 'photo-%s', $photo_alignment ) );                
             }
             
         } 
@@ -88,7 +76,7 @@ if( ! class_exists( 'Services_Block_Section' ) ) {
             $fields = $this->get_fields();
                                     
             // Set column order            
-            if( 'left' == $this->get_fields( 'photo_alignment' ) ) {
+            if( 'right' == $this->get_fields( 'photo_alignment' ) ) {
                 $column_classes = [ 'small-order-1 large-order-1', 'small-order-2 large-order-2' ];
             }
             else {
@@ -98,7 +86,12 @@ if( ! class_exists( 'Services_Block_Section' ) ) {
             
                                                                         
             $row = new Element_Row(); 
-            $row->add_render_attribute( 'wrapper', 'class', 'align-center large-unstack' );
+            if( empty( $this->get_fields( 'photo' ) ) ) {
+                $row->add_render_attribute( 'wrapper', 'class', 'align-center' );
+            } else {
+                $row->add_render_attribute( 'wrapper', 'class', 'align-center large-unstack' );
+            }
+            
                                  
             // Make sure we have a photo?         
             if( $this->get_fields( 'photo' ) ) {
@@ -126,12 +119,9 @@ if( ! class_exists( 'Services_Block_Section' ) ) {
             
             // Button
             $button_args = $this->get_fields( 'button' );
-            $button_style = ! empty( $button_args['style'] )  ? strtolower( $button_args['style'] ) : '';
-            if( 'link' == $button_style ) {
-                $button_style .= ' orange';
-            }
+
             $button = new Element_Button( [ 'fields' => $fields ]  ); // set fields from Constructor
-            $button->add_render_attribute( 'anchor', 'class', $button_style ); 
+            $button->add_render_attribute( 'anchor', 'class', 'button cta' ); 
             $column->add_child( $button );
             
             $this->add_child( $row ); 

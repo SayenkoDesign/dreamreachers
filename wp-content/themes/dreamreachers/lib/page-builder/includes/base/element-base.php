@@ -385,6 +385,10 @@ abstract class Element_Base  extends Controls_Stack {
 		$this->enqueue_scripts();
 		$this->enqueue_styles();
         
+        if( empty( $this->_get_elements() ) ) {
+            $output = '';
+        }
+        
         return $output;
 	}
     

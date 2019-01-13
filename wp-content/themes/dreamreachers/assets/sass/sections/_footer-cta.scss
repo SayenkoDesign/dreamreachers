@@ -1,74 +1,85 @@
 // Footer CTA
 
 .section-footer-cta {
+    background-color: #fff;
+    padding-top: 20px;
     
-    background-size: cover;
-    background-position: center;
-    
-    background-color: $navy;
-    background-image: url(assets/images/background-footer-cta.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    .background-image {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(270deg, rgba(#ED4399,.8) 0%, rgba(#F9B02D, .9) 100%); 
+        }
+    }
         
     .wrap {    
         text-align: center;
         position: relative;
         z-index: 2;
-        padding: rem-calc(35px 0 20px);
+        
+        header {
+            @include breakpoint(medium down) {
+                margin-bottom: rem-calc(15);   
+                padding-top: rem-calc(30);
+            }
+        }
             
         h2,
         h3,
-        p,
-        a[href^=tel] {
-            color: #fff    
+        p {
+            color: #fff;
+            text-align: center;
         }
         
-        h2 {
-            margin: rem-calc(0 auto 20);
-            color: #fff!important;
+        h2,
+        p {
+            margin-bottom: 0;
         }
         
         .button {
-            @include button-green; 
-            min-width: rem-calc(250);  
+            @include button-defaults; 
+            display: inline-block;
+            border: 3px solid #FFFFFF;
+            border-radius: 23px;
+            box-shadow: $box-shadow;
+            margin: 0 auto!important;
+            
+            &:hover {
+                background-color: $white;
+                color: $orange;   
+            }
+        }
+    }
+    
+    @include breakpoint(large) {
+        .shrink {
+            flex: 0 0 auto!important;
         }
     }
 
 
-    .shape {
+    .element-photo {
         
-        width: 100%;
-        height: 0;
-        padding-top: 2%;
-        position: relative;
         
-        svg {
-            display: block;  
-            position: absolute;
-            top: 0;
-            left: 0;
+        @include breakpoint(medium) {
+            
+            margin-top: -35px;   
+            
+            img {
+                max-width: 420px;  
+            }
         }
         
-         
     }
-    
-    
-    // Hide shape
-    
-    .home &,
-    .page-builder & {
-        .shape {
-            display: none!important;   
-        }
-    }
-    
-    
-    // Hide Footer CTA
-    
-    .single-job & {
-       display: none!important;   
-    }
-    
 
 }

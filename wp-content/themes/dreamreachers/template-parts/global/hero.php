@@ -37,16 +37,7 @@ if( ! class_exists( 'Hero_Section' ) ) {
                 ]
             );
         }
-        
-        
-        public function after_render() {
-            
-            
-            $shape = '<div class="shape"></div>';
                 
-            return sprintf( '</div></div></div></div>%s</%s>', $shape, esc_html( $this->get_html_tag() ) );
-        }
-        
         
         // Add content
         public function render() {

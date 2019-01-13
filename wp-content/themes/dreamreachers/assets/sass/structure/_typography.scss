@@ -32,24 +32,11 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: $header-font-family;	
+	color: $blue;
+    font-family: $header-font-family;	
+    text-transform: uppercase;
 }
 
-
-h1 {
-    color: #4A4A4A    
-}
-
-h2,
-h3 {
-    color: $dark-gray;  
-}
-
-h4,
-h5,
-h6 {
-    color: $dark-gray;   
-}
 
 @mixin heading-lines( $border-color:$primary ) {
     
@@ -124,23 +111,4 @@ ol:not([class]) {
 
 ol:not([class]) {
     list-style: decimal;
-}
-
-.page-builder section {
-    
-    h2 {
-        margin-bottom: 24px;   
-    }
-    
-    .element-photo {
-     
-        img {
-            box-shadow: 0 11px 12px 0 rgba(0,0,0,0.1); 
-        }
-        
-    }
-    
-    ul:not([class]) {
-        @include bullets;         
-    }
 }

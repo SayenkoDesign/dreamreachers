@@ -5,8 +5,7 @@ function _s_load_google_fonts() {
 
 	// change array as needed
 	$font_families = array(
-			'Open+Sans',
-            'Nunito:400,600,700'
+			'Open+Sans:400,600,700'
 		);
 
 	// do not touch below here:

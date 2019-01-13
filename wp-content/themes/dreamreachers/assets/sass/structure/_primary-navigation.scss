@@ -41,7 +41,7 @@
     
         a {
             color: $white;
-            font-family: $nunito;
+            font-family: $open-sans;
             font-size: rem-calc(16);
             font-weight: 400;
             margin: 0;
@@ -74,6 +74,7 @@
         background-color: transparent;
         position: relative;
         text-align: right;
+        padding: rem-calc(10 0);
                 
         .menu .menu-item:focus {
             position: static;
@@ -109,7 +110,8 @@
             }
             
  			a {
-				color: #fff;
+				color: $dark-gray;
+                text-transform: none;
 				position: relative;
 				display: inline-block; 
 				font-size: rem-calc(15);
@@ -120,31 +122,31 @@
  		}
 
 		// First level
-		> .menu-item {
- 			
+		> li.menu-item {
+ 			padding: rem-calc(8 10);
  			text-align: left;
-            padding: rem-calc(6 0 7)!important;
             position: relative;
             
 			> a {
-				color: $white;
-                text-transform: uppercase;
-                font-size: rem-calc(13);
-                letter-spacing: rem-calc(.49);
-				padding: rem-calc(2 15)!important;
-                
-                @include breakpoint(xxlarge) {
-                    font-size: rem-calc(14);
-                    padding: rem-calc(2 20)!important;
-                }
+				color: $dark-gray;
+                font-size: rem-calc(16);
+                line-height: 1.75;
+                padding: 0!important;
                 
                 &:after {
                     content: '';
                     display: block;
-                    width: 0;
+                    
                     height: rem-calc(2);
-                    background-color: $light-blue;   
-                    transition: width .3s; 
+                    background-color: $dark-gray;   
+                    
+                    transform: scaleX(0);  
+                    transition: transform 250ms ease-in-out;
+                    
+                    /*
+                    from left: transform-origin:100% 50%;
+                    from right  transform-origin:  0% 50%;
+                    */
                 }
  			}
 
@@ -158,10 +160,10 @@
 
 				> a {
 					background: transparent;
-                    color: $white;
+                    color: $dark-gray;
                     
                     &:after {
-                        width: 100%;  
+                        transform: scaleX(1);    
                     }
  				}
                 
@@ -173,18 +175,69 @@
                 
 				> a {
 					background: transparent;
-                    color: $white; 
+                    color: $dark-gray; 
                     
                     
                     &:after {
-                        width: 100%; 
+                        transform: scaleX(1);  
                     }
 				}
 
 			}
             
             a:focus {
-                color: $white; 
+                color: $dark-gray; 
+            }
+            
+            &.button {
+                padding: rem-calc(3 0 3 0)!important;
+                a {
+                    background: linear-gradient(270deg, #ED4399 0%, #F9B02D 100%);
+                    padding: 3px!important;
+                    border-radius: 23px;  
+                    display: block;  
+                    min-width: 116px;              
+                    span {
+                        display: block;
+                        border-radius: 23px;
+                        text-align: center;
+                        padding: rem-calc(6 15)!important;
+                        text-transform: uppercase;
+                        font-size: 11px;
+                        font-weight: bold;
+                        line-height: 20px;
+                        letter-spacing: 1;
+                    } 
+                    
+                    &:after {
+                        display: none;   
+                    }
+                }
+            
+            }
+            
+            &.login,
+            &.logout {
+                
+                a {
+                    color: $pink!important;
+    
+                    span {
+                        background: #fff;
+                    }
+                }
+            }
+            
+            
+            &.donate,
+            &.my-account {
+                a {
+                    color: $white!important;   
+                }
+            }
+            
+            &.donate {
+                background-image: url();   
             }
 			
  		}
@@ -261,31 +314,7 @@
                             margin-bottom: rem-calc(20); 
                             text-transform: uppercase;
                         }
-                    }
-                    
-                    .locations {
-                        border-left: 2px solid $blue;  
-                        padding-left: rem-calc(10); 
-                        
-                        li {
-                            padding: rem-calc( 8 0 ); 
-                            line-height: 1; 
-                            
-                            &:first-child {
-                                padding-top: 0;   
-                            }
-                            
-                            &:last-child {
-                                padding-bottom: 0;
-                            }
-                        }
-                        
-                        a {
-                            color: $dark-gray;
-                            display: inline;
-                            padding: 0;   
-                        }
-                    }
+                    }                    
                 }
             }
             
@@ -303,113 +332,61 @@
         }
 
 	}
-   
+    
+    
+    
+    .fixed-menu {
+            
+        .nav-primary .menu {
+           
+            > li.menu-item {
+                
+                > a {
+                    color: $white;
+                    &:after {
+                        background-color: $white;   
+                    }
+                }
+                
+                &.current-menu-item,
+                &.current_page_parent,
+                &.current-page-ancestor,
+                &.current-menu-ancestor,
+                &.current-category-ancestor {
+    
+                    > a {
+                        color: $white;
+                    }
+                    
+                }
+    
+                &:hover,
+                &:focus,
+                &:active {
+                    
+                    > a {
+                        color: $white; 
+                    }
+    
+                }
+                
+                a:focus {
+                    color: $white; 
+                }
+                                
+            }
+                                
+        }
+           
+    }
+       
 }
 
 
-@include breakpoint(xlarge) {
-    .nav-primary .menu {
-		@include list-reset;
-		background: transparent;
-        
-        
-        .menu-item.mega-menu {
-            position: static;   
-            
-            .sub-menu a:after {
-                display: none!important;   
-            }
-            
-            .sub-menu {
-                left: rem-calc(30);
-                width: 100%;   
-                display: flex;
-                flex-flow: row wrap;
-                border: none;
-                box-shadow: none;
-                
-                &:before {
-                    content: '';
-                    display: block;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    position: absolute;
-                    z-index: -3;
-                    background-color: $navy;
-                    padding: 0 1000em;
-                    margin: 0 -1000em;   
-                    border-bottom: 4px solid $light-blue;
-                }
-                
-                > li {
-                    margin: 0;
-                    flex: 0 0 50%;
-                    max-width: 50%; 
-                    margin: rem-calc(5 0);
-                    
-                    span {
-                        //display: inline-block;   
-                    }
-                    
-                    img {
-                            display: inline-block;
-                            height: rem-calc(60);
-                            margin-right: rem-calc(20);   
-                            height: 60px;
-                            width: auto;   
-                        }
-                    
-                    a {
-                        color: #FFF;   
-                        padding: rem-calc(10 10);
-                        display: flex;
-                        align-items: center;
-                        
-                        &:hover {
-                            color: #fff;
-                            background: rgba($light-blue, .2);   
-                        }
-                    }
-                    
-                    @include breakpoint(xlarge) {
-                        flex: 0 0 33.333333333%;
-                        max-width: 33.333333333%;  
-                    }
-                }
-            }
-        }
-                
-    }
-}
-
-
-.nav-primary .menu .menu-item-locations {
-    
-    display: none;
-    
-    @include breakpoint(xlarge) {
-        
-        display: inline-block;
-        
-        > a {
-            paddin-left: 0!important; 
-            padding-right: 0!important;   
-        }
-        
-        > a svg {
-            position: relative;
-            margin-top: -3px; 
-        }
-        
-        > a:after {
-            background-color: transparent!important; 
-        }   
-    }
-    
-    @include breakpoint(xxxlarge) {
-        margin-left: 20px!important;   
-    }
+.menu .desktop-link {
+	@include breakpoint(large down) {
+		display: none!important;
+	}
 }
 
 .nav-primary .menu .mobile-link {
@@ -419,13 +396,8 @@
 	}
 }
 
-.nav-primary .menu .lets-build {
+.nav-primary .menu .cta {
     background-color: $green;
 }
 
 
-.menu .desktop-link {
-	@include breakpoint(large down) {
-		display: none!important;
-	}
-}

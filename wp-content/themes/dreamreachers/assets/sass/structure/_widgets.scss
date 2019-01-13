@@ -62,35 +62,40 @@
 
 .social-icons {
     
+    $social-icon-size: 45;
+    
     ul {
         @include list-reset;
-        height: 30px;   
+        height: #{$social-icon-size}px;   
     }
       
     li {
        display: inline-block;
-       padding: 0 10px 0;   
-       height: 30px;
+       padding: 0 0 0 10px;   
+       height: #{$social-icon-size}px;
        
        @include breakpoint(large) {
-           padding: 0 20px 0 0;  
+           padding: 0 0 0 20px;  
+       }
+       
+       &:first-child {
+            padding-left: 0;   
        }
       
     }
     
     a {
         transition: $transition;
-        width: 30px;
-        height: 30px;
+        width: #{$social-icon-size}px;
+        height: #{$social-icon-size}px;
         display: block;
         border-radius: 50%;
-        border: 2px solid $primary;
         position: relative;
-        background-color: $white;
-        color: $primary;
+        background-color: $blue;
+        color: $white;
         
         &:hover {
-            background-color: $blue;
+            background-color: $pink;
             color: $white;
         }
     }
@@ -109,6 +114,8 @@
 
 
 .share-icons {
+    
+    $share-icon-size: 30;
 
 	margin: 0 auto 40px;
 	vertical-align: middle;
@@ -124,8 +131,8 @@
 		}
 		
 		a {
-			width: 40px;
-			height: 40px;
+			width: #{$share-icon-size}px;
+			height: #{$share-icon-size}px;
 			display: block;
 			position: relative;
             background-color: $primary;
@@ -133,7 +140,7 @@
             color: #fff;
 
             &:hover {
-                background-color: $navy;  
+                background-color: $pink;  
                
             }
 		}
@@ -142,7 +149,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            height: 40%;
+            height: 50%;
             transform: translate(-50%,-50%); 
         }
 	

@@ -24,9 +24,7 @@ if( ! class_exists( 'Footer_CTA_Section' ) ) {
             $fields = get_field( 'footer_cta', 'option' );
                                                 
             $this->set_fields( $fields );
-                        
             
-            // Render the section
             $this->render();
             
             // print the section
@@ -43,59 +41,73 @@ if( ! class_exists( 'Footer_CTA_Section' ) ) {
                 'wrapper', 'class', [
                      $this->get_name() . '-footer-cta'
                 ]
-            );   
+            ); 
+            
+            $background_image       = $this->get_fields( 'background_image' );
+            $background_position_x  = strtolower( $this->get_fields( 'background_position_x' ) );
+            $background_position_y  = strtolower( $this->get_fields( 'background_position_y' ) );
+            
+            if( ! empty( $background_image ) ) {
+                $background_image = _s_get_acf_image( $background_image, 'hero', true );
+                
+                $this->add_render_attribute( 'background', 'class', 'background-image' );
+                $this->add_render_attribute( 'background', 'style', sprintf( 'background-image: url(%s);', $background_image ) );
+                $this->add_render_attribute( 'background', 'style', sprintf( 'background-position: %s %s;', 
+                                                                          $background_position_x, $background_position_y ) );
+
+                                                                          
+            }               
             
         }  
-        
-        
-        
-        public function before_render() {            
-
-            $shape = '<div class="shape"><svg viewBox="0 0 100 2" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#fff" d="M0 0, 100 0, 50 2, 0 0z"></path>
-                    </svg></div>';
-            
-            $this->add_render_attribute( 'inner', 'class', 'inner' );
-            $this->add_render_attribute( 'container', 'class', 'container' );
-            $this->add_render_attribute( 'wrap', 'class', 'wrap' );
-            
-            return sprintf( '<%s %s><div %s>%s<div %s><div %s><div %s>', 
-                            esc_html( $this->get_html_tag() ), 
-                            $this->get_render_attribute_string( 'wrapper' ), 
-                            $this->get_render_attribute_string( 'inner' ), 
-                            $shape,
-                            $this->get_render_attribute_string( 'background' ),
-                            $this->get_render_attribute_string( 'container' ), 
-                            $this->get_render_attribute_string( 'wrap' )
-                            );
-
-        }
         
         
         // Add content
         public function render() {
             
             $fields = $this->get_fields();
-                                                   
+                        
             $row = new Element_Row(); 
+            $row->add_render_attribute( 'wrapper', 'class', 'align-middle medium-unstack' );
+                        
             $column = new Element_Column(); 
             $column->add_render_attribute( 'wrapper', 'class', 'column-block' );  
             
+            $html = '';
                          
             // Heading
             $header = new Element_Header( [ 'fields' => $fields ] ); // set fields from Constructor
-            $column->add_child( $header );
-            
-            // Button
-            $button_args = $fields['button'];
-            $button = new Element_Button( [ 'fields' => $fields ]  ); // set fields from Constructor
-            $button->add_render_attribute( 'anchor', 'class', [ 'button', 'orange' ] ); 
-            if( ! empty( $button_args['type'] ) && 'modal' == strtolower( $button_args['type'] ) ) {
-                $button->add_render_attribute( 'anchor', 'data-open', 'lets-build' ); 
+            $header->set_settings( ['subheading_wrap' => 'h3'] );
+            $header = $header->get_element();
+            if( ! empty( $header ) ) {
+                $html .= sprintf( '<div class="column">%s</div>', $header );
             }
             
-            $column->add_child( $button );
+            // Button
+            $button = new Element_Button( [ 'fields' => $fields ]  ); // set fields from Constructor
+            $button->add_render_attribute( 'anchor', 'class', [ 'button', 'white' ] );             
+            $button = $button->get_element();
+            if( ! empty( $button ) ) {
+                $html .= sprintf( '<div class="column shrink">%s</div>', $button );
+            }
+            
+            $html = sprintf( '<div class="row large-unstack align-middle">%s</div>', $html );
+            
+            $html = new Element_HTML( [ 'fields' => ['html' => $html] ] ); // set fields from Constructor
+            $column->add_child( $html ); 
+            
+            $column->add_render_attribute( 'wrapper', 'class', ['small-order-1 medium-order-2 cta-content' ] );
             $row->add_child( $column );
+            
+            
+            // Photo
+            $photo = new Element_Photo( [ 'fields' => $fields ]  );
+            // Make sure we have a photo?         
+            if( ! empty( $photo->get_element() ) ) {
+                $column = new Element_Column(); 
+                $column->add_render_attribute( 'wrapper', 'class', ['small-order-2 medium-order-1 shrink' ] );
+                $column->add_child( $photo );
+                $row->add_child( $column );
+            }     
             
             $this->add_child( $row );         
         }

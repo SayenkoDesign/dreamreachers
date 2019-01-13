@@ -10,7 +10,11 @@
             overflow: hidden;
             position: relative;
             height: 400px;
-            padding-bottom: 30%;   
+            
+            @include breakpoint(xxlarge) {
+                height: 600px;
+                padding-bottom: 30%; 
+            }
         }
         
         .background-image {
@@ -29,13 +33,9 @@
                 bottom: 0;
                 left: 0;
                 background: transparent;
-                background: linear-gradient(90deg, rgba(43,112,171,1) 17%, rgba(94,170,183,0.5) 55%, rgba(255,255,255,0) 85%);
+                background: linear-gradient(270deg, rgba(#ED4399,.8) 0%, rgba(#F9B02D, .9) 100%);
             }
         }
-        
-        @include wrap();
-        @include border-left( 20%, 120%, #ffffff);
-        
         
         .row {
             height: 100%;
@@ -44,15 +44,39 @@
         
         .hero-caption {
             position: relative;
-            z-index: 3;  
+            z-index: 3;             
             
-            @include breakpoint(small only) {
-                text-align: center;
-            }
+            text-align: center;
             
             h1,
             > * {
                 color: #fff; 
+            }
+            
+            p {
+                font-family: $shnobel;
+                font-size: 30px;      
+                text-transform: uppercase; 
+                margin: rem-calc(5 0 0);       
+                
+                > * {
+                    display: inline-block;   
+                    vertical-align: middle;
+                }
+                
+                button {
+                    cursor: pointer;
+                    
+                    &:hover svg {
+                        opacity: .9;
+                    }
+                }
+                
+                span {
+                    padding-left: 10px;
+                    position: relative;
+                    top: -5px;   
+                }
             }
 
         }
@@ -71,10 +95,6 @@
             }
         }
         
-        .button {
-            @include button-green;   
-        }
-        
     }
     
     
@@ -86,127 +106,39 @@
 }
 
 .section-numbers {
-    @include wrap();
-    @include border-left( -30%, 110%);  
-    background-image: url(assets/images/home/numbers/map.jpg);
-    background-size: 50%;
-    background-position: right top;
-    overflow: hidden;
+            
+    .wrap {
+        padding-top: rem-calc(45);
+    }
+    
+    .row-2 {
+        max-width: 920px;
+        margin: 45px auto;   
+    }
     
     @include breakpoint(large) {
-        background-size: contain;
-        background-position: right center;
-    }
-    
-    .shape {
-        position: relative;
-        z-index: 2;
-        line-height: 0;
-        height: 0;
-        padding-bottom: 5%;
-        
-        svg,
-        img {
-            display: block;
-            position: absolute;
-            left: 0;
-            bottom: -2px;   
-        }
-    }
-        
-    .wrap {
-        z-index: 2!important;
-        padding-top: rem-calc(45);
-        @include breakpoint(xxxlarge) {
-            padding-top: 0;
+        .shrink {
+            flex: 0 0 auto!important;
         }
         
-        @include breakpoint(medium down) {
-            
+        header {
+            padding-left: rem-calc(30);   
         }
-    }
-    
-    header {
-        margin-bottom: rem-calc(45);
     }
     
     .grid {
-        position: relative; 
-                
-        @include breakpoint(medium down) {
-            
-            margin-bottom: -25px;
-                        
-            .column { 
-                
-                position: relative;
-            
-                &:nth-of-type(-n+2) {
-                    &:before {
-                        content: '';
-                        display: block;
-                        position: absolute;
-                        bottom: -10px;
-                        left: 0;
-                        width: 100%;
-                        height: 1px;
-                        background-color: $light-gray;
-                        
-                    }
-                }
-                
-                &:nth-child(odd) {
-                    &:after {
-                        content: '';
-                        display: block;
-                        position: absolute;
-                        top: 0;
-                        right: 10px;
-                        width: 1px;
-                        height: calc(100% + 40px);
-                        background-color: $light-gray;
-                        
-                    }
-                }
-            }
-                        
-        }
-        
-        @include breakpoint(large) {
-            margin-bottom: -75px;
-        }
+        padding-top: rem-calc(25);
     }
     
     .grid-item {
                 
-        display: flex;        
-        justify-content: center;
-        
-         &:nth-child(odd) {
-             padding: rem-calc(0 10 0 0);
-         }
-         
-         @include breakpoint(medium down) {
-             flex-direction: column;
-             text-align: center;
-         }
-        
-        @include breakpoint(large) {
-             border-right: 1px solid $light-gray;
-             height: 175px;  
-             padding: rem-calc(0 10 0 0);
-        }
-        
-        h3 {
-            color: $dark-gray;
-            font-size: rem-calc(44); 
-            line-height: 1.1;
-            font-weight: 700;
-            padding-right: rem-calc(10);  
-            margin-bottom: rem-calc(20);
+        h4 {                        
+            .count {
+                font-size: rem-calc(66);   
+            }
             
-            @include breakpoint(medium) {
-                margin-bottom: 0;
+            .description {
+                padding-left: rem-calc(10);
             }
         }
         
@@ -218,316 +150,176 @@
     }
 }
 
-.section-what {
-    @include wrap();
-    @include border-left( -30%, 140%, $white); 
-    background-color: $blue;
-    position: relative;
+.section-donate {
     
-    .shape {
-        line-height: 1; 
-        position: relative;
+    background-image: url(assets/images/home/donate-background.png);
+    background-size: cover;
+    padding: rem-calc(30 0);
+    
+    @include breakpoint(large) {
         
-        svg {
-            display: block;  
+        .row {
+            min-height: 100px;   
         }
+        
+        .shrink {
+            flex: 0 0 auto!important;
+        }
+        
+        h2,
+        p {
+            margin-bottom: 0;   
+        }
+        
+        .element-button {
+            padding-left: rem-calc(15);   
+        }
+
+    } 
+    
+    h2 {
+        color: #fff;
+        margin-bottom: $paragraph-margin-bottom;   
     }
-            
-    .wrap {
-        padding-top: rem-calc(45)!important;  
-        padding-bottom: 175px!important; 
-        
-        
-    }
-        
-    header {
+}
+
+.section-how {
+    
+    padding-top: rem-calc(30);
+    
+    .section-title {
+        text-align: center;
         
         h2 {
-            color: #fff;  
-            margin-bottom: rem-calc(20); 
+            font-size: rem-calc(map-deep-get($header-styles, small, h3, font-size)); 
+            
+            @include breakpoint(large) {
+                font-size: rem-calc(map-deep-get($header-styles, large, h3, font-size)); 
+            }
+            
+            display: inline-block;
+            
+            padding-left: 73px;
+            position: relative;
+            min-height: 63px;
+            padding-top: 15px;
+            
+            &:before {
+                content: '';
+                display: block;
+                width: 63px;
+                height: 63px;
+                background-image: url(assets/images/home/play-icon-pink.svg);   
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
         }
     }
-    
-    p, 
-    li {
-        color: #fff;   
-    }
-    
-    
+ 
     .grid {
-        margin-top: rem-calc(25); 
+        margin-top: rem-calc(45);
         
-        .column-block {
-            margin-bottom: rem-calc(30);   
+        @include breakpoint(large) {
+            position: relative;
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                left: 50%;
+                top: 118px;
+                transform: translateX(-50%);
+                width: 60%;
+                background-image: linear-gradient(to right, $pink 50%, transparent 50%);
+                background-size: 36px 100%; 
+                height: 4px;
+            }
+            
+            .chevron {
+                position: absolute;
+                top: calc(118px - 17.5px);
+                
+                &.left {
+                    left: calc(33% - 19.5px);  
+                }
+                
+                &.right {
+                    left: calc(66.6666667% - 19.5px); 
+                }
+            }
         }
     }
     
     .grid-item {
-        
-        display: block;
-        
-        @include breakpoint(small only) {
-            text-align: center;   
-            
-            .icon {
-                display: block;   
-            }
-        }
-        
-        @include breakpoint(medium) {
-            display: flex;
-            align-items: center;
-        }
-                
-        .icon {
-        margin-bottom: rem-calc(20);
-        width: 60px;
-        height: 60px;
-        flex: 0 0 60px;
-        display: block;
-        border: 2px solid $blue;
-        border-radius: 100%;
-        line-height: 1;
-        position: relative;
-        
-        img, svg {
-            display: block;  
-            position: absolute;
-            height: 80px;
-            max-width: 80%;
-            max-height: 80%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-        }
-        
-        margin-top: 5px;
-        margin-right: 20px;
-        
-        @include breakpoint(medium) {
-            flex: 0 0 113px;
-            width: 113px;
-            min-height: 113px;
-                        
-            svg {
-                height: 100px;
-                max-width: 90%;   
-                max-height: 90%;   
-            }
-        }
-        
-    }
-          
-        
-        &:hover {
-            opacity: .8352941176470588;   
-        }
-         
-         
-        
-        h5 {
-            color: #fff;
-        }
-
-    }
-
-}
-
-.home .section-why {
-    position: relative;
-    @include wrap();
-    @include border-left( 0%, 150% ); 
-    padding-top: rem-calc(25);
-    padding-bottom: rem-calc(25);
-    
-    @include breakpoint(large) {
-        padding-top: 0;
-    }
-    
-    &:before {
-        content: '';
-        display: block;
-        height: 50%;
-        left: 0;
-        position: absolute;
-        right: 0;
-        //z-index: -1;
-        -webkit-backface-visibility: hidden; // for Chrome Windows
-    }
-    
-    &:before {
-        background: #fff;
-        top: 0;
-        transform: skewY(-4deg);
-        transform-origin: 0 100%;
-    }
-}
-
-
-.section-clients {
-    @include wrap();
-    @include border-left( 0%, 180% ); 
-    
-    .wrap {
-        padding-bottom: rem-calc(45)!important;
-        padding-top: rem-calc(45)!important;
-        
-        @include breakpoint(xlarge) {
-            padding-top: rem-calc(90)!important;
-            padding-right: 0!important;
-        }
-    }
-    
-    
-    header {
-        margin-bottom: rem-calc(30);
+        max-width: 320px;
+        margin: 0 auto;
         text-align: center;
-    }
-    
         
-    @include breakpoint(xlarge) {
-        .logos {
+        p.description {
+            font-size: rem-calc(16);
+            color: #4A4A4A;   
+        }
+        
+        .link {
             position: relative;
-            z-index: 9;
-            margin: rem-calc( 0 0 0 -80);   
-        }
-    }
-    
-    
-    // Slick Slider
-   
-    
-    @include breakpoint(xxlarge down) {
-        .slick-arrows {
-            display: flex;
-            .slick-arrow {
-                margin: rem-calc(0 10);
-            }
-            
-            @include breakpoint(small only) {
-                justify-content: center;
-            }
-            
-            @include breakpoint(xlarge) {
-                position: relative;
-                margin-left: 80px;
-            }
-        }
-    }
-    
-    .slick-prev,
-    .slick-next {
-        
-        @include breakpoint(xxxlarge) {
-            position: absolute;
-            top: 50%;
-            transform: translate(0, -50%);
-        }
-        
-    }
-    
-    .slick-prev {
-        @include breakpoint(xxxlarge) {
-            left: -60px;
-        }
-    }
-    
-    .slick-next {
-        @include breakpoint(xxxlarge) {
-            right: -60px;
-        }
-    }
-    
-    //.slick-current,
-    .slick-slide:hover {
-        
-        .logo span {
-            box-shadow: 1px 1px 6px 0 #979797;
-            
-            img {
-              transition: .5s ease-in-out;
-              filter: grayscale(0%);
-            } 
+            font-size: 21px;
+            line-height: 1.380952381;
             
             &:after {
                 content: '';
                 display: block;
-                width: 100%;
-                height: 2px;
-                background-color: $blue;   
-                position: absolute;
-                left: 0;
-                bottom: -1px;
-            }
-        }
-           
-    }
-    
-    .logo {
-        background-color: #fff;
-        padding: rem-calc(0 5);
-        margin: rem-calc(0 -5);
-        
-        
-        a,
-        span {
-            display: block;
-            padding: rem-calc(15);
-            height: 126px;
-            border: 1px solid #ECECEC;
-            border-radius: 4px;
-            position: relative;
-            
-            
-            
-            img {
-                display: block; 
-                border-bottom: 2px solid transparent; 
-                width: auto;
-                position: relative;
-                top: 50%;
-                transform: translateY(-50%);
-                
-            }
-                        
-            img {
-              filter: grayscale(100%);
+                width: 38px;
+                height: 6px;
+                background-image: url(assets/images/home/orange-bottom-line.svg);
+                background-size: 38px 6px;
+                background-position: center bottom;
+                margin: 0 auto;
             }
         }
     }
     
-    img {
-        height: auto; 
-        width: auto; 
-        max-height: 100%;
+    .thumbnail {
+        display: block;
+        height: 236px;
+        width: 236px;
         margin: 0 auto;
-    }
-    
-}
-
-
-.section-projects {
-    @include wrap();
-    @include border-left( 0%, 105% ); 
-    
-    .wrap {
-        @include breakpoint(xlarge) {
-            padding-right: 0!important;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        border-radius: 50%;
+        margin-bottom: rem-calc(40);
+        
+        &:before {
+            content: '';
+            background-image: url(assets/images/home/how-it-works-circle-torn-edge.svg);
+            width: 252px;
+            height: 253px;
+            position: absolute;
+            top: -14px;
+            left: -6px; 
+            z-index: 3;  
+        }
+        
+        &:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            background-color: rgba( #000, .4);  
+        }
+        
+        .icon {
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%,-50%);
+           width: 80%;
+           height: auto;  
+           z-index: 4; 
         }
     }
-    
-    header {
-        margin-bottom: rem-calc(35); 
-        text-align: center;  
-    }
-    
-    @include breakpoint(xlarge) {
-        .projects {
-            position: relative;
-            z-index: 9;
-            margin: rem-calc( 0 0 0 -80);   
-        }
-    }
-
     
 }

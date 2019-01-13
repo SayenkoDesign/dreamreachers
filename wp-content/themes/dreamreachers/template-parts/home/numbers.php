@@ -30,18 +30,7 @@ if( ! class_exists( 'Home_Numbers_Section' ) ) {
             );            
             
         }
-        
-        
-        public function after_render() {
-            
-            $shape = '<div class="shape"><svg viewBox="0 0 100 5" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#035481" d="M0 0, 0 5, 100 5, 100 3, 0 .25z"/>
-                        <path fill="#2B70AA" d="M0 0, 0 5, 100 5, 100 4, 0 0z"/>
-                        </svg></div>';
-            
-            return sprintf( '</div></div></div></div>%s</%s>', $shape, esc_html( $this->get_html_tag() ) );
-        }  
-       
+
         
         // Add content
         public function render() {
@@ -49,16 +38,24 @@ if( ! class_exists( 'Home_Numbers_Section' ) ) {
             $fields = $this->get_fields();
                                                  
             $row = new Element_Row(); 
+            $row->add_render_attribute( 'wrapper', 'class', 'large-unstack align-middle' );
+            
+            $column = new Element_Column(); 
+            $column->add_render_attribute( 'wrapper', 'class', ['shrink' ] );
+            $html = sprintf( '<span><img src="%shome/by-the-numbers-graphic.png" /></span>', 
+                                       trailingslashit( THEME_IMG ) );
+            $html = new Element_HTML( [ 'fields' => ['html' => $html] ] ); // set fields from Constructor
+            $column->add_child( $html ); 
+            $row->add_child( $column );
                                         
             // Header
             $header = new Element_Header( [ 'fields' => $fields ] );
             $column = new Element_Column(); 
-            $column->add_render_attribute( 'wrapper', 'class', 'text-center' );
             $column->add_child( $header );
-            
             $row->add_child( $column );
-            $this->add_child( $row );
             
+            $this->add_child( $row );
+                        
             $row = new Element_Row(); 
             $row->add_render_attribute( 'wrapper', 'class', 'large-collapse' );
             
@@ -90,10 +87,11 @@ if( ! class_exists( 'Home_Numbers_Section' ) ) {
                                     
                     $number = _s_format_string( $row['number'], 'span' ); 
                     $symbol =   $row['symbol'];     
+                    $name = $row['name']; 
                     $description = _s_format_string( $row['description'], 'p' );    
                    
-                    $grid_items .= sprintf( '<div class="column column-block"><%1$s class="grid-item"><h3>%2$s%3$s</h3>%4$s</%1$s></div>', 
-                                     $tag, $number, $symbol, $description );
+                    $grid_items .= sprintf( '<div class="column column-block"><%1$s class="grid-item"><header><h4 class="row align-middle"><div class="count animate-numbers">%2$s%3$s</div><div class="description">%4$s</div></h4></header>%5$s</%1$s></div>', 
+                                     $tag, $number, $symbol, $name, $description );
                 }
             }
             

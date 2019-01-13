@@ -7,7 +7,7 @@
         
     $(".nav-primary").accessibleDropDownMenu();
     
-    
+    /*
     $(window).on('load changed.zf.mediaquery', function(event, newSize, oldSize) {
         
         if( Foundation.MediaQuery.atLeast('large') ) {
@@ -19,6 +19,7 @@
         }
                 
     });
+    */
     
     
     // Toggle menu
@@ -43,7 +44,7 @@
     });
     
     
-    $('.section-numbers h3 span').each(function () {
+    $('.animate-numbers span').each(function () {
         $(this).prop('Counter',0).animate({
             Counter: $(this).text()
         }, {

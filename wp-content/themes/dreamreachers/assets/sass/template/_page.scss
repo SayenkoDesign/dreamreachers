@@ -11,15 +11,6 @@ html, body {
     z-index: 999999;   
 }
 
-
-.container {
-    @include breakpoint(large down) {
-        padding-left: rem-calc(7);
-        padding-right: rem-calc(7);
-    }   
-}
-
-
 .page-error-404 {
     .section-default {
         padding-top: rem-calc(45);   
@@ -30,40 +21,6 @@ html, body {
  
     .section-hero {
         
-        position: relative;
-        &:after {
-            content: '';
-            display: block;
-            height: 50%;
-            position: absolute;
-            right: 0;
-            width: 100%;
-            -webkit-backface-visibility: hidden; // for Chrome Windows
-        }
-                
-        &:after {
-            background: $blue;
-            bottom: 0;
-            transform: skewY(2deg);
-            transform-origin: 0 100%;
-        }
-        
-        .wrap {
-            margin-bottom: rem-calc(10);
-            
-            @include breakpoint(large) {
-                padding-top: rem-calc(100);     
-            }
-            
-            .row {
-                position: relative;   
-                z-index: 2;
-            }
-        }
-        
-        .shape {
-            display: none;
-        }
     }
     
     .section-default {

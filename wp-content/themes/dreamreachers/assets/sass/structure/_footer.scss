@@ -5,29 +5,25 @@
 
 .site-footer {
     
-    background: #ECECEC;
+    background-color: $light-gray;
     
-    @include breakpoint(xlarge) {
-        background: linear-gradient(to right, #ECECEC 50%, #FFFFFF 50%);  
+    .edge {
         position: relative;
+        z-index: 3;
+        line-height: 0;
+        transform: translateY(-100%);
         
-        &:before {
-            content: '';
+        img {
             display: block;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width:   180px;
-            height: 100%;
-            background: linear-gradient(to right bottom, #ECECEC 50%, #FFFFFF 50%);   
-        }   
+            width: 100%; 
+        }
     }
     
     .wrap {
         position: relative;
         z-index: 2;
-        padding-top: rem-calc(30);
+        padding-top: rem-calc(50);
+        
     }
     
     
@@ -35,52 +31,12 @@
         text-align: center;   
     }
     
-    @include breakpoint(large) {
+    @include breakpoint(medium) {
         .widget {
             text-align: left;   
         }
     }
-    
-    @include breakpoint(xlarge) {
-        .footer-widgets-left {
-            flex: 0 0 37%!important;
-            max-width: 37%;
-            padding-bottom: rem-calc(50);
-            
-            .column:last-child {
-                flex: 0 0 auto;
-                max-width: 100%;   
-            }
-        }
-        
-        .footer-widgets-center {
-            flex: 0 0 24%!important;
-            max-width: 24%;
-            position: relative;
-        }
-        
-        .footer-widgets-right {
-            flex: 0 0 28%!important;
-            max-width: 28%;
-            margin-left: auto;
-        }
-    }
 
-    .footer-icon {
-        position: absolute;
-        //height: 120%;
-        width: 100%;
-        bottom: -20px;
-        //display: flex;
-        //align-items: flex-end;
-        
-        img {
-            display: block;
-            max-width: 100%;
-            width: auto;
-            height: auto;   
-        }
-    }
 }
 
 
@@ -115,6 +71,10 @@
     .menu {
         @include list-reset;
         
+        @include breakpoint(medium) {
+            column-count: 2;  
+        }
+        
         li {
             display: block; 
             padding-bottom: rem-calc(15);  
@@ -131,47 +91,39 @@
         }
     }
     
-    .button {
-        @include button-green-alt;   
+    
+    .widget_media_image {
+        img {
+            display: block;
+            margin: 0 auto;   
+        }
+    }
+    
+    @include breakpoint(medium) {
+        
+        .column:last-child {
+            text-align: right;
+        }
+    
+        .be-social-widget {
+            display: inline-block;
+            text-align: left;
+        }
     }
 }
 
 
 .footer-copyright {
     
-    text-align: center;
-    padding-top: rem-calc(20);
     padding-bottom: rem-calc(20);
+    text-align: center;
     
-    @include breakpoint(large) {
-        text-align: left;
-        position: relative;
-        top: -20px;
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-    
-    @include breakpoint(xlarge) {
-        text-align: left;
-        position: relative;
-        top: -40px;
-    }
-    
+        
     p {
         color: #4A4A4A;
         font-size: 10px;
         line-height: 12px;
         margin-bottom: 8px; 
-        
-        span {
-             display: block;
-             margin-bottom: 10px;
-             
-             @include breakpoint(medium) {
-                 display: inline;
-                 margin: 0;
-             }
-        }
         
         b {
             font-weight: normal;
@@ -189,78 +141,4 @@
     }
    
       
-}
-
-
-.psc-locations-widget {
-    
-    .accordion {
-        @include list-reset;           
-    }
-    
-    .accordion-item {
-        padding-bottom: rem-calc(10);   
-    }
-    
-    .accordion-title {
-        padding-left: rem-calc(26); 
-        padding-bottom: rem-calc(5);
-        position: relative;
-        color: $dark-gray;
-        font-size: rem-calc(18);
-        letter-spacing: 0.7px;
-        display: inline-block;
-        
-        &:hover {
-            color: rgba( $dark-gray, .8);
-            
-            &:before {
-                color: rgba( $dark-gray, .8);
-            }
-        }
-        
-        &:before {
-            color: $dark-gray;
-            
-        }     
-    }
-    
-    .accordion-item.is-active {
-        color: rgba( $dark-gray, .8);        
-    }
-    
-    .accordion-content {
-        display: none; 
-        padding: rem-calc(10 0);
-        
-        @include breakpoint(medium down) {
-            margin: 0 auto;
-            max-width: 280px;
-        }
-        
-        @include breakpoint(large) {
-            padding: rem-calc(10 20 10 0);
-        }
-        
-        span {
-            display: block;
-            margin-bottom: rem-calc(5);   
-        }
-        
-        li {
-            font-size: rem-calc(13); 
-            margin-bottom: rem-calc(20); 
-            
-            a {
-                color: $dark-gray;   
-            }
-        }
-        
-        h5 {
-            font-size: rem-calc(15);   
-            font-weight: 600;
-            margin-bottom: rem-calc(5);
-        }
-    }
-
 }

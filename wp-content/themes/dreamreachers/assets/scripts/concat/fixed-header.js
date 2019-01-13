@@ -4,7 +4,7 @@
     
     var didScroll;
     var lastScrollTop = 0;
-    var delta = 300;
+    var delta = 200;
     var navbarHeight = $('.site-header').outerHeight();
     
     $(window).scroll(function(event){
@@ -25,22 +25,24 @@
         if(Math.abs(lastScrollTop - st) <= delta) {
             return;
         }
-        
+                
         // If scrolled down and past the navbar, add class .nav-up.
-        if (st > lastScrollTop && st > navbarHeight){
+        if (st > lastScrollTop){
             // Scroll Down
-            $('.site-header').removeClass('nav-down').addClass('nav-up shrink');
+            if(st > navbarHeight) {
+                $('.site-header').addClass('fixed').removeClass('nav-down').addClass('nav-up shrink');
+            }
         } else {
             // Scroll Up
-            if((delta/2) + st + $(window).height() < $(document).height()) {
+            if((delta+navbarHeight) + st + $(window).height() < $(document).height()) {
                 $('.site-header').removeClass('nav-up').addClass('nav-down');
             }
         }
         
-        if(st <= delta) {
-            $('.site-header').removeClass('nav-down shrink')
+        if(st <= (delta+navbarHeight)) {
+            $('.site-header').removeClass('fixed nav-down shrink');
         }
-      
+              
         lastScrollTop = st;
     }
 

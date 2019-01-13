@@ -49,9 +49,9 @@ if( function_exists('acf_add_options_sub_page') ) {
     
     
     acf_add_options_sub_page(array(
-		'page_title' 	=> 'Jobs Settings',
-		'menu_title' 	=> 'Jobs Settings',
-		'parent'     => 'edit.php?post_type=job',
+		'page_title' 	=> 'Books Settings',
+		'menu_title' 	=> 'Books Settings',
+		'parent'     => 'edit.php?post_type=book',
 		'capability' => 'edit_posts'
 	));
     
@@ -88,7 +88,7 @@ function _s_get_acf_option( $name = '' ) {
 }
 
 
-function _s_get_acf_image( $attachment_id, $size = 'large', $background = FALSE, $class = array() ) {
+function _s_get_acf_image( $attachment_id = false, $size = 'large', $background = false, $class = array() ) {
 
 	if( ! absint( $attachment_id ) )
 		return FALSE;
@@ -104,6 +104,28 @@ function _s_get_acf_image( $attachment_id, $size = 'large', $background = FALSE,
 
 	return wp_get_attachment_image( $attachment_id, $size, '', $class );
 
+}
+
+
+function _s_get_acf_image_url( $attachment_id = false, $size = 'large' ) {
+
+	return _s_get_acf_image( $attachment_id, $size = 'large', true );
+
+}
+
+
+function _s_get_acf_link( $link, $args = [] ) {
+    if( ! is_array( $link ) ) {
+        $link = [ 'url' => $link ];
+    }
+    
+    $link = wp_parse_args( $link, $args );
+    
+    if( empty( $link['title'] ) ) {
+        return false;
+    }
+    
+    return sprintf( '<a href="%s">%s</a>', $link['url'], $link['title'] );
 }
 
 

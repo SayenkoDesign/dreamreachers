@@ -29,6 +29,7 @@ class BE_Social_Widget extends WP_Widget {
 		$this->defaults = array(
 			'title'     => '',
 			'twitter'   => '',
+            'instagram'   => '',
 			'facebook'  => '',
 			'gplus'     => '',
 			'email'		=> '',
@@ -41,8 +42,9 @@ class BE_Social_Widget extends WP_Widget {
 		// Socials
 		$this->socials = apply_filters( 'be_social_widget_order', array(
 			'facebook'    => 'Facebook',
+            'instagram'   => 'Instagram',
 			'twitter'     => 'Twitter',
-            'linkedin'       => 'LinkedIn',
+            'youtube'     => 'Youtube',
 		) );
 		
 		// widget basics

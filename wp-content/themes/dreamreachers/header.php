@@ -45,9 +45,13 @@
                         <div class="site-title">
                         <?php
                         $site_url = home_url();
-                        $logo = sprintf('<img src="%slogo.svg" alt="site logo" />', trailingslashit( THEME_IMG ) );                    
-                        printf('<a href="%s" title="%s">%s</a>',
-                                $site_url, get_bloginfo( 'name' ), $logo );
+                        $logo = sprintf('<img src="%slogo.png" alt="site logo" class="show-for-xlarge" />', trailingslashit( THEME_IMG ) );    
+                        $logo_mobile = sprintf('<img src="%slogo-mobile.svg" alt="site logo" class="hide-for-xlarge" />', trailingslashit( THEME_IMG ) );                  
+                        printf('<a href="%s" title="%s">%s%s</a>',
+                                $site_url, 
+                                get_bloginfo( 'name' ), 
+                                $logo, 
+                                $logo_mobile );
                         ?>
                         </div>
                     </div><!-- .site-branding -->
@@ -55,19 +59,7 @@
                     <nav id="site-navigation" class="nav-primary column" role="navigation" aria-label="Main" itemscope itemtype="https://schema.org/SiteNavigationElement">            
                         
                         <?php
-                            // Let's add the contact locaitons to the dropdown
-                            /*add_filter('wp_nav_menu_items', function( $items, $args ) {
-                                if( $args->theme_location == 'primary' ){
-                                    $locations = psc_get_locations_menu();
-                                    if( ! empty( $locations ) ) {
-                                        $items .=  sprintf( '<li class="menu-item menu-item-locations">
-                                        <a href="#">%s<span class="screen-reader-text">Locations</span></a><ul class="sub-menu">%s</ul></li>', 
-                                        get_svg( 'phone-desktop' ), ul( $locations ) );
-                                    }
-                                }
-                                return $items;
-                            }, 10, 2); */                       
-                        
+                            
                             // Desktop Menu
                             $args = array(
                                 'theme_location' => 'primary',
@@ -89,20 +81,9 @@
                     </nav>
                                         
                     <?php
-                    $locations = psc_get_locations_menu();
-                    if( ! empty( $locations ) ) {
-                        printf( '<nav class="locations-menu"><ul class="menu dropdown" data-dropdown-menu data-disable-hover="true" data-click-open="true"  data-closing-time="0" data-slide-speed="0">
-                        <li class="menu-item is-dropdown-submenu-parent"><a href="#">%s%s<span class="screen-reader-text">Locations</span></a>
-                        <ul class="sub-menu is-dropdown-submenu">%s</ul></li></ul></nav>', 
-                            sprintf( '<div class="show-for-xlarge"><img src="%sphone-desktop.svg" /></div>', trailingslashit( THEME_IMG ) ),
-                            sprintf( '<div class="hide-for-xlarge"><img src="%sphone-mobile.svg" /></div>', trailingslashit( THEME_IMG ) ),
-                            ul( $locations )
-                        );
-                    }
+                    // Add login and donate?
                     ?>
-                    
-                    <div class="column shrink header-widgets show-for-xlarge"><a class="lets-build" data-open="lets-build">Let's Build</a></div>
-                    
+                                        
                 </div>
     
                 

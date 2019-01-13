@@ -3,40 +3,9 @@
 .template-page-builder {
     
     .section-hero {
-        
-        position: relative;
-        &:after {
-            content: '';
-            display: block;
-            height: 50%;
-            position: absolute;
-            right: 0;
-            width: 100%;
-            -webkit-backface-visibility: hidden; // for Chrome Windows
-        }
-                
-        &:after {
-            background: $blue;
-            bottom: 0;
-            transform: skewY(2deg);
-            transform-origin: 0 100%;
-        }
-        
         .wrap {
-            margin-bottom: rem-calc(10);
-            
-            @include breakpoint(large) {
-                padding-top: rem-calc(140);     
-            }
-            
-            .row {
-                position: relative;   
-                z-index: 2;
-            }
-        }
-        
-        .shape {
-            display: none;
+            background: linear-gradient(270deg, #ED4399 0%, #F9B02D 100%);
+            text-align: center;   
         }
     }
     
@@ -50,20 +19,7 @@
         section {
             position: relative; 
             z-index: 2;
-            
-            @include breakpoint(large) {
-                &:first-child {
-                    &.photo-right {
-                     
-                        .element-photo {
-                            position: relative;
-                            margin-top: -45px;   
-                        }
-                        
-                    }
-                }
-            }
-                        
+                                    
             .column {
                 
                 &:first-child {
@@ -77,24 +33,24 @@
                 }
                 
                 img {
-                    margin-bottom: $global-margin;    
+                    margin-bottom: $global-margin;   
+                    box-shadow: 0 11px 12px 0 rgba(0,0,0,0.1);  
                 }
                 
                 h2 {
                     margin-bottom: rem-calc(20);   
                 }
                 
-                a.link {
-                    
+                ul:not([class]) {
+                    @include bullets;         
                 }
                 
                 a.button {
-                    @include button-green;
-                    
-                    @include breakpoint(medium down) {
-                        margin-left: 0;
-                    }
+                    box-shadow: $box-shadow;
+                    padding: rem-calc(14 15)!important;
+                    min-width: 210px;
                 }
+                                
             }
             
             .column-block { 
@@ -114,6 +70,17 @@
                 
                 .column.large-order-2 {
                     padding-left: rem-calc(map-get($grid-column-gutter, large)*1.5);  
+                }
+                
+                a.button {                    
+                    margin-left: 0;
+                }
+                
+                
+                .large-center {
+                    a.button {                    
+                         margin-left: auto;
+                    }
                 }
                 
             }    
@@ -168,5 +135,6 @@
         }
        
     }
+    
 
 }

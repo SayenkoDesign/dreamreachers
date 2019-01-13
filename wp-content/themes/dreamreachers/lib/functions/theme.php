@@ -22,8 +22,7 @@ add_filter('acf/format_value/type=wysiwyg', 'acf_span_inside_h2', 10, 3);
 
 // Add modals to footer
 function _s_footer() {
-    _s_get_template_part( 'template-parts/modal', 'lets-build' );   
-    // _s_get_template_part( 'template-parts/modal', 'video' );   
+    _s_get_template_part( 'template-parts/modal', 'video' );   
 }
 add_action( 'wp_footer', '_s_footer' );
 

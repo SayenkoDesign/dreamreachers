@@ -82,26 +82,14 @@ function my_facetwp_pager_html( $output, $params ) {
 add_filter( 'facetwp_pager_html', 'my_facetwp_pager_html', 10, 2 );
 
 
+add_filter( 'facetwp_sort_options', function( $options, $params ) {
+    $options['default']['label'] = 'Order';
+    return $options;
+}, 10, 2 );
 
 
-// If usisng Facet Search, remove category template and change url's  to use blog page
-/*
-add_filter( 'term_link', function ( $termlink, $term, $taxonomy )
-{
-    if( ! function_exists( 'FWP' )  )
-        return $termlink;
-    
-    // Check if we have the correct term and taxonomy, if not, bail early
-    if (   $taxonomy != 'category' )
-        return $termlink;
-
-    // If we came to this point, we have the desired term and taxonomy, so lets alter the URL
-    // Here should be the code to construct your new URL, you need to work on this
-    // $termlink = 'VALUE_OF_NEW_URL'; // This will be the new URL our term to link to its term page
-    $slug = $term->slug;
-    $page_for_posts = get_permalink( get_option( 'page_for_posts' ) );
-    $termlink = add_query_arg( 'fwp_categories', $slug, $page_for_posts ); //?fwp_categories=general;
-
-    return $termlink;
-}, 10, 3 );
-*/
+add_filter( 'facetwp_sort_options', function( $options, $params ) {
+    unset( $options['title_asc'] );
+    unset( $options['title_desc'] );
+    return $options;
+}, 10, 2 );

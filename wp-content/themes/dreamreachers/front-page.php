@@ -8,6 +8,7 @@
 
 add_filter( 'body_class', function( $classes ) {
     unset( $classes[array_search('page-template-default', $classes )] );
+    $classes[] = 'fixed-menu';
     return $classes;
 }, 99 );
 
@@ -24,15 +25,14 @@ _s_get_template_part( 'template-parts/home', 'hero' );
 	<?php
      _s_get_template_part( 'template-parts/home', 'numbers' );
      
-     _s_get_template_part( 'template-parts/home', 'what-we-do' );
+     _s_get_template_part( 'template-parts/home', 'donate' );
      
-     _s_get_template_part( 'template-parts/home', 'why' );
+     _s_get_template_part( 'template-parts/home', 'how' );
      
-     _s_get_template_part( 'template-parts/global', 'clients' );
+    // _s_get_template_part( 'template-parts/global', 'clients' );
      
-     _s_get_template_part( 'template-parts/home', 'projects' );
+    // _s_get_template_part( 'template-parts/home', 'projects' );
     
-     _s_get_template_part( 'template-parts/home', 'locations' );
    	?>
         
 	</main>

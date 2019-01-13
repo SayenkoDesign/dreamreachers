@@ -1,43 +1,13 @@
 <?php
 
-function _s_primary_menu_menu_atts( $atts, $item, $args ) {
-              
-    if( 'primary' != $args->theme_location ) {
-        return $atts;
-    }
-          
+add_filter('nav_menu_item_args', function ($args, $item, $depth) {
     $classes = $item->classes;
-    
-    foreach( $classes as $class ) {
-                
-        if( strpos( $class, 'service' ) !== false ) {
-            $post_id = $item->object_id;
-            $icon = get_field( 'icon', $post_id );
-            if( ! empty( $icon ) ) {
-                $icon = _s_get_acf_image( $icon, 'medium', false );
-                $atts['data-icon'] = esc_html( $icon );
-            }
-        }
-            
+    if ( in_array('button', $classes ) ) {
+        $args->link_before = '<span>';
+        $args->link_after  = '</span>';
     }
-      
-    return $atts;
-}
-
-add_filter( 'nav_menu_link_attributes', '_s_primary_menu_menu_atts', 99, 3 );
-
-
-// Contact Modal
-function _s_contact_menu_atts( $atts, $item, $args ) {
-      $classes = $item->classes;
-      
- 	  if ( in_array( 'lets-build', $classes ) ) {
-		$atts['data-open'] = 'lets-build';
-	  }
-	  return $atts;
-}
-
-add_filter( 'nav_menu_link_attributes', '_s_contact_menu_atts', 10, 3 );
+    return $args;
+}, 10, 3);
 
 
 // remove parent class from homepage - used for single page scroll menus

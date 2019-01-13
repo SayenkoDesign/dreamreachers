@@ -5,7 +5,7 @@
             if( $('.facetwp-filters').length ) {
                 var target = $('.facetwp-filters');
             }
-            
+                        
             $.smoothScroll({
                 scrollTarget: target,
                 offset: -150
@@ -17,4 +17,12 @@
         Foundation.reInit('equalizer');
         
     });
+    
+    
+    
+    
+    
+    
+    
+    
 })(jQuery);

@@ -1,0 +1,11 @@
+/* Webfont: Shnobel-Regular */@font-face {
+    font-family: 'Shnobel';
+    src: url('Shnobel-Regular.eot'); /* IE9 Compat Modes */
+    src: url('Shnobel-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Shnobel-Regular.woff') format('woff'), /* Modern Browsers */
+         url('Shnobel-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

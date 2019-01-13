@@ -36,6 +36,8 @@
     include_once( 'functions/svg.php' );
 
 	include_once( 'functions/theme.php' );
+    
+    include_once( 'functions/videos.php' );
 
 	include_once( 'functions/template-tags.php' );
 
@@ -51,7 +53,7 @@
     
 	include_once( 'functions/gravity-forms.php' );
 
-	include_once( 'functions/projects.php' );
+	include_once( 'functions/books.php' );
     
     include_once( 'functions/blog.php' );
     
@@ -78,32 +80,13 @@ include_once( 'foundation/class-foundation-accordion.php' );
 	Post Types
 *****************************************/
     
-    include_once( 'post-types/cpt-client.php' );
-    include_once( 'post-types/cpt-job.php' );
-    include_once( 'post-types/cpt-location.php' );
-    include_once( 'post-types/cpt-people.php' );
-    include_once( 'post-types/cpt-project.php' );
-    include_once( 'post-types/cpt-service.php' );
-    include_once( 'post-types/taxonomies.php' );
-
-
-/****************************************
-	Moduels
-*****************************************/
-
-    include_once( 'modules/map/index.php' );
-        
+    include_once( 'post-types/cpt-book.php' );
+    include_once( 'post-types/cpt-family.php' );
+    include_once( 'post-types/cpt-people.php' );    
     
 /****************************************
 	Widgets
 *****************************************/
 
-    include_once( 'widgets/widget-locations.php' );
     include_once( 'widgets/widget-social.php' );
-    
-/****************************************
-	Mega Menu
-*****************************************/
-
-    // include_once( 'mega-menu/mega-menu.php' );
         
