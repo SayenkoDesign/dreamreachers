@@ -35,6 +35,8 @@ _s_get_template_part( 'template-parts/family', 'post-hero' );
 
                 the_post();
                 
+                
+                
                 $amounts = dream_kits_calculate_amount_needed();
                 $still_needed = 0;
                 if( ! empty( $amounts['still_needed'] ) ) {

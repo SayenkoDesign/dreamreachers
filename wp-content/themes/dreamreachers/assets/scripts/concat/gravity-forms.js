@@ -2,7 +2,7 @@
 
 	'use strict';
     
-    /*
+    
     $('.populate-family select').on('change', function() {
         var matches = this.value.match(/\[(.*?)\]/);
 
@@ -40,7 +40,6 @@
             }
         }
     });
-    */
     
     
 }(document, window, jQuery));

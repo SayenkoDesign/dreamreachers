@@ -230,24 +230,6 @@ function populate_family( $form ) {
     return $form;
 }
 
-
-// add_filter( 'gform_field_value_family_id', 'donate_form_populate_family' );
-function donate_form_populate_family( $value ) {
-    $amounts = dream_kits_calculate_amount_needed( $value );
-    
-    if( ! empty( $amounts ) ) {
-        $still_needed = $amounts['still_needed'];
-        if( $still_needed > 0 ) {
-            // name [amount|post_id]
-            //return sprintf( '%s $%s Still Needed', _s_get_family_name( $value ), $still_needed );
-            error_log( sprintf( '%s [%s|%d]', _s_get_family_name( $value ), $still_needed, $value ) );
-            return sprintf( '%s [%s|%d]', _s_get_family_name( $value ), $still_needed, $value );
-        }
-    }
-    
-}
-
-
 add_filter( 'gform_field_value_donate', 'donate_form_populate_donate' );
 function donate_form_populate_donate( $value ) {
     
@@ -259,3 +241,39 @@ function donate_form_populate_donate( $value ) {
     
 }
 
+
+//add_filter( 'gform_notification_8', 'notification_routing', 10, 3 );
+function notification_routing( $notification, $form, $entry ) {
+    if ( $notification['name'] == 'User Notification' ) {
+        
+        $family = $entry[5];
+        $donate = $entry[1];
+        $other = $entry[4];
+        
+        $amount = 0;
+        if( $donate ) {
+            $amount = $donate;
+        } else {
+            $amount = $other;   
+        }
+        
+        preg_match( '/\[(.*?)\]/', $family, $matches );
+        if( ! empty( $matches[1] ) ) {
+            $string = explode( '|', $matches[1] );
+            $post_id = false;
+            if( ! empty( $string[1] ) ) {
+                $post_id = absint( $string[1]);
+                $notification['message'] = sprintf( "Thank you for donating %s to the %s. They're Dream Kit is on the way!",
+                                                    $amount,
+                                                    _s_get_family_name( $post_id )
+                                                    
+         );
+            }
+            
+        }
+        
+        
+    }
+ 
+    return $notification;
+}
