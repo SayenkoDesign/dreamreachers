@@ -71,6 +71,7 @@
       
     li {
        display: inline-block;
+       margin: 0!important;
        padding: 0 0 0 10px;   
        height: #{$social-icon-size}px;
        
@@ -115,7 +116,7 @@
 
 .share-icons {
     
-    $share-icon-size: 30;
+    $share-icon-size: 45;
 
 	margin: 0 auto 40px;
 	vertical-align: middle;

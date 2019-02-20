@@ -19,7 +19,7 @@
 <footer class="site-footer" role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">
     <div class="edge">
         <?php
-        printf( '<img src="%sfooter/edge-top.png" />', trailingslashit( THEME_IMG ) );
+        printf( '<img src="%sfooter/footer-edge-top.png" />', trailingslashit( THEME_IMG ) );
         ?>
     </div>
     <div class="wrap">

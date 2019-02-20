@@ -42,8 +42,18 @@ class CPT_Book extends CPT_Core {
 			)
 
         );
+        
+        add_filter('pre_get_posts', array( $this, 'query_filter' ) );
 		        
      }
+     
+     public function query_filter( $query ) {
+	    
+        if ( ! is_admin() && $query->is_main_query() && is_post_type_archive( self::POST_TYPE ) ) {
+            $query->set('posts_per_page', 12 );
+        }
+        			
+	}
 }
 
 new CPT_Book();

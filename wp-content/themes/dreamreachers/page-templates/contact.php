@@ -4,69 +4,63 @@ Template Name: Contact
 */
 
 
-get_header(); 
+get_header(); ?>
 
-_s_get_template_part( 'template-parts/contact', 'hero' );
+<?php
+_s_get_template_part( 'template-parts/global', 'hero' );
 ?>
 
-<div id="primary" class="content-area">
+<div class="row align-center">
 
-	<main id="main" class="site-main" role="main">
-	<?php
-    section_default();
-	function section_default() {
-				
-		global $post;
-		
-		$attr = array( 'class' => 'section-default' );
-		
-		$args = array(
-            'html5'   => '<section %s>',
-            'context' => 'section',
-            'attr' => $attr,
-        );
-        
-        _s_markup( $args );
-        
-        _s_structural_wrap( 'open' );
-		
-		print( '<div class="row large-unstack">' );
-		
-		while ( have_posts() ) :
-
-			the_post();
+    <div class="large-9 columns">
+    <div id="primary" class="content-area">
+    
+        <main id="main" class="site-main" role="main">
+        <?php
+        // Default
+        section_default();
+        function section_default() {
+                    
+            global $post;
             
-            print( '<div class="column small-collaspe small-order-2 large-order-1">' );
-                $markers = psc_map_get_markers();
-                $markers = wp_list_pluck( $markers, 'marker' );
-                $markers = join( '', $markers );
-                // $legend = sprintf( '<div class="column row">%s</div>', psc_map_get_legend() );
-                $legend = psc_map_get_legend();
-                printf( '%s<div class="contact-map"><div class="acf-map google-map">%s</div></div>', $legend, $markers );
-            echo '</div>';
+            $attr = array( 'class' => 'section-default' );
+            
+            $args = array(
+                'html5'   => '<section %s>',
+                'context' => 'section',
+                'attr' => $attr,
+            );
+            
+            _s_markup( $args );
+            
+            _s_structural_wrap( 'open' );
+            
+            print( '<div class="column row">' );
+            
+            while ( have_posts() ) :
+    
+                the_post();
+                            
+                echo '<div class="entry-content">';
                 
-            print( '<div class="column small-order-1 large-order-2">' );
-                        
-            echo '<div class="entry-content">';
+                the_content();
+                
+                echo '</div>';
+                    
+            endwhile;
             
-            the_content();
+            print( '</div>' );
             
-            echo '</div>';
-            
-            echo '</div>';
-            				
-		endwhile;
-		
-		print( '</div>' );
-        
-		_s_structural_wrap( 'close' );
-	    echo '</section>';
-	}
-	?>
-	</main>
+            _s_structural_wrap( 'close' );
+            echo '</section>';
+        }
+        ?>
+        </main>
+    
+    
+    </div>
 
-
+    </div>
 </div>
-
 <?php
 get_footer();

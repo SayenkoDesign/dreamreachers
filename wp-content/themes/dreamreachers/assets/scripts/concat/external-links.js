@@ -11,7 +11,7 @@
 		}
 	});
 	
-    
+    $('a[href*=".pdf"]').attr('target', '_blank');
 
 }(document, window, jQuery));
 

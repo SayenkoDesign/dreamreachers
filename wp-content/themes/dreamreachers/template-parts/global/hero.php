@@ -37,7 +37,22 @@ if( ! class_exists( 'Hero_Section' ) ) {
                 ]
             );
         }
+        
+        
+        /**
+         * After section rendering.
+         *
+         * Used to add stuff after the section element.
+         *
+         * @since 1.0.0
+         * @access public
+         */
+        public function after_render() {
+                    
+            $shape = sprintf( '<div class="edge"><img src="%spage/hero-bottom.png" /></edge>', trailingslashit( THEME_IMG ) );
                 
+            return sprintf( '</div></div></div></div>%s</%s>', $shape , esc_html( $this->get_html_tag() ) );
+        }      
         
         // Add content
         public function render() {

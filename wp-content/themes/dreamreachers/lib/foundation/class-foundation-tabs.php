@@ -2,15 +2,6 @@
 
 // Foundation Tabs
 
-/*
-
-<li class="tabs-title is-active"><a href="#panel1v" aria-selected="true">Business Cards</a></li>
-
-<div class="tabs-panel is-active" id="panel1v">
-<div class="tabs-content" data-tabs-content="services-tabs">
-*/
-
-
 class Foundation_Tabs extends Foundation {
     
     var $titles;
@@ -95,8 +86,13 @@ class Foundation_Tabs extends Foundation {
         $this->panels[] = $args;
     }
     
+    
+    public function get_tabs() {
+        return $this->get_navigation() . $this->get_panels();
+    }
+    
 
-	public function get_tabs( $args = array() ) {
+	public function get_navigation( $args = array() ) {
         
         $titles = $this->titles;
         $panels = $this->panels;

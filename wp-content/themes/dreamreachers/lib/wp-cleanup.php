@@ -6,33 +6,6 @@
  *
  * @since    1.0.0
  */
-
-
-
-// add_filter( 'wp_unique_post_slug_is_bad_attachment_slug', '__return_true' );
-
-
-//add_filter( 'posts_results', 'cache_meta_data', 9999, 2 );
-function cache_meta_data( $posts, $object ) {
-    $posts_to_cache = array();
-    // this usually makes only sense when we have a bunch of posts
-    if ( empty( $posts ) || is_wp_error( $posts ) || is_single() || is_page() || count( $posts ) < 3 )
-        return $posts;
-         
-    foreach( $posts as $post ) {
-        if ( isset( $post->ID ) && isset( $post->post_type ) ) {
-            $posts_to_cache[$post->ID] = 1;
-        }
-    }
-     
-    if ( empty( $posts_to_cache ) )
-        return $posts;
- 
-    update_meta_cache( 'post', array_keys( $posts_to_cache ) );
-    unset( $posts_to_cache );
- 
-    return $posts;
-}
  
 // Clean up Head
 remove_action( 'wp_head', 'rsd_link' );
@@ -40,13 +13,20 @@ remove_action( 'wp_head', 'wlwmanifest_link' );
 remove_action( 'wp_head', 'wp_generator' );
 remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 
+// REMOVE WP EMOJI
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
 // Execute shortcodes in widgets
 add_filter( 'widget_text', 'do_shortcode' );
 
 // unregister all widgets
- add_action('widgets_init', 'remove_default_widgets', 11);
+add_action('widgets_init', 'remove_default_widgets', 11);
 
- function remove_default_widgets() {
+function remove_default_widgets() {
      unregister_widget('WP_Widget_Pages');
      unregister_widget('WP_Widget_Calendar');
      //unregister_widget('WP_Widget_Archives');
@@ -60,7 +40,7 @@ add_filter( 'widget_text', 'do_shortcode' );
      unregister_widget('WP_Widget_RSS');
      unregister_widget('WP_Widget_Tag_Cloud');
     // unregister_widget('WP_Nav_Menu_Widget');
- }
+}
 
 // Remove Dashboard Meta Boxes
 add_action( 'wp_dashboard_setup', 'mb_remove_dashboard_widgets' );
@@ -87,7 +67,7 @@ function mb_imagelink_setup() {
 }
 
 // Remove paragrapgh tags around images
-add_filter('the_content', 'filter_ptags_on_images');
+add_filter('the_content', 'filter_ptags_on_images', 999 );
 function filter_ptags_on_images($content){
    return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
 }
@@ -119,38 +99,6 @@ function mb_remove_more_jump_link( $link ) {
 	}
 	return $link;
 }
-
-// fix menu always showing blog as parent
-function dtbaker_wp_nav_menu_objects($sorted_menu_items, $args){
-    // check if the current page is really a blog post.
-    global $wp_query;
-    global $post;
-    $current_page = $post;
-    if(!empty($wp_query->queried_object_id)){
-        if($current_page && $current_page->post_type=='post'){
-            //yes!
-        }else{
-            $current_page = false;
-        }
-    }else{
-        $current_page = false;
-    }
- 
-    $home_page_id = (int) get_option( 'page_for_posts' );
-    foreach($sorted_menu_items as $id => $menu_item){
-        if ( ! empty( $home_page_id ) && 'post_type' == $menu_item->type && empty( $wp_query->is_page ) && $home_page_id == $menu_item->object_id ){
-            if(!$current_page){
-                foreach($sorted_menu_items[$id]->classes as $classid=>$classname){
-                    if($classname=='current_page_parent'){
-                        unset($sorted_menu_items[$id]->classes[$classid]);
-                    }
-                }
-            }
-        }
-    }
-    return $sorted_menu_items;
-}
-add_filter('wp_nav_menu_objects','dtbaker_wp_nav_menu_objects',10,2);
 
 
 // Filter Yoast SEO Metabox Priority
@@ -205,53 +153,6 @@ function add_slug_body_class( $wp_classes, $extra_classes ) {
 }
 
 /**
- * Don't Update Theme
- * @since 1.0.0
- *
- * If there is a theme in the repo with the same name,
- * this prevents WP from prompting an update.
- *
- * @author Mark Jaquith
- * @link http://markjaquith.wordpress.com/2009/12/14/excluding-your-plugin-or-theme-from-update-checks/
- *
- * @param array $r, request arguments
- * @param string $url, request url
- * @return array request arguments
- */
-
-add_filter( 'http_request_args', 'ssm_dont_update_theme', 5, 2 );
-function ssm_dont_update_theme( $r, $url ) {
-	if ( 0 !== strpos( $url, 'http://api.wordpress.org/themes/update-check' ) )
-		return $r; // Not a theme update request. Bail immediately.
-	$themes = unserialize( $r['body']['themes'] );
-	unset( $themes[ get_option( 'template' ) ] );
-	unset( $themes[ get_option( 'stylesheet' ) ] );
-	$r['body']['themes'] = serialize( $themes );
-	return $r;
-}
-
-
-/**
- * Remove default link for images
- */
-add_action('admin_init', 'ssm_imagelink_setup', 10);
-function ssm_imagelink_setup() {
-	$image_set = get_option( 'image_default_link_type' );
-	if ($image_set !== 'none') {
-		update_option('image_default_link_type', 'none');
-	}
-}
-
-/**
- * Show Kitchen Sink in WYSIWYG Editor
- */
-add_filter( 'tiny_mce_before_init', 'ssm_unhide_kitchensink' );
-function ssm_unhide_kitchensink($args) {
-	$args['wordpress_adv_hidden'] = false;
-	return $args;
-}
-
-/**
  * Modifies the TinyMCE settings array
  */
 add_filter( 'tiny_mce_before_init', 'ssm_tiny_mce_before_init' );
@@ -275,43 +176,6 @@ function ssm_gallery_style( $css ) {
 }
 
 /**
-*  Set Home Page Programmatically if a Page Called "Home" Exists
-*/
-
-// Should this be wrapped in a function for better organization?
-
-//add_action( 'admin_init', 'set_home_page_front', 10 );
-function set_home_page_front() {
-	
-	$homepage = get_page_by_title( 'Home' );
-
-	if ( $homepage ) {
-		update_option( 'page_on_front', $homepage->ID );
-		update_option( 'show_on_front', 'page' );
-	}
-}
-
-
-
-
-/**
- * Remove Read More Jump
- */
-add_filter('the_content_more_link', 'ssm_remove_more_jump_link');
-function ssm_remove_more_jump_link($link) {
-	$end = '';
-	$offset = strpos($link, '#more-');
-	if ($offset) {
-		$end = strpos($link, '"',$offset);
-	}
-	if ($end) {
-		$link = substr_replace($link, '', $offset, $end-$offset);
-	}
-	return $link;
-}
-
-
-/**
  * Fix Gravity Form Tabindex Conflicts
  * http://gravitywiz.com/fix-gravity-form-tabindex-conflicts/
  */
@@ -324,73 +188,34 @@ function gform_tabindexer( $tab_index, $form = false ) {
 }
 
 
-/**
-*  Removes unnecessary menu items from add new dropdown
-*/
-//add_action( 'admin_bar_menu', 'remove_wp_nodes', 999 );
-function remove_wp_nodes() {
-    global $wp_admin_bar;   
-    $wp_admin_bar->remove_node( 'new-link' );
-    $wp_admin_bar->remove_node( 'new-media' );
-    // $wp_admin_bar->remove_node( 'new-shop_coupon' );
-    // $wp_admin_bar->remove_node( 'new-shop_order' );
-    $wp_admin_bar->remove_node( 'new-user' );
-}
-
-
-
-// Disable WPSEO columns on edit screen 
-//add_filter( 'wpseo_use_page_analysis', '__return_false' );
-
-
-// allow svg uploads
-//Allow SVG files to be uploaded
-
-function custom_mtypes( $m ){
-    $m['svg'] = 'image/svg+xml';
-    $m['svgz'] = 'image/svg+xml';
-    return $m;
-}
-add_filter( 'upload_mimes', 'custom_mtypes' );
-
-
-/**
- * Removes the width and height attributes of <img> tags for SVG
- * 
- * Without this filter, the width and height are set to "1" since
- * WordPress core can't seem to figure out an SVG file's dimensions.
- * 
- * For SVG:s, returns an array with file url, width and height set 
- * to null, and false for 'is_intermediate'.
- * 
- * @wp-hook image_downsize
- * @param mixed $out Value to be filtered
- * @param int $id Attachment ID for image.
- * @return bool|array False if not in admin or not SVG. Array otherwise.
- */
-function wpse240579_fix_svg_size_attributes( $out, $id ) {
-    $image_url  = wp_get_attachment_url( $id );
-    $file_ext   = pathinfo( $image_url, PATHINFO_EXTENSION );
-
-    if ( is_admin() || 'svg' !== $file_ext ) {
-        return false;
+// fix menu always showing blog as parent
+function dtbaker_wp_nav_menu_objects($sorted_menu_items, $args){
+    // check if the current page is really a blog post.
+    global $wp_query;
+    global $post;
+    $current_page = $post;
+    if(!empty($wp_query->queried_object_id)){
+        if($current_page && $current_page->post_type=='post'){
+            //yes!
+        }else{
+            $current_page = false;
+        }
+    }else{
+        $current_page = false;
     }
-
-    return array( $image_url, null, null, false );
+ 
+    $home_page_id = (int) get_option( 'page_for_posts' );
+    foreach($sorted_menu_items as $id => $menu_item){
+        if ( ! empty( $home_page_id ) && 'post_type' == $menu_item->type && empty( $wp_query->is_page ) && $home_page_id == $menu_item->object_id ){
+            if(!$current_page){
+                foreach($sorted_menu_items[$id]->classes as $classid=>$classname){
+                    if($classname=='current_page_parent'){
+                        unset($sorted_menu_items[$id]->classes[$classid]);
+                    }
+                }
+            }
+        }
+    }
+    return $sorted_menu_items;
 }
-add_filter( 'image_downsize', 'wpse240579_fix_svg_size_attributes', 10, 2 ); 
-
-
-// Justified layout fix
-// http://joebuckle.me/quickie/wordpress-fixing-justify-menu-items-in-4-4/
-add_filter('wp_nav_menu_items', 'filter_menu_items');
-function filter_menu_items($menu_items){
-  return str_replace('</li><li', "</li> <li", $menu_items);
-}
-
-// REMOVE WP EMOJI
-remove_action('wp_head', 'print_emoji_detection_script', 7);
-remove_action('wp_print_styles', 'print_emoji_styles');
-
-remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-remove_action( 'admin_print_styles', 'print_emoji_styles' );
+add_filter('wp_nav_menu_objects','dtbaker_wp_nav_menu_objects',10,2);

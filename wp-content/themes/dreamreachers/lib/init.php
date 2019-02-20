@@ -52,6 +52,8 @@
 	include_once( 'functions/menus.php' );
     
 	include_once( 'functions/gravity-forms.php' );
+    
+    include_once( 'functions/gravity-forms-user-activation.php' );
 
 	include_once( 'functions/books.php' );
     
@@ -63,12 +65,18 @@
     
     include_once( 'functions/redirects.php' );
     
+    include_once( 'functions/members.php' );
+    
+    include_once( 'functions/user-profile.php' );
+    
+    include_once( 'functions/family.php' );
+    
 /****************************************
 	include_onces (Foundation)
 *****************************************/
 
 include_once( 'foundation/class-foundation.php' );
-include_once( 'foundation/class-foundation-accordion.php' );
+include_once( 'foundation/class-foundation-tabs.php' );
 
 /****************************************
 	Page Builder

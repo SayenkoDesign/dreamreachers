@@ -22,12 +22,11 @@ $global-lineheight: 1.75;
 $black: #000;
 $white: #ffffff;
 
-$blue: #065D75;
+$blue: #065D7F;
 
-$green: #59A441;
 $orange: #F9B02D;
 $pink: #ED4399;
-$yellow: #F9B02D;
+$green: #59A441;
 
 
 $primary: $blue;
@@ -111,7 +110,7 @@ $header-styles: (
     'h2': ('font-size': 40 ),
     'h3': ('font-size': 30 ),
     'h4': ('font-size': 24 ),
-    'h5': ('font-size': 18 ),
+    'h5': ('font-size': 21 ),
     'h6': ('font-size': 16 ),
   ),
 ) !default;

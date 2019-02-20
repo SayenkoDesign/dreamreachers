@@ -27,6 +27,12 @@ if( ! class_exists( 'Home_How_Section' ) ) {
                 'wrapper', 'class', [
                      $this->get_name() . '-how'
                 ]
+            );   
+            
+            $this->add_render_attribute(
+                'wrapper', 'id', [
+                     $this->get_name() . '-how-it-works'
+                ], true
             );            
             
         }  

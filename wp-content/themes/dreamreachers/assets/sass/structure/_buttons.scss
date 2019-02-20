@@ -8,24 +8,16 @@
     text-decoration: none!important;
 	font-family: $open-sans;
 	font-size: 11px;
+    line-height: 20px;
     font-weight: 700;
-	line-height: 20px;
 	text-align: center;
-    min-width: 160px;
+    min-width: 114px;
     max-width: 280px;
     
     &:hover {
         background-color: transparent;   
     }
-    
-    /*
-    @include breakpoint(medium) {
-        display: inline-block;
-        margin: 0;
-        max-width: none;
-    }
-    */
-            
+  
     &.disabled {
         pointer-events: none;
         cursor: default;
@@ -41,44 +33,173 @@
 }
 
 
-@mixin button-cta {
-    @include button-defaults; 
+@mixin button {
+    @include button-defaults;
     background: linear-gradient(270deg, #ED4399 0%, #F9B02D 100%);
+    padding: 3px!important;
     border-radius: 23px;  
-    display: block;  
-    min-width: 116px;              
-    text-align: center;
-    padding: rem-calc(6 15)!important;
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: bold;
-    line-height: 20px;
-    letter-spacing: 1;
-
-    color: #FFF;
+    display: inline-block;  
+    min-width: 116px;  
+    transition: none;
+    
+    color: $white;
     
     &:visited {
-        color: #FFF;
+        color: $white;
     }
     
     &:focus,
     &:active,
     &:hover {
-        background: linear-gradient(270deg, #F9B02D 0%, #ED4399 100%);
-        color: #FFF;
+        color: $pink;
+        
+        span {
+            background: $white;   
+            
+        }
     }  
+    
+    span {
+        display: block;
+        border-radius: 23px;
+        text-align: center;
+        padding: rem-calc(5 15);
+    }
+    
+    &.large {
+        
+        min-width: 166px;
+        
+        span {
+            padding: rem-calc(9 15)!important;   
+        }
+    }
+    
+    &.xlarge {
+        
+        min-width: 240px;
+        
+        span {
+            padding: rem-calc(15 15)!important;   
+        }
+    }
+   
+}
+
+@mixin button-reverse {
+
+    color: $pink;
+    
+    &:visited {
+        color: $pink;
+    } 
+    
+    &:focus,
+    &:active,
+    &:hover {
+        color: $white;
+        
+        span {
+            background: transparent;   
+            
+        }
+    }  
+                
+    span {
+        background: #fff;
+        border-radius: 23px;
+    }    
+}
+
+@mixin button-white {
+    @include button-defaults;
+    border-radius: 23px;  
+    display: inline-block;  
+    min-width: 116px;  
+    transition: none;
+    border: 3px solid #fff;
+    background: transparent;  
+    color: $white;
+    
+    
+    span {
+        background: transparent;   
+    }
+    
+    
+    &:visited {
+        color: $white;
+    } 
+    
+    &:focus,
+    &:active,
+    &:hover {
+        color: $white;
+        background: $white;
+        border: none;
+        
+        span {
+            background: linear-gradient(270deg, #ED4399 0%, #F9B02D 100%);   
+        }
+    }  
+   
 }
 
 
-.button.cta {
-    @include button-cta;
+a.button {
+    @include button;
+    
+    &.reverse {
+        @include button-reverse;   
+    }
+    
+    &.white {
+        @include button-white;  
+        
+        &.large {
+        
+            min-width: 166px;
+            
+            span {
+                padding: rem-calc(9 15)!important;   
+            }
+            
+            &:hover {
+                span {
+                    padding: rem-calc(12 15)!important;   
+                }
+            }
+        }
+        
+        &.xlarge {
+            
+            min-width: 240px;
+            
+            span {
+                padding: rem-calc(15 15)!important;   
+            }
+            
+            &:hover {
+                span {
+                    padding: rem-calc(18 15)!important;   
+                }
+            }
+        }
+    }
+    
+    
+}
+
+form .button {
+    @include button;
+    @include button-reverse; 
 }
 
 
 .site-main {
  
     .button {
-        width: 170px;   
+        min-width: 166px;   
     }
     
 }
@@ -99,3 +220,36 @@
     
 }
 
+button.read-more {
+    
+	color: $blue;
+    cursor: pointer;
+	font-size: rem-calc(14);
+	line-height: 1.357142857;
+    text-transform: capitalize;
+    position: relative;
+    padding-left: 12px;
+    
+    &:before {
+        content: '+';
+        font-size: rem-calc(12);
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    
+    &:after {
+        content: '';
+        display: block;
+        width: 46px;
+        height: 3px;
+        background-color: $orange;
+        margin-top: 7px;  
+    }
+    
+    &[aria-expanded='true'] {
+        &:before {
+            content: '-';
+        }
+    }
+}

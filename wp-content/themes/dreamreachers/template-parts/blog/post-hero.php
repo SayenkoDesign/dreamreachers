@@ -11,6 +11,9 @@ if( ! class_exists( 'Hero_Post' ) ) {
         
         public function __construct() {
             parent::__construct();
+            
+            $fields = get_field( 'hero' );
+            $this->set_fields( $fields );
                                     
             // Render the section
             $this->render();
@@ -31,36 +34,41 @@ if( ! class_exists( 'Hero_Post' ) ) {
                 ]
             );
             
-            // Use hero_background from category
-            $category_hero = get_field( 'category_hero' );
-                        
-            $background_position_x = 'center'; 
-            $background_position_y = 'center';
+            $background_image       = $this->get_fields( 'background_image' );
+            $background_position_x  = strtolower( $this->get_fields( 'background_position_x' ) );
+            $background_position_y  = strtolower( $this->get_fields( 'background_position_y' ) );
+            $background_overlay     = $this->get_fields( 'background_overlay' );
             
-            if( ! empty( $category_hero ) ) {
+            if( ! empty( $background_image ) ) {
+                $background_image = _s_get_acf_image( $background_image, 'hero', true );
                 
-                $hero_background = get_field( 'hero_background', $category_hero );
-                                
-                if( ! empty( $hero_background ) ) {
-                    
-                    $background_image = wp_get_attachment_image_src( $hero_background, 'hero' );
-                    $background       = $background_image[0];
-                    
-                    $this->add_render_attribute( 'background', 'class', 'background-image' );
-                                    
-                    $this->add_render_attribute( 'background', 'class', 'hero-background' );
-                    
-                    $this->add_render_attribute( 'background', 'style', sprintf( 'background-image: url(%s);', $background ) );
-                    
-                    $this->add_render_attribute( 'background', 'style', sprintf( 'background-position: %s %s;', 
-                                                                              $background_position_x, $background_position_y ) );
-    
-                    // $this->add_render_attribute( 'wrapper', 'class', 'background-overlay' ); 
+                $this->add_render_attribute( 'background', 'class', 'background-image' );
+                $this->add_render_attribute( 'background', 'style', sprintf( 'background-image: url(%s);', $background_image ) );
+                $this->add_render_attribute( 'background', 'style', sprintf( 'background-position: %s %s;', 
+                                                                          $background_position_x, $background_position_y ) );
+                
+                if( true == $background_overlay ) {
+                     $this->add_render_attribute( 'background', 'class', 'background-overlay' ); 
                 }
-                
-                
                                                                           
-            }  
+            }             
+        }
+        
+        
+        
+        /**
+         * After section rendering.
+         *
+         * Used to add stuff after the section element.
+         *
+         * @since 1.0.0
+         * @access public
+         */
+        public function after_render() {
+                    
+            $shape = sprintf( '<div class="shape"><img src="%sabout/hero-bottom.png" /></div>', trailingslashit( THEME_IMG ) );
+                
+            return sprintf( '</div></div></div></div>%s</%s>', $shape , esc_html( $this->get_html_tag() ) );
         }
         
         
@@ -70,7 +78,7 @@ if( ! class_exists( 'Hero_Post' ) ) {
             $heading        = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
             $heading        = _s_format_string( $heading, 'h1' );
             
-            $post_date = _s_get_posted_on( 'M d,Y' );
+            $post_date = _s_get_posted_on( 'M d, Y' );
                                     
             $post_author = _s_get_post_author();
             

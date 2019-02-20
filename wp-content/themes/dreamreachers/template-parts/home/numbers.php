@@ -41,6 +41,7 @@ if( ! class_exists( 'Home_Numbers_Section' ) ) {
             $row->add_render_attribute( 'wrapper', 'class', 'large-unstack align-middle' );
             
             $column = new Element_Column(); 
+            $column->add_render_attribute( 'wrapper', 'class', 'column-block' );
             $column->add_render_attribute( 'wrapper', 'class', ['shrink' ] );
             $html = sprintf( '<span><img src="%shome/by-the-numbers-graphic.png" /></span>', 
                                        trailingslashit( THEME_IMG ) );
@@ -62,12 +63,9 @@ if( ! class_exists( 'Home_Numbers_Section' ) ) {
             $html = $this->grid();
                         
             $html = new Element_Html( [ 'fields' => [ 'html' => $html ] ] ); // set fields from Constructor
-            $column = new Element_Column(); 
-            $column->add_child( $html );
-                        
-            $row->add_child( $column );
             
-            $this->add_child( $row );
+            
+            $this->add_child( $html );
                                          
             
         }
@@ -90,12 +88,12 @@ if( ! class_exists( 'Home_Numbers_Section' ) ) {
                     $name = $row['name']; 
                     $description = _s_format_string( $row['description'], 'p' );    
                    
-                    $grid_items .= sprintf( '<div class="column column-block"><%1$s class="grid-item"><header><h4 class="row align-middle"><div class="count animate-numbers">%2$s%3$s</div><div class="description">%4$s</div></h4></header>%5$s</%1$s></div>', 
+                    $grid_items .= sprintf( '<div class="column column-block"><%1$s class="grid-item"><header><h4 class="align-middle"><div class="count animate-numbers">%2$s%3$s</div><div class="description">%4$s</div></h4></header>%5$s</%1$s></div>', 
                                      $tag, $number, $symbol, $name, $description );
                 }
             }
             
-            return sprintf( '<div class="grid"><div class="row small-up-2 medium-up-2 large-up-4 align-center">%s</div></div>', $grid_items );   
+            return sprintf( '<div class="grid"><div class="row small-up-1 medium-up-2 large-up-4 align-center">%s</div></div>', $grid_items );   
         }
         
     }

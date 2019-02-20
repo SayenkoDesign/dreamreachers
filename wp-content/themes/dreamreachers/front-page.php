@@ -28,10 +28,8 @@ _s_get_template_part( 'template-parts/home', 'hero' );
      _s_get_template_part( 'template-parts/home', 'donate' );
      
      _s_get_template_part( 'template-parts/home', 'how' );
-     
-    // _s_get_template_part( 'template-parts/global', 'clients' );
-     
-    // _s_get_template_part( 'template-parts/home', 'projects' );
+          
+     _s_get_template_part( 'template-parts/home', 'families' );
     
    	?>
         

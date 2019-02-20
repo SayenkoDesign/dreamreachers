@@ -64,7 +64,7 @@ wp_reset_postdata();
             <?php 
             if( ! is_category() && function_exists( 'facetwp_display' ) ) {
                 
-                $reset = "<div class=\"reset\"><button class=\"button blue\" onclick=\"FWP.reset()\">Reset</button></div>";
+                $reset = "<div class=\"reset\"><button class=\"button blue\" onclick=\"FWP.reset()\"><span>Reset</span></button></div>";
                 
                 printf( '<div class="facetwp-filters"><div class="wrap"><span>%s</span>%s%s%s</div></div>', 
                 'Filter By:',

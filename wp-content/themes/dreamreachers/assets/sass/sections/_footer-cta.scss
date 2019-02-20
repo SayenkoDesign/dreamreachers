@@ -34,6 +34,7 @@
             }
         }
             
+        h1,
         h2,
         h3,
         p {
@@ -41,23 +42,13 @@
             text-align: center;
         }
         
+        h1,
         h2,
         p {
             margin-bottom: 0;
         }
         
         .button {
-            @include button-defaults; 
-            display: inline-block;
-            border: 3px solid #FFFFFF;
-            border-radius: 23px;
-            box-shadow: $box-shadow;
-            margin: 0 auto!important;
-            
-            &:hover {
-                background-color: $white;
-                color: $orange;   
-            }
         }
     }
     
@@ -72,9 +63,10 @@
         
         
         @include breakpoint(medium) {
-            
-            margin-top: -35px;   
-            
+            margin-bottom: auto;
+        }
+        
+        @include breakpoint(large) {            
             img {
                 max-width: 420px;  
             }

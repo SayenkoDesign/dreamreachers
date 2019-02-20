@@ -12,7 +12,7 @@ body {
 	font-weight: $paragraph-font-weight;
 	font-size: $paragraph-font-size;  
 	color: $paragraph-font-color;
-	-webkit-font-smoothing: antialiased;
+	//-webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -37,58 +37,14 @@ h6 {
     text-transform: uppercase;
 }
 
-
-@mixin heading-lines( $border-color:$primary ) {
-    
-    display: inline-block;
-    position: relative;
-    padding: 0 60px;
-    
-    &::before,
-    &::after {
-        content: '';
-        width: 56px;
-        height: 3px;
-        background-color: $border-color;
-        position: absolute;
-        top: 50%;
-        margin-top: -6px;
-           
-    }
-    
-    &::before {
-        left: -5px;
-    }
-    
-    &::after {
-        right: -5px;
-    }
-    
-    span {
-                
-        &:before,
-        &:after {
-            content: '';
-            width: 40px;
-            height: 3px;
-            background-color: $border-color;
-            position: absolute;
-            top: 50%;
-            margin-top: 4px;
-        }
-        
-        &::before {
-            left: 10px;
-        }
-        
-        &::after {
-            right: 10px;
-        }   
-    }
+h1 {
+    text-transform: uppercase;   
 }
 
-
-
+h2, 
+h3 {
+    text-transform: uppercase;
+}
 
 p, li {
     line-height: $paragraph-line-height;
@@ -105,7 +61,13 @@ p:last-child {
 
 ul:not([class]),
 ol:not([class]) {
-    margin: rem-calc(0 0 $global-margin 22);
+    width: auto; 
+    overflow: hidden;
+    margin: rem-calc(0 0 $global-margin 0);
+    
+    li {
+        margin-left: rem-calc(20);    
+    }
     
 }
 

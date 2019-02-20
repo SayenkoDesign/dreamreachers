@@ -8,7 +8,18 @@ function _s_unregister_post_tags() {
 }
 add_action('init', '_s_unregister_post_tags');
 
-
+add_filter( 'the_category', function( $the_list ) {    
+    $dom = new DOMDocument();
+    $dom->loadHTML( $the_list );
+    foreach( $dom->getElementsByTagName('a') as $a ) {
+        $span = $dom->createElement( 'span' );
+        $span->nodeValue = $a->nodeValue;
+        $a->nodeValue = '';
+        $a->appendChild( $span );
+    }
+    
+    return $dom->saveHtml();
+});
 
 
 function _s_paginate_links( $args = [] ) {
@@ -22,6 +33,10 @@ function _s_paginate_links( $args = [] ) {
     $args = wp_parse_args( $args, $defaults );
     
     $links =  paginate_links( $args );
+    
+    if( empty( $links ) ) {
+        return false;
+    }
     
     $out = [];
     
@@ -63,6 +78,7 @@ function _s_get_the_post_navigation( $args = array() ) {
         'excluded_terms'     => '',
         'taxonomy'           => 'category',
         'screen_reader_text' => __( 'Post navigation' ),
+        'type' => 'html'
     ) );
  
     $navigation = '';
@@ -85,7 +101,12 @@ function _s_get_the_post_navigation( $args = array() ) {
  
     // Only add markup if there's somewhere to navigate to.
     if ( $previous || $next ) {
-        $navigation = _navigation_markup( $previous . $next, 'post-navigation', $args['screen_reader_text'] );
+        
+        if( 'array' == $args['type'] ) {
+            $navigation = [ 'previous' => $previous, 'next' => $next ];
+        } else {
+           $navigation = _navigation_markup( $previous . $next, 'post-navigation', $args['screen_reader_text'] ); 
+        }        
     }
  
     return $navigation;

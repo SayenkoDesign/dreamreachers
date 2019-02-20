@@ -112,33 +112,48 @@
     }
     
     .row-2 {
-        max-width: 920px;
-        margin: 45px auto;   
+        max-width: 980px;
+        margin: 45px auto 15px;   
     }
     
     @include breakpoint(large) {
         .shrink {
             flex: 0 0 auto!important;
         }
-        
-        header {
-            padding-left: rem-calc(30);   
-        }
     }
     
     .grid {
         padding-top: rem-calc(25);
+        
+        .row {
+            @include breakpoint(small only ) {
+                justify-content: center;   
+            }
+        }
     }
     
     .grid-item {
+        
+        @include breakpoint(small only ) {
+            text-align: center;   
+        }
                 
         h4 {                        
             .count {
-                font-size: rem-calc(66);   
+                font-size: rem-calc(66);                   
+            }
+            
+            div {
+                display: inline-block;    
+            }
+            
+            span {
+                display: inline; 
+                margin-right: rem-calc(10);
             }
             
             .description {
-                padding-left: rem-calc(10);
+                
             }
         }
         
@@ -154,13 +169,16 @@
     
     background-image: url(assets/images/home/donate-background.png);
     background-size: cover;
-    padding: rem-calc(30 0);
+    background-position: center;
+    padding: rem-calc(80 0);
+    
+    @include breakpoint(medium down) {
+        text-align: center;
+    }
     
     @include breakpoint(large) {
         
-        .row {
-            min-height: 100px;   
-        }
+        padding: rem-calc(40 0);
         
         .shrink {
             flex: 0 0 auto!important;
@@ -320,6 +338,58 @@
            height: auto;  
            z-index: 4; 
         }
+    }
+    
+}
+
+.section-families {
+    position: relative;
+    
+    &:before {
+        content: '';
+        background-image: url(assets/images/home/books-on-shelf-icon.svg);
+        background-size: contain;
+        background-position: center top;   
+        background-repeat: no-repeat;
+        display: block;
+        width: 100%;
+        max-width: 290px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        @include breakpoint(medium) {
+            max-width: 340px;
+        }
+    }
+    
+    header {
+        
+        padding: rem-calc(80 0 0);
+        position: relative;
+        z-index: 2;
+
+        .icon {
+            margin-right: 10px; 
+            position: relative;
+            top: -15px;
+        }
+        
+        h2 {
+            line-height: 1;
+            margin-bottom: 0;   
+        }
+    }
+    
+    .row {
+        position: relative;
+        z-index: 2;   
+    }
+    
+    .grid article {
+        margin-bottom: rem-calc($global-margin)!important;   
     }
     
 }

@@ -3,9 +3,19 @@
 .template-page-builder {
     
     .section-hero {
+        background: linear-gradient(270deg, #ED4399 0%, #F9B02D 100%);
+        text-align: center;  
+        
         .wrap {
-            background: linear-gradient(270deg, #ED4399 0%, #F9B02D 100%);
-            text-align: center;   
+            padding-top: rem-calc(10);   
+        }
+        
+        .edge {
+            line-height: 1;
+            
+            img {
+                display: block;   
+            }
         }
     }
     

@@ -16,7 +16,25 @@ _s_get_template_part( 'template-parts/books', 'archive-hero' );
         if ( have_posts() ) :
         
            if( function_exists( 'facetwp_display' ) ) {
-                printf( '<div class="facetwp-custom-filters"><div class="column row"><div class="filters"><button id="book_category_reset" onclick="FWP.reset(\'book_category\')">All</button>%s</div></div></div>',  facetwp_display( 'facet', 'book_category' ) );
+               
+               $edge_top = sprintf( '<div class="edge top"><img src="%sbooks/categories-top-edge.png" /></div>', trailingslashit( THEME_IMG ) );
+               $edge_bottom = sprintf( '<div class="edge bottom"><img src="%sbooks/categories-bottom-edge.png" /></div>', trailingslashit( THEME_IMG ) );
+               
+               printf( '<div class="facetwp-custom-filters">%s<div class="column row align-center"><div class="filters">', $edge_top );
+               
+               $filters = sprintf( '<button id="book_category_reset" onclick="FWP.reset(\'book_category\')">All</button>%s',  
+                                   facetwp_display( 'facet', 'book_category' )
+                                 );
+                
+               printf( '<div class="hide-for-large text-center">
+                <button class="button" type="button" data-toggle="book-filters">Filter Books</button>
+                 <div class="dropdown-pane center" id="book-filters" data-dropdown data-close-on-click>%s</div></div>', $filters );
+                
+        
+               printf( '<div class="show-for-large">%s</div>', $filters );
+                
+               printf( '</div></div>%s</div>', $edge_bottom );
+                
             }
            
            
@@ -40,12 +58,15 @@ _s_get_template_part( 'template-parts/books', 'archive-hero' );
             
             echo '</div>';
             
+            
             if( function_exists( 'facetwp_display' ) ) {
-                echo facetwp_display( 'pager' );
+                $pagination = facetwp_display( 'pager' );
             }
             else {
-                echo _s_paginate_links();
+                $pagination = _s_paginate_links();
             }
+            
+            printf( '<div class="column row">%s</div>', $pagination );
                             
         else :
 

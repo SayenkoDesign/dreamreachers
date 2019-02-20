@@ -37,13 +37,13 @@ class CPT_Family extends CPT_Core {
 				'show_in_nav_menus'   => true,
 				'exclude_from_search' => false,
 				'rewrite'             => array( 'slug' => 'families' ),
-				'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+				'supports' => array( 'title', 'author' ),
                 'menu_icon' => 'dashicons-groups'
 			)
 
         );
         
-        // add_filter('pre_get_posts', array( $this, 'query_filter' ) );
+        add_filter('pre_get_posts', array( $this, 'query_filter' ) );
         
         // add_filter( 'manage_edit-job_sortable_columns', array( $this, 'sortable_columns' ) );
 		        
@@ -58,14 +58,16 @@ class CPT_Family extends CPT_Core {
 	 */
 	public function columns( $columns ) {
         
-        $columns['date'] = 'Posted Date';
+        $columns['date'] = 'Created Date';
+        $columns['author'] = 'User';
         
-        unset( $columns['post_type'] );
+        unset( $columns['post_type'] );        
         
 		$new_column = array(
-			'closing_date' => 'Closing Date',
+			'amount_owing' => 'Amount Owing'
 		);
-		return array_slice( $columns, 0, 3, true ) + $new_column + array_slice( $columns, 1, null, true );
+		return array_slice( $columns, 0, 2, true ) + $new_column + array_slice( $columns, 1, null, true );
+        
 	}
 
 	/**
@@ -74,53 +76,47 @@ class CPT_Family extends CPT_Core {
 	 * @param  array  $column Array of registered column names
 	 */
 	public function columns_display( $column, $post_id ) {
-		switch ( $column ) {
-			case 'closing_date':
-                $closing_date = get_field( 'closing_date' );
-                $date = new DateTime( $closing_date );
-                echo $date->format('F d, Y');
+        switch ( $column ) {
+			case 'amount_owing':
+                $amount_owing = get_field( 'amount_owing', $post_id );
+                $amount_owing = $amount_owing ? $amount_owing : 0;
+                echo '$' . number_format( $amount_owing, 2 );
 				break;
 		}
 	}
     
     
-    public function sortable_columns( $columns ) {
-        
-        $columns['closing_date'] = 'closing_date';
-     
-        //To make a column 'un-sortable' remove it from the array
-        //unset($columns['date']);
-     
-        return $columns;
-    }
-    
-    
     public function query_filter( $query ) {
 	    
         if( is_admin() ) {
-            $this->sort_admin( $query );
+            // $this->sort_admin( $query );
         }
         else {
-            if ( $query->is_main_query() && is_post_type_archive( 'job' ) ) {
-                $query->set('posts_per_page', 999 );
-                $query->set( 'meta_key', 'closing_date' );	
-                $query->set( 'orderby', 'meta_value_num' );
-                $query->set( 'order', 'ASC' ); 			
+            if ( $query->is_main_query() && is_post_type_archive( 'family' ) ) {
                 
-                $date_now = date_i18n('Ymd');
-                
+                $today = current_time( 'Ymd' ); // local time set under Settings > General
+                                
                 $meta_query = array(
         
                     array(
-                        'key'			=> 'closing_date',
-                        'compare'		=> '>=',
-                        'value'			=> $date_now,
-                        'type'			=> 'DATE'
+                        'key'			=> 'amount_owing',
+                        'compare'		=> '>',
+                        'value'			=> (int) 0, // needed
+                        'type'          => 'numeric' // needed
+                    ),
+                    array(
+                        'key'		=> 'start_date',
+                        'compare'	=> '<=',
+                        'value'		=> $today,
                     )
         
                 );
                 
                 $query->set( 'meta_query', $meta_query );
+                $query->set( 'meta_key', 'start_date' );	
+                $query->set( 'orderby', 'meta_value_num' );	
+                $query->set( 'order', 'ASC' );
+                $query->set('posts_per_page', 12 );
             }
         }
         			
@@ -135,24 +131,6 @@ class CPT_Family extends CPT_Core {
         if( 'closing_date' == $orderby ) {
             $query->set( 'meta_key', 'closing_date' );	
 			$query->set( 'orderby', 'meta_value_num' );
-			//$query->set( 'order', 'ASC' ); 			
-            
-			/*
-            $date_now = date_i18n('Ymd');
-            
-			$meta_query = array(
-	
-				array(
-					'key'			=> 'closing_date',
-					'compare'		=> '>=',
-					'value'			=> $date_now,
-					'type'			=> 'DATE'
-				)
-    
-			);
-			
-			$query->set( 'meta_query', $meta_query );
-            */
         }   
     }
 }

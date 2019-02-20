@@ -19,9 +19,9 @@ $even = ( $post_count % 2 == 0 ) ? true : false;
         $post_image = sprintf( 'background-image: url(%s);', $post_image );
     }     
     
-    $post_date = _s_get_posted_on( 'M d,Y' );
+    $post_date = _s_get_posted_on( 'M d, Y' );
        
-    $post_title = sprintf( '<h3><a href="%s">%s</a></h3>', get_permalink(), get_the_title() );
+    $post_title = sprintf( '<h2><a href="%s">%s</a></h2>', get_permalink(), get_the_title() );
     
     $even = ( $post_count % 2 == 0 ) ? true : false;
     

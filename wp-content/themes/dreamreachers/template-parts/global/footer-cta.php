@@ -76,7 +76,7 @@ if( ! class_exists( 'Footer_CTA_Section' ) ) {
                          
             // Heading
             $header = new Element_Header( [ 'fields' => $fields ] ); // set fields from Constructor
-            $header->set_settings( ['subheading_wrap' => 'h3'] );
+            $header->set_settings( ['heading_size' => 'h1', 'subheading_size' => 'h2'] );
             $header = $header->get_element();
             if( ! empty( $header ) ) {
                 $html .= sprintf( '<div class="column">%s</div>', $header );
@@ -84,7 +84,7 @@ if( ! class_exists( 'Footer_CTA_Section' ) ) {
             
             // Button
             $button = new Element_Button( [ 'fields' => $fields ]  ); // set fields from Constructor
-            $button->add_render_attribute( 'anchor', 'class', [ 'button', 'white' ] );             
+            $button->add_render_attribute( 'anchor', 'class', [ 'button', 'white', 'large' ] );             
             $button = $button->get_element();
             if( ! empty( $button ) ) {
                 $html .= sprintf( '<div class="column shrink">%s</div>', $button );

@@ -51,6 +51,15 @@ $post_author_class = $post_author ? 'has-post-author' : '';
                 _s_get_addtoany_share_icons(),
                 $navigation  
               );
+              
+        $form_id = 7;
+        $form = GFAPI::get_form( $form_id );
+        
+        if( false !== $form ) {
+           printf( '<div class="form-wrapper"><h4>SIGN UP FOR EMAIL UPDATES</h4>%s</div>', 
+                    do_shortcode( sprintf( '[gravityform id="%s" title="false" description="false" ajax="true"]', $form_id ) ) );
+        }
+            
         ?>           
 	</footer><!-- .entry-footer -->
     

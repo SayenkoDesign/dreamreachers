@@ -11,7 +11,7 @@
         position: relative;
         z-index: 3;
         line-height: 0;
-        transform: translateY(-100%);
+        transform: translateY(-50%);
         
         img {
             display: block;
@@ -77,12 +77,13 @@
         
         li {
             display: block; 
-            padding-bottom: rem-calc(15);  
+            
             
             a {
-                color: $dark-gray;
+                color: #4A4A4A;
                 padding: rem-calc(5 0); 
-                font-size: rem-calc(18);  
+                font-size: rem-calc(16);  
+                margin-bottom: rem-calc(8); 
                 
                 &:hover {
                     color: rgba( $dark-gray, .8);   
@@ -107,7 +108,10 @@
     
         .be-social-widget {
             display: inline-block;
-            text-align: left;
+            
+            .widget-title {
+                text-align: right;   
+            }
         }
     }
 }

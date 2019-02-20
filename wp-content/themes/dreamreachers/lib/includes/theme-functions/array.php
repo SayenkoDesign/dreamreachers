@@ -1,5 +1,39 @@
 <?php
 
+if( !function_exists( 'find_next_array_value' ) ) {
+		
+    function find_next_array_value( $current, $array, $loop = false ) {
+        $nextkey = array_search( $current, $array ) + 1;
+        
+        if( $current == end( $array ) ) {
+            
+            if( !$loop )
+                return false;
+            $nextkey = 0;
+        }
+        
+        return $array[$nextkey];
+    }
+}
+
+if( !function_exists( 'find_prev_array_value' ) ) {
+    
+    function find_prev_array_value( $current, $array, $loop = false ) {
+        $nextkey = array_search( $current, $array ) - 1;
+        
+        if( $nextkey < 0 ) {
+            
+            if( !$loop )
+                return false;
+            
+            end( $array );         
+            $nextkey = key( $array );
+        }
+        
+        return $array[$nextkey];
+    }
+}
+
 function array_insert_after( array $array, $key, array $new ) {
     // Never position zero
     if( is_int( $key ) ) {

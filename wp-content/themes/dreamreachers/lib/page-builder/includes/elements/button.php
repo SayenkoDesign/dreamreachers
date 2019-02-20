@@ -40,6 +40,10 @@ class Element_Button extends Element_Base {
         */
                                                 
         $button = $this->get_fields( 'button' );
+        
+        if( empty( $button ) ) {
+            return;
+        }
                 
         $url = '';
         $title = '';

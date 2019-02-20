@@ -10,6 +10,34 @@ add_filter('nav_menu_item_args', function ($args, $item, $depth) {
 }, 10, 3);
 
 
+
+// Create jump links with "Link Relationship" text input as cheat
+function child_enable_menu_description( $item_output, $item ) {
+		
+    $contains = strpos( $item->xfn, 'section' ) !== false;
+            
+	if ( $contains ) {
+		$new_page_anchor =  sprintf( '%s#%s', trailingslashit( get_permalink( $item->object_id ) ), $item->xfn );
+		return str_replace( get_permalink( $item->object_id ), $new_page_anchor, $item_output );
+	}
+	return $item_output;
+}
+
+add_filter( 'walker_nav_menu_start_el', 'child_enable_menu_description', 10, 2 );
+
+
+// hijack the logout custom link
+function _s_logout_link( $item_output, $item ) {
+	if ( in_array( 'logout', $item->classes ) ) {
+		$new_page_anchor =  wp_logout_url( home_url() );
+		return str_replace( $item->url, $new_page_anchor, $item_output );
+	}
+	return $item_output;
+}
+
+add_filter( 'walker_nav_menu_start_el', '_s_logout_link', 10, 2 );
+
+
 // remove parent class from homepage - used for single page scroll menus
 function clear_nav_menu_item_class($classes, $item, $args) {
     

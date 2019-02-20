@@ -18,7 +18,7 @@
         display: block;
         background: $gray;
         background-size: cover;
-        background-position: center bottom;
+        background-position: center center;
         background-repeat: no-repeat;
         position: relative;        
         padding-top: 99%;  
@@ -68,8 +68,8 @@
             font-family: $open-sans;
             font-size: 15px;
             letter-spacing: 0.5px;
-            line-height: 25px;
-            margin-bottom: 15px;
+            line-height: 1.666666667;
+            margin-bottom: 25px;
         }
         
         h3 {
@@ -85,13 +85,16 @@
             }
         }
         
+        .read-more {
+            margin-top: rem-calc(30);
+        }
+        
         .more {
-            color: $dark-gray;
-            font-family: $header-font-family;
-            font-size: rem-calc(18);
-            line-height: rem-calc(20); 
-            
-            
+            color: #4A4A4A;
+            font-size: rem-calc(20);
+            line-height: 1.45;
+            padding-bottom: rem-calc(8);
+            border-bottom: 3px solid #F9B02D;
         }
     }
     

@@ -41,3 +41,8 @@ function get_svg( $type = '' ) {
 	}
 	
 }
+
+
+function _s_get_svg( $type = '' ) {
+    return get_svg( $type );
+}

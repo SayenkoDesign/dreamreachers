@@ -1,14 +1,12 @@
 <?php
-// Client - Hero
+// Home - Hero
 
 if( ! class_exists( 'Hero_Section' ) ) {
     class Hero_Section extends Element_Section {
         
-        var $post_id;
-        
         public function __construct() {
             parent::__construct();
-                                  
+                        
             $fields = get_field( 'hero' );
             $this->set_fields( $fields );
             
@@ -52,7 +50,7 @@ if( ! class_exists( 'Hero_Section' ) ) {
             }             
             
         }  
-                
+        
             
         /**
          * After section rendering.
@@ -63,10 +61,8 @@ if( ! class_exists( 'Hero_Section' ) ) {
          * @access public
          */
         public function after_render() {
-            
-            $shape = '<div class="shape"><div><svg viewBox="0 0 100 6" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#fff" d="M0 0, 70 6, 100 0, 100 6, 0 6z"/>
-                    </svg></div></div>';
+                    
+            $shape = sprintf( '<div class="shape"><img src="%sabout/hero-bottom.png" /></div>', trailingslashit( THEME_IMG ) );
                 
             return sprintf( '</div></div></div></div>%s</%s>', $shape , esc_html( $this->get_html_tag() ) );
         }
@@ -74,13 +70,34 @@ if( ! class_exists( 'Hero_Section' ) ) {
         
         // Add content
         public function render() {
-            $fields = $this->get_fields(); 
             
-            $heading        = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
-            $heading        = sprintf( '<div class="hero-caption"><header>%s</header></div>', _s_format_string( $heading, 'h1' ) );
+            $fields = $this->get_fields();
+            
+            $heading = empty( $fields['heading'] ) ? '' : _s_format_string( $fields['heading'], 'h1' );
+            
+            $subheading = empty( $fields['subheading'] ) ? '' : _s_format_string( $fields['subheading'], 'h2' );
+            
+            $description = empty( $fields['description'] ) ? '' : _s_format_string( $fields['description'], 'p' );
+            
+            $icon = sprintf( '<div class="icon"><span><img src="%sabout/solidarity.png" /></span></div>', trailingslashit( THEME_IMG ) );
+                                               
+            if( empty( $heading  ) ) {
+                return;     
+            }
+                        
+            $html = sprintf( '<div class="hero-caption"><header>%s%s%s</header>%s</div>', $heading, $icon, $subheading, $description );
+                                                                        
+            $row = new Element_Row(); 
+            $row->add_render_attribute( 'wrapper', 'class', 'align-middle' );
+            
+            $column = new Element_Column(); 
 
-            return sprintf( '<div class="row align-middle"><div class="column">%s</div></div>', $heading );
-            
+            $html = new Element_Html( [ 'fields' => array( 'html' => $html ) ]  ); // set fields from Constructor
+            $column->add_child( $html );
+                        
+            $row->add_child( $column );
+                        
+            $this->add_child( $row );
         }
         
     }
