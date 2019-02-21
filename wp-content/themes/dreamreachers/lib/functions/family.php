@@ -300,14 +300,15 @@ function dream_kits_calculate_amount_needed( $post_id = false ) {
   if( ! $post_id ) {
         $post_id = get_the_ID();
   }
+  
+  $total_cost = 0;
+  $amount = 0;
          
   // now we'll look at the repeater and save any values
   if ( have_rows('dream_kits', $post_id ) ) {
     while ( have_rows('dream_kits', $post_id ) ) {
       the_row();
-      
-      $amount = 0;
-      
+            
       $start_date = get_sub_field('start_date');
       // if missing start date we don't calculate
       if( empty( $start_date ) ) {
@@ -320,7 +321,7 @@ function dream_kits_calculate_amount_needed( $post_id = false ) {
           continue;
       }
       
-      $total_cost = 0;
+      
       $donation_amounts = 0;
       
       $total_cost = get_sub_field('total_cost');
@@ -343,11 +344,14 @@ function dream_kits_calculate_amount_needed( $post_id = false ) {
       
       // if there is an amoutn owing, we stop calcuating Dream Kits
       if( $amount > 0 ) {
-          return [ 'total_cost' => $total_cost, 'still_needed' => $amount ];
+          continue;
       }
               
     } // end while have rows
   } // end if have rows
+  
+  
+  return [ 'total_cost' => $total_cost, 'still_needed' => $amount ];
     
 } // end function
 

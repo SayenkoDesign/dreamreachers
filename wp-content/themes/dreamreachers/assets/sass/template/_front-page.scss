@@ -82,7 +82,10 @@
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    left: 0;   
+                    left: 0;  
+                    display: block;
+                    width: 63px;
+                    height: 63px; 
                 }
                 
                 span {
