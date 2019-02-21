@@ -59,6 +59,10 @@
             
             @include breakpoint(large) {
                 padding: 40px 42px;
+                
+                h3 {
+                    font-size: rem-calc(32);   
+                }
             }
         }
         

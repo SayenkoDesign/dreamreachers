@@ -86,7 +86,7 @@ if( ! class_exists( 'Hero_Section' ) ) {
             if( !empty( $video ) ) {
                 $video_url = youtube_embed( $video );
                 $video_description = 'How It Works';
-                $content = sprintf( '<div class="entry-content"><p><button class="play-video" data-open="modal-video" data-src="%s">%s</button><span>%s</span></p></div>', $video_url, get_svg( 'play-white' ), $video_description );
+                $content = sprintf( '<div class="entry-content"><p><button class="play-video" data-open="modal-video" data-src="%s">%s<span>%s</span></button></p></div>', $video_url, get_svg( 'play-white' ), $video_description );
             }
             
             $html = sprintf( '<div class="hero-caption"><header>%s</header>%s%s</div>', $heading, $subheading, $content );

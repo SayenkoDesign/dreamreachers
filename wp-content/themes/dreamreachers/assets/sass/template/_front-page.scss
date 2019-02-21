@@ -53,29 +53,42 @@
                 color: #fff; 
             }
             
+            .entry-content {
+                margin-top: rem-calc(30);   
+            }
+            
             p {
-                font-family: $shnobel;
-                font-size: 30px;      
+                font-family: $raleway;
+                font-size: 26px;      
                 text-transform: uppercase; 
                 margin: rem-calc(5 0 0);       
                 
                 > * {
                     display: inline-block;   
-                    vertical-align: middle;
+                    //vertical-align: middle;
                 }
                 
                 button {
                     cursor: pointer;
+                    position: relative;
+                    padding-left: 73px;
                     
                     &:hover svg {
                         opacity: .9;
                     }
                 }
                 
+                svg {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 0;   
+                }
+                
                 span {
-                    padding-left: 10px;
-                    position: relative;
-                    top: -5px;   
+                    display: block;
+                    
+                    color: #fff; 
                 }
             }
 
@@ -112,7 +125,7 @@
     }
     
     .row-2 {
-        max-width: 980px;
+        max-width: 1040px;
         margin: 45px auto 15px;   
     }
     
@@ -139,8 +152,11 @@
         }
                 
         h4 {                        
+            
+            font-family: $open-sans;
+            
             .count {
-                font-size: rem-calc(66);                   
+                font-size: rem-calc(50);                   
             }
             
             div {
@@ -149,11 +165,13 @@
             
             span {
                 display: inline; 
-                margin-right: rem-calc(10);
+                
             }
             
             .description {
-                
+                line-height: 1;
+                margin-left: rem-calc(10);
+                font-family: $raleway;
             }
         }
         

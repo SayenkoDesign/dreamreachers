@@ -44,8 +44,10 @@ class Element_Link extends Element_Base {
             $link['url'] = $link;
         }
                 
-        if( ! $this->get_render_attribute_string( 'anchor' ) ) {
-            $this->add_render_attribute( 'anchor', 'href', $link['url'] );
+        
+        
+        if( $this->get_settings( 'url' ) ) {
+            $link['url'] = $this->get_settings( 'url' );
         }
         
         if( $this->get_settings( 'title' ) ) {
@@ -55,6 +57,8 @@ class Element_Link extends Element_Base {
         if( empty( $link['title'] ) || empty( $link['url'] ) ) {
             return false;
         }
+        
+        $this->add_render_attribute( 'anchor', 'href', $link['url'] );
                                                                           
         $this->add_render_attribute( 'wrapper', 'class', 'element-link' );
         

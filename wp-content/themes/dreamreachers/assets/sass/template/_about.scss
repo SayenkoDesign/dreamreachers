@@ -191,12 +191,12 @@
             }
             
             .details {
-                padding: rem-calc(5 15 15 15);
+                padding: rem-calc(5 15 40 15);
                 
                 @include breakpoint(large) {
-                    padding: rem-calc(5 30 15 30);
+                    padding: rem-calc(5 30 40 30);
                 }
-                
+                position: relative;
                 text-align: center;
                 
                 h5 {
@@ -222,6 +222,11 @@
             }
             
             .icon {
+                position: absolute;
+                bottom: 15px;
+                left: 0;
+                width: 100%;
+                
                 a {
                     display: block;
                     width: 24px;

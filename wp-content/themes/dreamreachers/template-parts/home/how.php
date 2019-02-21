@@ -97,9 +97,15 @@ if( ! class_exists( 'Home_How_Section' ) ) {
                     $background = $row['background']; 
                     $background = sprintf( 'background-image: url(%s)', _s_get_acf_image_url( $background ) ); 
                     
+                    $thumbnail  = sprintf( '<div class="thumbnail" style="%s">%s</div>', $background, $icon ); 
+                    $title = sprintf( '<h3>%s</h3>', $row['heading'] );  
+                    
                     $button = $row['link'];
                     if( ! empty( $button ) ) {
                         $link   = $button['url'];
+                        $thumbnail  = sprintf( '<a href="%s" class="thumbnail" style="%s">%s</a>', $link, $background, $icon ); 
+                        $title = sprintf( '<h3><a href="%s">%s</a></h3>', $link, $row['heading'] );  
+                                                
                         $button = new Element_Link( [ 'fields' => [ 'link' => $button ] ] );
                         $button->set_settings( 'raw', true );
                         $button->add_render_attribute( 'anchor', 'class', [ 'link' ] ); 
@@ -107,9 +113,9 @@ if( ! class_exists( 'Home_How_Section' ) ) {
                     }
                     
                     
-                    $thumbnail  = sprintf( '<a href="%s" class="thumbnail" style="%s">%s</a>', $link, $background, $icon ); 
                     
-                    $title = sprintf( '<h3><a href="%s">%s</a></h3>', $link, $row['heading'] );  
+                    
+                    
                    
                     $grid_items .= sprintf( '<div class="column column-block"><div class="grid-item">%s%s%s%s</div></div>', 
                                      $thumbnail, 

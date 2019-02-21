@@ -34,16 +34,17 @@ h5,
 h6 {
 	color: $blue;
     font-family: $header-font-family;	
-    text-transform: uppercase;
+    //text-transform: uppercase;
 }
 
 h1 {
-    text-transform: uppercase;   
+    //text-transform: uppercase;   
 }
 
 h2, 
-h3 {
-    text-transform: uppercase;
+h3,
+h4 {
+    margin-bottom: rem-calc(10);
 }
 
 p, li {

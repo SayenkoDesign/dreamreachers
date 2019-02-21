@@ -21,7 +21,7 @@
         }
     
         > * {
-            flex-grow: 1; 
+             
             display: block;
             margin-bottom: 0!important; 
              
@@ -32,20 +32,27 @@
                 margin-bottom: $global-margin!important; 
             }
         }
-    }
-    
-    > span {
-        color: $dark-gray;
-        margin: 0 5px 0 0;
-        position: relative;
-        line-height: 2.25;
         
-        @include breakpoint(large) {
-            text-align: right;  
-            flex: 0 0 auto!important;
-            max-width: 100%; 
+        > [class*="facetwp"] {
+            flex-grow: 1;   
+        }
+        
+        > span {
+            color: $dark-gray;
+            margin: 0 5px 0 0;
+            position: relative;
+            line-height: 2.25;
+            min-width: 100px;
+            
+            @include breakpoint(large) {
+                text-align: right;  
+                flex: 0 0 auto!important;
+                max-width: 100%; 
+            }
         }
     }
+    
+    
     
     .facetwp-facet,
     .facetwp-sort {

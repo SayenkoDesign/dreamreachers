@@ -76,7 +76,7 @@ if( ! class_exists( 'Footer_CTA_Section' ) ) {
                          
             // Heading
             $header = new Element_Header( [ 'fields' => $fields ] ); // set fields from Constructor
-            $header->set_settings( ['heading_size' => 'h1', 'subheading_size' => 'h2'] );
+            $header->set_settings( ['heading_size' => 'h2', 'subheading_size' => 'h3'] );
             $header = $header->get_element();
             if( ! empty( $header ) ) {
                 $html .= sprintf( '<div class="column">%s</div>', $header );

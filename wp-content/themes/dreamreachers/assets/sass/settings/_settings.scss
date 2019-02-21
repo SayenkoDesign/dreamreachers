@@ -40,7 +40,8 @@ $dark-gray: #252B33;
 
 $border-color: #eceaeb;
 
-$shnobel: 'Shnobel', sans-serif;
+$raleway: 'Shnobel', sans-serif;
+$raleway: 'Raleway', sans-serif;
 $open-sans: 'Open Sans', sans-serif; 
 
 $transition: none;
@@ -90,7 +91,7 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ---------
 
-$header-font-family: $shnobel;
+$header-font-family: $raleway;
 $header-font-weight: 400;
 $header-font-style: normal;
 
@@ -107,11 +108,20 @@ $header-styles: (
   ),
   large: (
     'h1': ('font-size': 50 ),
+    'h2': ('font-size': 36 ),
+    'h3': ('font-size': 26 ),
+    'h4': ('font-size': 22 ),
+    'h5': ('font-size': 18 ),
+    'h6': ('font-size': 16 ),
+    
+    /*
+    'h1': ('font-size': 50 ),
     'h2': ('font-size': 40 ),
     'h3': ('font-size': 30 ),
     'h4': ('font-size': 24 ),
     'h5': ('font-size': 21 ),
     'h6': ('font-size': 16 ),
+    */
   ),
 ) !default;
 
