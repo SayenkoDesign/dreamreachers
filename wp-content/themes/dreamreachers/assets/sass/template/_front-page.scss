@@ -175,11 +175,6 @@
             }
         }
         
-        p {
-            letter-spacing: 0.7px;
-            font-size: rem-calc(18);
-            line-height: 1.44;
-        }
     }
 }
 
@@ -284,6 +279,12 @@
                 }
             }
         }
+        
+        .column:last-child {
+            .icon {
+                width: 80%;   
+            }
+        }
     }
     
     .grid-item {
@@ -352,9 +353,13 @@
            top: 50%;
            left: 50%;
            transform: translate(-50%,-50%);
-           width: 80%;
+           width: 70%;
            height: auto;  
-           z-index: 4; 
+           z-index: 4;
+           
+           img {
+                width: 100%;   
+           }
         }
     }
     
