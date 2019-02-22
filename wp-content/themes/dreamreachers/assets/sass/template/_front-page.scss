@@ -225,6 +225,10 @@
     .section-title {
         text-align: center;
         
+        button {
+            cursor: pointer;   
+        }
+        
         h2 {
             font-size: rem-calc(map-deep-get($header-styles, small, h3, font-size)); 
             

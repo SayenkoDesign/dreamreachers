@@ -48,10 +48,25 @@ if( ! class_exists( 'Home_How_Section' ) ) {
             $column = new Element_Column();    
                             
             // Header
-            $header = new Element_Header( [ 'fields' => $fields ] );
-            $header->add_render_attribute( 'wrapper', 'class', 'section-title' );
-            $column->add_child( $header );
+            $header = '';
+            $heading = empty( $fields['heading'] ) ? '' : _s_format_string( $fields['heading'], 'h2' );
+            $video = empty( $fields['video'] ) ? '' : $fields['video']; 
             
+            if( ! empty( $heading ) ) {
+                $header = sprintf( '<header class="section-title header">%s</header>', $heading );
+                
+                if( ! empty( $video ) ) {
+                    $video_url = youtube_embed( $video );
+                    $header = sprintf( '<header class="section-title header"><button class="play-video" data-open="modal-video" data-src="%s">%s</button></header>', 
+                    $video_url,
+                    $heading );
+                    
+                }
+                                
+                $header = new Element_Html( [ 'fields' => [ 'html' => $header ] ] );
+                $column->add_child( $header );
+            }
+                                    
             // Editor
             $editor = new Element_Editor( [ 'fields' => $fields ] ); // set fields from Constructor
             $column->add_child( $editor );
