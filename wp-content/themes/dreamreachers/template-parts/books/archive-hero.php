@@ -50,8 +50,7 @@ if( ! class_exists( 'Hero_Section' ) ) {
                 'background_position_x' => 'center',
                 'background_position_x' => 'center',
                 'heading' => 'Books',
-                'subheading_left' => '',
-                'subheading_right' => ''
+                'description' => '',
             ];
             
             $hero = wp_parse_args( $hero, $defaults );
@@ -72,13 +71,11 @@ if( ! class_exists( 'Hero_Section' ) ) {
             $heading = $hero['heading'];
             $heading = _s_format_string( $heading, 'h1' );
             
-            $subheading_left = _s_format_string( $hero['subheading_left'], 'h3' );
-            $subheading_right = _s_format_string( $hero['subheading_right'], 'h3' );
+            $description = _s_format_string( $hero['description'], 'h3' );
 
-            return sprintf( '<div class="row align-middle"><div class="column">%s<div class="row large-unstack text-center"><div class="column shrink">%s</div><div class="column shrink">%s</div></div>', 
+            return sprintf( '<div class="row align-middle"><div class="column text-center">%s%s</div>', 
                              $heading,
-                             $subheading_left,
-                             $subheading_right    
+                             $description
                           );
         }
     }
