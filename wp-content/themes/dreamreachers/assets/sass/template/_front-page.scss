@@ -156,10 +156,11 @@
                 
         h4 {                        
             
-            font-family: $open-sans;
+            font-family: $raleway;
             
             .count {
-                font-size: rem-calc(50);                   
+                font-size: rem-calc(50);    
+                font-weight: 800;               
             }
             
             div {
