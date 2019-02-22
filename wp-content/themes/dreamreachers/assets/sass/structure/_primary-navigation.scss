@@ -7,6 +7,22 @@
     
     @include breakpoint(large down) {
         padding: 0;
+        
+        .menu {
+            display: flex;
+            flex-direction: column;
+            
+            .donate {
+                order: -2;
+            }
+            
+            .login,
+            .logout,
+            .my-account {
+                order: -1;
+            }
+
+        }
     }
     
     .menu > .menu-item > a {
@@ -20,10 +36,6 @@
         width: 100%;
         position: relative;
         z-index: 2;
-        
-        &:first-child {
-            border: none;   
-        }
         
         &:hover,
         &.current-menu-item,
@@ -190,6 +202,7 @@
             }
             
             &.button {
+                
                 padding: rem-calc(6 0 3 0)!important;
                 
                 a {
@@ -199,7 +212,7 @@
                 }
             
             }
-            
+                        
             &.login,
             &.logout {
                 a {
