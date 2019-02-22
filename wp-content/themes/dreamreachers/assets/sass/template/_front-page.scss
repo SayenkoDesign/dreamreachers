@@ -150,7 +150,7 @@
     
     .grid-item {
         
-        @include breakpoint(small only ) {
+        @include breakpoint(medium down ) {
             text-align: center;   
         }
                 
@@ -164,7 +164,9 @@
             }
             
             div {
-                display: inline-block;    
+                @include breakpoint(large) {
+                    display: inline-block;     
+                }
             }
             
             span {
