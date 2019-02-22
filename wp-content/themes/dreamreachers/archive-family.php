@@ -11,7 +11,7 @@ _s_get_template_part( 'template-parts/family', 'archive-hero' );
     <main id="main" class="site-main" role="main">
                 
         <?php 
-        printf( '<div class="column row text-center"><h2 class="share-heading">Share our Vision</h2>%s</div>', _s_get_addtoany_share_icons() );
+        printf( '<div class="column row text-center"><h3 class="share-heading">Share our Vision</h3>%s</div>', _s_get_addtoany_share_icons() );
          
         if ( have_posts() ) :
                    
