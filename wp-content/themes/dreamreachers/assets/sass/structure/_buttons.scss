@@ -156,6 +156,12 @@ a.button {
     &.white {
         @include button-white;  
         
+        &:hover {
+            span {
+                padding: rem-calc(8 15)!important;   
+            }
+        }
+        
         &.large {
         
             min-width: 166px;

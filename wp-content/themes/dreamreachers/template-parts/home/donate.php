@@ -54,7 +54,7 @@ if( ! class_exists( 'Home_Donate_Section' ) ) {
             
             // Button
             $button = new Element_Button( [ 'fields' => $fields ]  ); // set fields from Constructor
-            $button->add_render_attribute( 'anchor', 'class', [ 'button', 'cta' ] ); 
+            $button->add_render_attribute( 'anchor', 'class', [ 'button', 'white' ] ); 
 
             $column->add_child( $button );
             $row->add_child( $column );
