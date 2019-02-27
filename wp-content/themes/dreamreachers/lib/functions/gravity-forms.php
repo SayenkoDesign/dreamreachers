@@ -283,14 +283,8 @@ function notification_routing( $notification, $form, $entry ) {
 add_filter( 'gform_field_value_family_id', 'book_order_form_populate_family' );
 function book_order_form_populate_family( $value ) {
     
-    if( empty( $_GET['family_id'] ) ) {
-        return '';
-    }
-    
-    $family_id = sanitize_text_field( $_GET['family_id'] );
-    $family_id = absint( $family_id );
-    
-    
-    return get_the_permalink( $family_id );
+    $post_id = get_family_post_by_user_id();
+        
+    return get_the_permalink( $post_id );
     
 }
