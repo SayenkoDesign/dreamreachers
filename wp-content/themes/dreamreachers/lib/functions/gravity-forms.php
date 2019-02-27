@@ -289,7 +289,7 @@ function book_order_form_populate_family( $value ) {
     
 }
 
-add_filter( 'gform_save_field_value', 'book_order_form_family_id', 10, 3 );
+// add_filter( 'gform_save_field_value', 'book_order_form_family_id', 10, 3 );
 function book_order_form_family_id( $value, $entry, $field ) {
     if ( $field->id == 9 ) {
         $value = sprintf( '<a href="%s">Click here to add books</a>', $value );
