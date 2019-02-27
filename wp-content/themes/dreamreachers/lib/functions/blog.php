@@ -9,6 +9,11 @@ function _s_unregister_post_tags() {
 add_action('init', '_s_unregister_post_tags');
 
 add_filter( 'the_category', function( $the_list ) {    
+
+    if( is_admin() ) {
+        return $the_list;
+    }
+
     $dom = new DOMDocument();
     $dom->loadHTML( $the_list );
     foreach( $dom->getElementsByTagName('a') as $a ) {
