@@ -24,9 +24,11 @@
                             if( _s_has_active_dream_kit() ) {
                                 $show_order_books_form = false;
                             }
-                            if( $days_since_last_dream_kit < 180 ) {
+                            else if( $days_since_last_dream_kit > 0 && $days_since_last_dream_kit < 180 ) {
                                 $show_order_books_form = false;
-                            } 
+                            } else {
+                                
+                            }
                             
                             $message = sprintf( '<p class="text-center">You have %s days, until you can order 5 more books</p>', 
                                                  180 - $days_since_last_dream_kit );     
