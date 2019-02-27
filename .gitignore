@@ -8,7 +8,7 @@ Thumbs.db
 package-lock.json
 
 node_modules/
-#acf-json
+acf-json
 *.map
 maps/
 .idea/
