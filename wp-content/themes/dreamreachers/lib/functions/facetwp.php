@@ -20,7 +20,7 @@ function _s_facet_index_post( $post_id, $post, $update ) {
       return;
   }
 
-  FWP()->indexer->index();
+  FWP()->indexer->index( $post_id );
   
 }
 

@@ -363,7 +363,13 @@ function _s_get_family_name( $post_id = false ) {
     if( empty( $post_id ) ) {
         $post_id = get_the_ID();
     }
-    return get_field( 'family_name', $post_id  );   
+    $family_name = get_field( 'family_name', $post_id  );   
+    $last_name = get_field( 'last_name', $post_id  );   
+    
+    if( ! empty( $family_name ) ) {
+        return $family_name;
+    }
+    return $last_name;
 }
 
 function _s_get_family_bio( $excerpt = false ) {
