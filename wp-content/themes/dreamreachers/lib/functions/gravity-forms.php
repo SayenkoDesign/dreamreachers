@@ -325,16 +325,37 @@ add_filter( 'gform_field_value_family_id', 'book_order_form_populate_family' );
 function book_order_form_populate_family( $value ) {
     
     $post_id = get_family_post_by_user_id();
-        
-    return get_the_permalink( $post_id );
-    
+    return $post_id;    
 }
 
-add_filter( 'gform_save_field_value', 'book_order_form_family_id', 10, 3 );
-function book_order_form_family_id( $value, $entry, $field ) {
-    if ( $field->id == 9 ) {
-        $value = get_edit_post_link( $value );
+add_filter( 'gform_allowable_tags_5', 'allow_basic_tags' );
+function allow_basic_tags( $allowable_tags ) {
+    return '<a>';
+}
+
+
+// add_filter( 'gform_pre_submission_filter_5', 'populate_familiy_edit_link' );
+function populate_familiy_edit_link( $form ) {
+ 
+    foreach( $form['fields'] as &$field )  {
+ 
+        //NOTE: replace 3 with your checkbox field id
+        $field_id = 9;
+        if ( $field->id != $field_id ) {
+            continue;
+        }
+
+        $_POST['input_9'] = sprintf( '<a href="%s">Click here to create this families Dream Kit</a>', 
+                        admin_url( sprintf( 'post.php?post=%s&action=edit', $field->value ) ) );
+ 
     }
  
-    return $value;
+    return $form;
 }
+
+function gform_family_edit_url( $atts, $content = '' ) {
+	$post_id = absint( $atts['id'] );
+	return sprintf( '<a href="%s">Click here to create this families Dream Kit</a>', 
+                        admin_url( sprintf( 'post.php?post=%s&action=edit', $post_id ) ) );
+}
+add_shortcode( 'gform_family_edit_url', 'gform_family_edit_url' );

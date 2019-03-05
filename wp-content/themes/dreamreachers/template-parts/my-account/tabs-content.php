@@ -10,7 +10,7 @@
                     $template = get_page_template_slug( get_the_ID() );
                     
                     $post_id = get_family_post_by_user_id();
-                                        
+                                                            
                     if( 'page-templates/order-books.php' == $template ) { 
                         // Do they have a pending book request?
                         $days_since_last_dream_kit = _s_get_days_since_last_dream_kit();
