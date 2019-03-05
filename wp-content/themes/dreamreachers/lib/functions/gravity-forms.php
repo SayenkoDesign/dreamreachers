@@ -49,7 +49,7 @@ add_filter( 'gform_pre_submission_filter', 'populate_books' );
 add_filter( 'gform_admin_pre_render', 'populate_books' );
 
 
-function _s_get_books() {
+function _s_get_books( $book_category_pointer ) {
     // arguments, adjust as needed
 	$args = array(
 		'post_type'      => 'book',
@@ -58,6 +58,31 @@ function _s_get_books() {
         'order'          => 'ASC',
         'orderby'        => 'menu_order'
 	);
+    
+    if( $book_category_pointer ) {
+        
+        $terms = get_terms( array(
+            'taxonomy' => 'book_cat',
+            'hide_empty' => true,
+        ) );
+        
+        $count = $book_category_pointer - 1;
+        
+        $term_id = $terms[$count]->term_id;
+        
+        if( ! is_wp_error( $terms ) ) {
+            $tax_query[] = array(
+                'taxonomy'         => 'book_cat',
+                'terms'            =>  [$term_id],
+                'field'            => 'term_id',   
+                'operator'         => 'IN',
+                'include_children' => false,
+            );
+            
+            $args['tax_query'] = $tax_query;
+        }
+ 
+    }
 
 	// Use $loop, a custom variable we made up, so it doesn't overwrite anything
 	$loop = new WP_Query( $args );
@@ -83,6 +108,9 @@ function _s_get_books() {
 
 function populate_books( $form ) {
  
+    static $book_category_pointer;
+    $book_category_pointer = 1;
+    
     foreach ( $form['fields'] as &$field ) {
  
         if ( $field->type != 'select' || strpos( $field->cssClass, 'populate-books' ) === false ) {
@@ -91,7 +119,7 @@ function populate_books( $form ) {
  
         // you can add additional parameters here to alter the posts that are retrieved
         // more info: http://codex.wordpress.org/Template_Tags/get_posts
-        $rows = _s_get_books();
+        $rows = _s_get_books( $book_category_pointer );
          
         $choices = array();
  
@@ -100,8 +128,21 @@ function populate_books( $form ) {
         }
  
         // update 'Select a Post' to whatever you'd like the instructive option to be
-        // $field->placeholder = 'Select a Location';
+        $terms = get_terms( array(
+            'taxonomy' => 'book_cat',
+            'hide_empty' => true,
+        ) );
+        
+        if( ! is_wp_error( $terms ) ) {
+            $count = $book_category_pointer - 1;
+            $term_name = $terms[$count]->name;
+            $field->placeholder = sprintf( 'Choose book from %s category', $term_name );
+        }
+        
+        
         $field->choices = $choices;
+        
+        $book_category_pointer++;
  
     }
  
@@ -289,10 +330,10 @@ function book_order_form_populate_family( $value ) {
     
 }
 
-// add_filter( 'gform_save_field_value', 'book_order_form_family_id', 10, 3 );
+add_filter( 'gform_save_field_value', 'book_order_form_family_id', 10, 3 );
 function book_order_form_family_id( $value, $entry, $field ) {
     if ( $field->id == 9 ) {
-        $value = sprintf( '<a href="%s">Click here to add books</a>', $value );
+        $value = get_edit_post_link( $value );
     }
  
     return $value;
