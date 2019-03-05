@@ -121,7 +121,7 @@ if( ! class_exists( 'Services_Block_Section' ) ) {
             $button_args = $this->get_fields( 'button' );
 
             $button = new Element_Button( [ 'fields' => $fields ]  ); // set fields from Constructor
-            $button->add_render_attribute( 'anchor', 'class', 'button cta' ); 
+            $button->add_render_attribute( 'anchor', 'class', 'button large' ); 
             $column->add_child( $button );
             
             $this->add_child( $row ); 
