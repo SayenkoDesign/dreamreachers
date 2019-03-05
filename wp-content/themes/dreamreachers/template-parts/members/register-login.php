@@ -30,11 +30,11 @@ function register_login_tabs() {
         foreach( $pages as $page ) {
             
             if( $current_page_id == $page  ) {
-                $pages[$page] = sprintf( '<li class="is-active"><span><h3>%s</h3></span></li>', 
+                $pages[$page] = sprintf( '<li class="is-active"><span><h4>%s</h4></span></li>', 
                         get_the_title( $page )
                       );
             } else {
-                $pages[$page] = sprintf( '<li><a href="%s"><h3>%s</h3></a></li>', 
+                $pages[$page] = sprintf( '<li><a href="%s"><h4>%s</h4></a></li>', 
                         get_permalink( $page ),
                         get_the_title( $page )
                       );   

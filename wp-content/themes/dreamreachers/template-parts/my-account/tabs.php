@@ -20,11 +20,11 @@ function _s_get_tabs() {
         }
         
         if( get_the_ID() == $post_id  ) {
-            $tabs .= sprintf( '<li class="is-active"><span><h3>%s</h3></span></li>', 
+            $tabs .= sprintf( '<li class="is-active"><span><h4>%s</h4></span></li>', 
                     get_the_title( $post_id )
                   );
         } else {
-            $tabs .= sprintf( '<li><a href="%s"><h3>%s</h3></a></li>', 
+            $tabs .= sprintf( '<li><a href="%s"><h4>%s</h4></a></li>', 
                     get_permalink( $post_id ),
                     get_the_title( $post_id )
                   );   
